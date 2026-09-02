@@ -1043,10 +1043,17 @@
     </header>
 
     <!-- 1회 / 2회 / 3회 모의고사 선택 바 -->
-    <div class="exam-selector" style="flex-wrap: wrap;">
+    <div class="exam-selector" style="flex-wrap: wrap; margin-bottom: 12px;">
         <button class="btn-exam active" id="btnExam1" onclick="switchExam(1)">🎯 제1회 실전 적중 (150제)</button>
         <button class="btn-exam" id="btnExam2" onclick="switchExam(2)">🔥 제2회 고난도 변형 (150제)</button>
         <button class="btn-exam" id="btnExam3" onclick="switchExam(3)" style="border-color:#f59e0b; background:#78350f;">⚡ 제3회 2026년 제25회 적중 기출 (150제)</button>
+    </div>
+
+    <!-- 1교시(4과목/35분) vs 2교시(2과목/35분) 교시 선택 바 -->
+    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;">
+        <button class="btn-action active" id="btnPeriodAll" onclick="setPeriodFilter('all')" style="background:#1e3a8a; border-color:#3b82f6; font-size:1.1rem; padding:10px 20px;">🎯 전 과목 풀세트 (1~6과목 / 150제 / 70분 완주)</button>
+        <button class="btn-action" id="btnPeriod1" onclick="setPeriodFilter('period1')" style="background:#064e3b; border-color:#10b981; font-size:1.1rem; padding:10px 20px;">🏛️ [1교시] 필수 4과목 (1~4과목 / 100제 / 35분 타임어택)</button>
+        <button class="btn-action" id="btnPeriod2" onclick="setPeriodFilter('period2')" style="background:#78350f; border-color:#f59e0b; font-size:1.1rem; padding:10px 20px;">🏡 [2교시] 선택 2과목 (5~6과목 / 50제 / 35분 타임어택)</button>
     </div>
 
     <!-- 모드 스위처 -->
@@ -1055,7 +1062,10 @@
             📖 150제 요약 & 변형세트 표 모드
         </button>
         <button class="btn-mode" id="btnModeCBT" onclick="setAppMode('cbt')">
-            📝 실전 5지선다형 모의고사 풀기 (CBT)
+            📝 실전 5지선다 CBT 모의고사
+        </button>
+        <button class="btn-mode" id="btnModeTestType" onclick="toggleTestMode()" style="border: 2px solid #ec4899; color:#fbcfe8;">
+            💡 즉시채점 학습모드
         </button>
     </div>
 
@@ -1716,12 +1726,54 @@ const examData = {
 
 // 전역 상태
 let currentExamNum = 1;
+let currentPeriod = 'all'; // 'all', 'period1', 'period2'
+let isExamMode = false; // false: 학습모드(즉시채점), true: 실전시험모드(제출시채점)
+let isExamSubmitted = false; // 실전모드 제출 완료 여부
 let allQuestions = [];
 let currentQIdx = 0;
 let userAnswers = {};
 let timerInterval = null;
-let secondsElapsed = 0;
+let secondsRemaining = 9000; // 150분 (초 단위 카운트다운)
 let omrFilter = 'all';
+
+// ======================= [교시 선택 및 실전모드 제어] =======================
+function setPeriodFilter(period) {
+    currentPeriod = period;
+    document.getElementById('btnPeriodAll').className = (period === 'all') ? 'btn-action active' : 'btn-action';
+    document.getElementById('btnPeriod1').className = (period === 'period1') ? 'btn-action active' : 'btn-action';
+    document.getElementById('btnPeriod2').className = (period === 'period2') ? 'btn-action active' : 'btn-action';
+
+    if (period === 'period1') secondsRemaining = 2100; // 35분 (1교시)
+    else if (period === 'period2') secondsRemaining = 2100; // 35분 (2교시)
+    else secondsRemaining = 4200; // 70분 (전체 풀세트)
+
+    userAnswers = {};
+    currentQIdx = 0;
+    isExamSubmitted = false;
+    buildCbtQuestions();
+    renderCbtQuestion();
+    renderOmrGrid();
+    startTimer();
+}
+
+function toggleTestMode() {
+    isExamMode = !isExamMode;
+    const btn = document.getElementById('btnModeTestType');
+    if (isExamMode) {
+        btn.innerHTML = '🏛️ [실전 시험모드 ON]';
+        btn.style.borderColor = '#3b82f6';
+        btn.style.color = '#93c5fd';
+        btn.style.background = '#1e3a8a';
+        alert('🏛️ [실전 시험장 모드]가 시작되었습니다!\n\n• 문제를 푸는 동안에는 실제 시험처럼 마킹만 되고 정답/해설이 숨겨집니다.\n• [최종 답안 제출 및 합격 판정] 버튼을 누르면 성적표와 함께 모든 해설이 공개됩니다!');
+    } else {
+        btn.innerHTML = '💡 즉시채점 학습모드';
+        btn.style.borderColor = '#ec4899';
+        btn.style.color = '#fbcfe8';
+        btn.style.background = '';
+    }
+    renderCbtQuestion();
+    renderOmrGrid();
+}
 
 // ======================= [Web Audio API 사운드 엔진] =======================
 let audioCtx = null;
@@ -1737,7 +1789,7 @@ function initAudio() {
 }
 
 function playCorrectSound() {
-    if (!soundEnabled) return;
+    if (!soundEnabled || isExamMode) return;
     initAudio();
     const notes = [523.25, 659.25, 1046.50];
     notes.forEach((freq, idx) => {
@@ -1757,7 +1809,7 @@ function playCorrectSound() {
 }
 
 function playWrongSound() {
-    if (!soundEnabled) return;
+    if (!soundEnabled || isExamMode) return;
     initAudio();
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
@@ -1813,6 +1865,7 @@ function switchExam(examNum) {
     const btn3 = document.getElementById('btnExam3');
     if (btn3) btn3.className = (examNum === 3) ? 'btn-exam active' : 'btn-exam';
 
+    isExamSubmitted = false;
     renderSummaryTable();
     buildCbtQuestions();
     userAnswers = {};
@@ -2046,7 +2099,13 @@ function buildCbtQuestions() {
     if (currentExamNum === 2) curData = examData.exam2;
     if (currentExamNum === 3) curData = examData.exam3;
 
-    for (let sub in curData) {
+    // 교시별 과목 필터링
+    let targetSubs = ['sub1', 'sub2', 'sub3', 'sub4', 'sub6', 'sub7'];
+    if (currentPeriod === 'period1') targetSubs = ['sub1', 'sub2', 'sub3', 'sub4'];
+    else if (currentPeriod === 'period2') targetSubs = ['sub6', 'sub7'];
+
+    for (let sub of targetSubs) {
+        if (!curData[sub]) continue;
         const subAllAnswers = curData[sub].map(it => it[2]);
 
         curData[sub].forEach((item, idx) => {
@@ -2128,7 +2187,8 @@ function renderCbtQuestion() {
         q.options = [...targetPool].sort(() => Math.random() - 0.5);
     }
 
-    document.getElementById('cbtProgress').textContent = `[제${currentExamNum}회 - ${q.subName}] 문제 ${q.num} / ${allQuestions.length}`;
+    const periodLabel = (currentPeriod === 'period1') ? '[1교시 100제]' : ((currentPeriod === 'period2') ? '[2교시 50제]' : '[전체 150제]');
+    document.getElementById('cbtProgress').textContent = `[제${currentExamNum}회 ${periodLabel} - ${q.subName}] 문제 ${q.num} / ${allQuestions.length}`;
     document.getElementById('cbtQuestionText').textContent = `${q.num}. ${q.qText}`;
 
     const bmBtn = document.getElementById('btnBookmark');
@@ -2147,13 +2207,22 @@ function renderCbtQuestion() {
         btn.innerHTML = `<span style="color:var(--text-yellow); font-size:1.45rem; font-weight:900;">${numbers[idx]}</span> ${opt}`;
 
         if (alreadyAnswered && alreadyAnswered.selectedText) {
-            if (opt === q.correct) btn.classList.add('show-correct');
-            if (opt === alreadyAnswered.selectedText) {
-                btn.classList.add(alreadyAnswered.isCorrect ? 'selected-correct' : 'selected-wrong');
+            // 실전 시험 모드 (제출 전에는 마킹만 파란색으로 표시)
+            if (isExamMode && !isExamSubmitted) {
+                if (opt === alreadyAnswered.selectedText) {
+                    btn.classList.add('selected-correct'); // 파란색 마킹
+                }
+            } 
+            // 학습 모드 또는 실전 제출 후 (정오답 색상 즉시 공개)
+            else {
+                if (opt === q.correct) btn.classList.add('show-correct');
+                if (opt === alreadyAnswered.selectedText) {
+                    btn.classList.add(alreadyAnswered.isCorrect ? 'selected-correct' : 'selected-wrong');
+                }
             }
-        } else {
-            btn.onclick = () => selectCbtAnswer(btn, opt, q.correct, q.feedback);
         }
+
+        btn.onclick = () => selectCbtAnswer(btn, opt, q.correct, q.feedback);
         container.appendChild(btn);
     });
 
@@ -2161,7 +2230,10 @@ function renderCbtQuestion() {
     const fbTitle = document.getElementById('cbtFeedbackTitle');
     const fbContent = document.getElementById('cbtFeedbackContent');
 
-    if (alreadyAnswered && alreadyAnswered.selectedText) {
+    // 실전 모드 중에는 해설 상자 숨김
+    if (isExamMode && !isExamSubmitted) {
+        fbBox.className = 'cbt-feedback';
+    } else if (alreadyAnswered && alreadyAnswered.selectedText) {
         fbTitle.innerHTML = alreadyAnswered.isCorrect ? '🎉 1초 정답입니다! [출제 변형 포인트]' : '❌ 오답입니다! [정답 및 변형 감별]';
         fbTitle.style.color = alreadyAnswered.isCorrect ? '#34d399' : '#f87171';
         fbContent.innerHTML = `<strong style="font-size:1.35rem; color:#fde047;">정답: ${q.correct}</strong><br><br>${q.feedback}`;
@@ -2339,13 +2411,27 @@ function submitFinalExam(isAuto = false) {
         if (!confirmSubmit) return;
     }
 
+    isExamSubmitted = true;
+    renderCbtQuestion();
+    renderOmrGrid();
+
     const modal = document.getElementById('scoreModal');
     let titleText = '🎯 제1회 실전 적중 (150제)';
     if (currentExamNum === 2) titleText = '🔥 제2회 고난도 변형 (150제)';
     if (currentExamNum === 3) titleText = '⚡ 제3회 2026년 제25회 적중 기출 (150제)';
-    document.getElementById('modalExamTitle').textContent = titleText;
+    const periodLabel = (currentPeriod === 'period1') ? ' [1교시 35분]' : ((currentPeriod === 'period2') ? ' [2교시 35분]' : ' [전체 풀세트]');
+    document.getElementById('modalExamTitle').textContent = titleText + periodLabel;
 
-    const subOrder = ['sub1', 'sub2', 'sub3', 'sub4', 'sub6', 'sub7'];
+    let subOrder = ['sub1', 'sub2', 'sub3', 'sub4', 'sub6', 'sub7'];
+    let targetTotalQ = 150;
+    if (currentPeriod === 'period1') {
+        subOrder = ['sub1', 'sub2', 'sub3', 'sub4'];
+        targetTotalQ = 100;
+    } else if (currentPeriod === 'period2') {
+        subOrder = ['sub6', 'sub7'];
+        targetTotalQ = 50;
+    }
+
     const subNames = {
         sub1: { name: '1. 청소년 상담의 이론과 실제', period: '1교시' },
         sub2: { name: '2. 상담연구방법론의 기초 (과락주의)', period: '1교시' },
@@ -2389,11 +2475,12 @@ function submitFinalExam(isAuto = false) {
         tbody.appendChild(tr);
     });
 
-    const avgScore = Math.round((totalCorrect / 150) * 100);
+    const avgScore = Math.round((totalCorrect / targetTotalQ) * 100);
     const totalScore = totalCorrect * 4;
+    const passScore = targetTotalQ * 4 * 0.6; // 60% 합격선
 
-    document.getElementById('reportAnsweredNum').textContent = `${answeredTotal} / 150`;
-    document.getElementById('reportAvgScore').textContent = `${avgScore}점 (${totalCorrect}개 / 150제)`;
+    document.getElementById('reportAnsweredNum').textContent = `${answeredTotal} / ${targetTotalQ}`;
+    document.getElementById('reportAvgScore').textContent = `${avgScore}점 (${totalCorrect}개 / ${targetTotalQ}제)`;
     document.getElementById('reportTimeSpent').textContent = document.getElementById('cbtTimer').textContent.replace('⏱️ ', '');
 
     const banner = document.getElementById('resultBanner');
@@ -2407,7 +2494,7 @@ function submitFinalExam(isAuto = false) {
         banner.classList.add('pass');
         statusText.innerHTML = '🎉 최종 [합격] 입니다!';
         statusText.style.color = '#34d399';
-        reasonText.innerHTML = `축하합니다! 전 과목 과락 없이 평균 <strong>${avgScore}점</strong> (총점 ${totalScore}점 / 합격선 360점)으로 <strong>2026년 청소년상담사 2급 필기시험에 최종 합격</strong>하셨습니다! 🏆`;
+        reasonText.innerHTML = `축하합니다! 과목별 과락 없이 평균 <strong>${avgScore}점</strong> (총점 ${totalScore}점 / 합격선 ${passScore}점)으로 <strong>청소년상담사 2급에 최종 합격</strong>하셨습니다! 🏆`;
         playFanfareSound();
     }
     // 2) 평균은 60점 이상이나 특정 과목 40점 미만 과락 발생
@@ -2423,7 +2510,7 @@ function submitFinalExam(isAuto = false) {
         banner.classList.add('fail');
         statusText.innerHTML = '❌ 최종 [불합격] (평균 미달)';
         statusText.style.color = '#f87171';
-        reasonText.innerHTML = `전 과목 과락(40점 미만)은 없었으나, 평균 점수가 <strong>${avgScore}점</strong>으로 합격 기준(평균 60점 이상 / 90개 이상 정답)에 미달하여 불합격 처리되었습니다.`;
+        reasonText.innerHTML = `과목별 과락(40점 미만)은 없었으나, 평균 점수가 <strong>${avgScore}점</strong>으로 합격 기준(평균 60점 이상)에 미달하여 불합격 처리되었습니다.`;
         playWrongSound();
     }
     // 4) 과락 발생 + 평균 60점 미달
@@ -2537,14 +2624,52 @@ document.getElementById('searchInput').addEventListener('input', function(e) {
 
 function startTimer() {
     if (timerInterval) clearInterval(timerInterval);
-    secondsElapsed = 0;
+    if (!secondsRemaining || secondsRemaining <= 0) {
+        if (currentPeriod === 'period1' || currentPeriod === 'period2') secondsRemaining = 2100; // 35분 (2100초)
+        else secondsRemaining = 4200; // 70분 (4200초)
+    }
+
+    let warned10 = false;
+    let warned5 = false;
+
     timerInterval = setInterval(() => {
-        secondsElapsed++;
-        playTickSound();
-        const hrs = String(Math.floor(secondsElapsed / 3600)).padStart(2, '0');
-        const mins = String(Math.floor((secondsElapsed % 3600) / 60)).padStart(2, '0');
-        const secs = String(secondsElapsed % 60).padStart(2, '0');
-        document.getElementById('cbtTimer').textContent = `⏱️ ${hrs}:${mins}:${secs}`;
+        if (secondsRemaining > 0) {
+            secondsRemaining--;
+            playTickSound();
+
+            const hrs = String(Math.floor(secondsRemaining / 3600)).padStart(2, '0');
+            const mins = String(Math.floor((secondsRemaining % 3600) / 60)).padStart(2, '0');
+            const secs = String(secondsRemaining % 60).padStart(2, '0');
+            
+            const timerEl = document.getElementById('cbtTimer');
+            if (secondsRemaining <= 600) {
+                timerEl.style.color = '#f87171'; // 10분 이하 붉은색 경고
+                timerEl.style.animation = 'pulse 1s infinite';
+            } else {
+                timerEl.style.color = 'var(--text-yellow)';
+                timerEl.style.animation = '';
+            }
+
+            timerEl.textContent = `⏱️ ${mins}:${secs} 남음`;
+
+            // 10분 전 경고 (600초)
+            if (secondsRemaining === 600 && !warned10) {
+                warned10 = true;
+                if (soundEnabled) playWrongSound();
+                alert('⚠️ [시험 종료 10분 전] 남은 시간 10분입니다! OMR 카드 마킹을 점검하세요.');
+            }
+
+            // 5분 전 경고 (300초)
+            if (secondsRemaining === 300 && !warned5) {
+                warned5 = true;
+                if (soundEnabled) playWrongSound();
+                alert('🚨 [시험 종료 5분 전] 남은 시간 5분입니다! 최종 마킹을 마무리하세요.');
+            }
+        } else {
+            clearInterval(timerInterval);
+            alert('🏁 [시험 시간 종료] 35분이 모두 경과하여 답안을 자동으로 최종 제출합니다.');
+            submitFinalExam(true);
+        }
     }, 1000);
 }
 
