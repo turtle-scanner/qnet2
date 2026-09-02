@@ -1681,61 +1681,120 @@ function buildCbtQuestions() {
         sub7: "제6과목 집단상담 (선택)"
     };
 
+    // 주제별 100% 동일 과목 전문 기출 5지선다 풀 데이터베이스
+    const topicPools = [
+        // 1과목: 상담이론
+        ["투사 (Projection)", "전치 (Displacement)", "반동형성 (Reaction Formation)", "합리화 (Rationalization)", "승화 (Sublimation)", "내사 (Introjection)", "반전 (Retroflection)", "퇴행", "억압"],
+        ["지배형 (Ruling)", "획득형 (기생형)", "회피형 (Avoiding)", "사회적 유용형", "상승형"],
+        ["무조건적 긍정적 존중", "일치성 (진실성)", "공감적 이해", "적극적 경청", "라포 형성"],
+        ["반전 (Retroflection)", "내사 (Introjection)", "투사 (Projection)", "융합 (Confluence)", "편향 (Deflection)"],
+        ["SAMIC 원칙", "SMART 원칙", "ABCDE 모형", "OARS 기술", "BASIC-ID 모델"],
+        ["기적질문 (Miracle)", "예외질문 (Exception)", "척도질문 (Scaling)", "대처질문 (Coping)", "관계성질문 (Relationship)"],
+        ["직면 (Confrontation)", "명료화 (Clarification)", "반영 (Reflection)", "재진술 (Paraphrasing)", "해석 (Interpretation)", "요약"],
+        ["정체감 성취", "정체감 유예", "정체감 유실", "정체감 혼미", "정체감 분열"],
+        ["상보교류", "교차교류", "이면교류", "폐쇄교류", "개방교류"],
+        ["수용 (Acceptance)", "인지적 탈융합", "맥락으로서의 자기", "현재에 머물기", "가치와 전념"],
+        ["상상적 관중", "개인적 우화", "불사조 신념", "자의식 과잉", "가상적 청중"],
+
+        // 2과목: 연구방법론
+        ["비율척도 (Ratio)", "등간척도 (Interval)", "서열척도 (Ordinal)", "명목척도 (Nominal)", "절대척도"],
+        ["제1종 오류 (α)", "제2종 오류 (β)", "통계적 검정력 (1-β)", "유의수준 (Significance level)", "측정의 표준오차"],
+        ["독립표본 t-검정", "대응표본 t-검정", "일원 분산분석 (ANOVA)", "이원 분산분석 (Two-way ANOVA)", "카이제곱 검정 (χ²)"],
+        ["역사 요인 (History)", "성숙 요인 (Maturation)", "통계적 회귀 (Statistical Regression)", "피험자 상실 (탈락)", "검사 요인 (Testing)"],
+        ["체계적 / 계통표집", "단순무선표집 (Simple Random)", "층화표집 (Stratified)", "군집 / 집락표집 (Cluster)", "할당 / 유의표집 (Quota)"],
+        ["반전설계 (ABAB)", "중다기초선설계 (Multiple Baseline)", "기준변화설계", "요인설계", "사전사후 통제집단설계"],
+        ["근거이론 (Grounded Theory)", "현상학적 연구 (Phenomenological)", "문화기술지 (Ethnography)", "내러티브 탐구", "단일 사례연구"],
+        ["매개효과", "조절효과", "주효과", "상호작용 효과", "단순주효과"],
+        ["사전동의 (Informed Consent)", "비밀보장", "익명성 보장", "사후설명 (Debriefing)", "자발적 참여 권리"],
+        ["결정계수 (R²)", "상관계수 (r)", "회귀계수 (B)", "표준오차 (SE)", "공분산"],
+
+        // 3과목: 심리측정 및 평가
+        ["타당도 (Validity)", "신뢰도 (Reliability)", "객관도 (Objectivity)", "실용도 (Usability)", "표준화 (Standardization)"],
+        ["내용타당도", "공인타당도 (Concurrent)", "예측타당도 (Predictive)", "구인타당도 (Construct)", "수렴타당도", "변별타당도"],
+        ["검사-재검사 신뢰도", "동형검사 신뢰도", "반분 신뢰도", "크론바흐 알파 (Cronbach's α)", "채점자간 신뢰도"],
+        ["70점 (T점수 70 / IQ 130)", "60점 (T점수 60 / IQ 115)", "50점 (T점수 50 / IQ 100)", "40점 (T점수 40 / IQ 85)", "30점 (T점수 30 / IQ 70)"],
+        ["L 척도 (Lie)", "F 척도 (Infrequency)", "K 척도 (Correction)", "VRIN 척도 (무선반응)", "TRIN 척도 (일관불일치)"],
+        ["도움 요청 (Cry for help)", "완강한 방어 (V자형)", "순진한 결백 주장", "무작위 고정응답", "정상 프로파일"],
+        ["2-7 / 7-2 코드 (우울-불안)", "4-9 / 9-4 코드 (충동-비행)", "6-8 / 8-6 코드 (피해-망상)", "1-2-3 전환V", "1-3 신체화"],
+        ["언어이해지표 (VCI)", "시공간지표 (VSI)", "유동추론지표 (FRI)", "작업기억지표 (WMI)", "처리속도지표 (PSI)"],
+        ["자극추구 (Novelty Seeking)", "위험회피 (Harm Avoidance)", "사회적 민감성 (Reward)", "인내력 (Persistence)", "자율성 (Self-directedness)"],
+        ["로샤 (Rorschach) 검사", "BGT (벤더-게슈탈트)", "HTP (집-나무-사람)", "KFD (동적가족화)", "SCT (문장완성검사)"],
+
+        // 4과목: 청소년 이상심리
+        ["뚜렛장애 (Tourette's)", "만성 운동틱장애", "만성 음성틱장애", "일과성 틱장애", "상동증적 운동장애"],
+        ["품행장애 (CD)", "적대적 반항장애 (ODD)", "파괴적 기분조절부전 (DMDD)", "간헐적 폭발장애", "반사회성 성격장애"],
+        ["제I형 양극성 장애", "제II형 양극성 장애", "순환감정장애", "주요우울장애", "지속성 우울장애"],
+        ["공황장애 (Panic)", "범불안장애 (GAD)", "강박장애 (OCD)", "외상후 스트레스장애 (PTSD)", "사회불안장애"],
+        ["신경성 식욕부진증 (거식증)", "신경성 폭식증 (Bulimia)", "폭식장애 (Binge-eating)", "회피/제한적 음식섭취장애", "이식증"],
+        ["반사회성 성격장애", "경계선 성격장애", "자기애성 성격장애", "연극성 성격장애", "회피성 성격장애"],
+
+        // 5과목: 가족상담
+        ["자기분화 (Differentiation)", "삼각관계 (Triangulation)", "다세대 전수과정", "가족투사과정", "정서적 단절"],
+        ["밀착된 가족 (Enmeshed)", "유리된 가족 (Disengaged)", "명확한 경계선", "우회연합 (Detouring)", "안정된 연합"],
+        ["회유형 (Placating)", "비난형 (Blaming)", "초이성형 (Super-reasonable)", "산만형 (Irrelevant)", "일치형 (Congruent)"],
+        ["가족 조각 (Family Sculpting)", "재명명 (Reframing)", "증상 처방 (Symptom Prescription)", "순환 질문 (Circular)", "실연 (Enactment)"],
+
+        // 6과목: 집단상담
+        ["초기 단계 (Initial Stage)", "과도기 단계 (Transition Stage)", "작업 단계 (Working Stage)", "종결 단계 (Final Stage)", "추수 회기 (Follow-up)"],
+        ["보편성 (Universality)", "이타주의 (Altruism)", "카타르시스 (Catharsis)", "희망의 주입", "실존적 요인"],
+        ["연결하기 (Linking)", "차단하기 (Blocking)", "명료화 (Clarifying)", "직면 (Confronting)", "모델링 (Modeling)"],
+        ["역할 교환 (Role Reversal)", "거울 기법 (Mirror Technique)", "이중자아 기법 (Double)", "독백 기법 (Soliloquy)", "빈의자 기법"]
+    ];
+
     allQuestions = [];
     let qGlobalNum = 1;
     const curData = (currentExamNum === 1) ? examData.exam1 : examData.exam2;
 
     for (let sub in curData) {
+        // 해당 과목 내 모든 정답 리스트 (동일 과목 내 오답 후보군)
+        const subAllAnswers = curData[sub].map(it => it[2]);
+
         curData[sub].forEach((item, idx) => {
             let correctText = item[2];
-            let optionsPool = [
-                correctText,
-                "체계적 둔감화 및 인지 재구조화",
-                "합리화 및 반동형성 기법",
-                "상호작용 촉진 및 직면 모델",
-                "수용전념 치료 행동 원칙"
-            ];
+            let optionsPool = [];
 
-            if (currentExamNum === 1) {
-                if (sub === 'sub1' && item[0] === '01') optionsPool = ["투사 (Projection)", "전치 (Displacement)", "반동형성 (Reaction Formation)", "합리화 (Rationalization)", "승화 (Sublimation)"];
-                else if (sub === 'sub1' && item[0] === '03') optionsPool = ["지배형 (Ruling)", "획득형 (기생형)", "회피형 (Avoiding)", "사회적 유용형", "상승형"];
-                else if (sub === 'sub1' && item[0] === '05') optionsPool = ["반전 (Retroflection)", "내사 (Introjection)", "투사 (Projection)", "융합 (Confluence)", "편향 (Deflection)"];
-                else if (sub === 'sub1' && item[0] === '08') optionsPool = ["SAMIC 원칙", "SMART 원칙", "ABCDE 모형", "OARS 기술", "BASIC-ID 모델"];
-                else if (sub === 'sub1' && item[0] === '19') optionsPool = ["기적질문", "예외질문", "척도질문", "대처질문", "관계성질문"];
-                else if (sub === 'sub1' && item[0] === '20') optionsPool = ["예외질문", "기적질문", "척도질문", "대처질문", "관계성질문"];
-                else if (sub === 'sub2' && item[0] === '01') optionsPool = ["비율척도 (Ratio)", "등간척도 (Interval)", "서열척도 (Ordinal)", "명목척도 (Nominal)", "리커트 척도"];
-                else if (sub === 'sub2' && item[0] === '03') optionsPool = ["제1종 오류 (α)", "제2종 오류 (β)", "통계적 검정력 (1-β)", "유의수준", "표준오차"];
-                else if (sub === 'sub3' && item[0] === '07') optionsPool = ["70점", "60점", "50점", "40점", "30점"];
-                else if (sub === 'sub4' && item[0] === '04') optionsPool = ["뚜렛장애 (Tourette's)", "만성 운동틱장애", "만성 음성틱장애", "일과성 틱장애", "상동증적 운동장애"];
-                else if (sub === 'sub6' && item[0] === '13') optionsPool = ["회유형 (Placating)", "비난형 (Blaming)", "초이성형 (Super-reasonable)", "산만형 (Irrelevant)", "일치형 (Congruent)"];
-                else if (sub === 'sub7' && item[0] === '05') optionsPool = ["초기 ➔ 과도기 ➔ 작업 ➔ 종결", "초기 ➔ 작업 ➔ 과도기 ➔ 종결", "오리엔테이션 ➔ 갈등 ➔ 종결", "탐색 ➔ 저항 ➔ 일반화", "형성 ➔ 격동 ➔ 규범 ➔ 성취"];
-            } else {
-                if (sub === 'sub1' && item[0] === '01') optionsPool = ["전치 (Displacement)", "투사 (Projection)", "반동형성", "합리화", "승화"];
-                else if (sub === 'sub1' && item[0] === '05') optionsPool = ["내사 (Introjection)", "반전 (Retroflection)", "투사", "융합", "편향"];
-                else if (sub === 'sub1' && item[0] === '12') optionsPool = ["척도질문 (Scaling)", "기적질문", "예외질문", "대처질문", "관계성질문"];
-                else if (sub === 'sub1' && item[0] === '13') optionsPool = ["대처질문 (Coping)", "척도질문", "기적질문", "예외질문", "관계성질문"];
-                else if (sub === 'sub2' && item[0] === '01') optionsPool = ["서열척도 (Ordinal)", "명목척도", "등간척도", "비율척도", "절대척도"];
-                else if (sub === 'sub2' && item[0] === '06') optionsPool = ["F 통계량 증가 (유의성 증가)", "F 통계량 감소", "F값 0으로 수렴", "t값 급감", "유의확률 p 증가"];
-                else if (sub === 'sub3' && item[0] === '06') optionsPool = ["40점", "50점", "60점", "70점", "30점"];
-                else if (sub === 'sub3' && item[0] === '25') optionsPool = ["0.90", "0.81", "0.70", "0.64", "1.00"];
-                else if (sub === 'sub4' && item[0] === '06') optionsPool = ["제II형 양극성 장애", "제I형 양극성 장애", "순환감정장애", "파괴적 기분조절부전장애", "주요우울장애"];
-                else if (sub === 'sub6' && item[0] === '10') optionsPool = ["회유형 (Placating)", "비난형 (Blaming)", "초이성형", "산만형", "일치형"];
-                else if (sub === 'sub7' && item[0] === '04') optionsPool = ["과도기 단계 (Transition Stage)", "초기 단계", "작업 단계", "종결 단계", "준비 단계"];
+            // 1) 전문 주제별 풀에서 정답이 포함된 풀 탐색
+            for (let pool of topicPools) {
+                if (pool.some(opt => opt === correctText || opt.includes(correctText) || correctText.includes(opt.split(' ')[0]))) {
+                    optionsPool = [...pool];
+                    break;
+                }
             }
 
-            let shuffled = [...optionsPool].sort(() => Math.random() - 0.5);
-            if (!shuffled.includes(correctText)) {
-                shuffled[0] = correctText;
-                shuffled.sort(() => Math.random() - 0.5);
+            // 2) 매핑되지 않은 경우: 같은 과목(sub) 내 다른 정답들 중에서 4개 무작위 추출!
+            if (optionsPool.length === 0) {
+                optionsPool.push(correctText);
+                const otherSubAnswers = subAllAnswers.filter(ans => ans !== correctText);
+                const sampled = [...otherSubAnswers].sort(() => Math.random() - 0.5).slice(0, 4);
+                optionsPool.push(...sampled);
+            }
+
+            // 정답 포함 보장
+            if (!optionsPool.includes(correctText)) {
+                optionsPool[0] = correctText;
+            }
+
+            // 중복 제거 및 무작위 셔플
+            let uniqueOptions = [...new Set(optionsPool)];
+            while (uniqueOptions.length < 5) {
+                const randomFill = subAllAnswers[Math.floor(Math.random() * subAllAnswers.length)];
+                if (!uniqueOptions.includes(randomFill)) uniqueOptions.push(randomFill);
+            }
+            uniqueOptions = uniqueOptions.slice(0, 5);
+            uniqueOptions.sort(() => Math.random() - 0.5);
+
+            let finalQText = item[1];
+            if (!finalQText.endsWith("?")) {
+                finalQText += "에 해당하는 것은?";
             }
 
             allQuestions.push({
                 num: qGlobalNum++,
                 subKey: sub,
                 subName: subNames[sub],
-                qText: item[1] + "에 해당하는 것은?",
+                qText: finalQText,
                 correct: correctText,
-                options: shuffled,
+                options: uniqueOptions,
                 feedback: item[3]
             });
         });
