@@ -7,7 +7,7 @@
     <meta http-equiv="Expires" content="0">
     <title>2026년 청소년상담사 2급 [450제 CBT 마스터 & 실전 시험장 시스템]</title>
     <script>
-        const APP_BUILD_VER = '2026_0912_v600_gold_master';
+        const APP_BUILD_VER = '2026_0912_v600_ultra_master';
         if (localStorage.getItem('app_build_ver') !== APP_BUILD_VER) {
             localStorage.setItem('app_build_ver', APP_BUILD_VER);
             if ('caches' in window) {
@@ -1023,9 +1023,176 @@
             box-shadow: 0 4px 18px rgba(220, 38, 38, 0.4);
             transition: all 0.2s;
         }
-        .btn-submit-exam:hover {
-            background: #ef4444;
+        /* ======================= [플래시카드 3D 플립 스타일] ======================= */
+        #flashcard-view {
+            display: none;
+            max-width: 860px;
+            margin: 0 auto 30px auto;
+        }
+
+        .flashcard-scene {
+            perspective: 1200px;
+            width: 100%;
+            min-height: 380px;
+            margin-bottom: 24px;
+            cursor: pointer;
+        }
+
+        .flashcard {
+            width: 100%;
+            min-height: 380px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 24px;
+        }
+
+        .flashcard.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            border: 3px solid var(--border);
+            background: linear-gradient(145deg, #0f172a, #1e1b4b);
+        }
+
+        .card-front {
+            border-color: #3b82f6;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(145deg, #064e3b, #022c22);
+            border-color: #10b981;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-cyan);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .card-prompt-text {
+            font-size: 1.85rem;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.5;
+            text-align: center;
+            margin: auto 0;
+            word-break: keep-all;
+        }
+
+        .card-answer-text {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #34d399;
+            text-shadow: 0 0 20px rgba(52, 211, 153, 0.6);
+            text-align: center;
+            margin: 10px 0;
+            word-break: keep-all;
+        }
+
+        .card-sub-info {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 14px;
+            padding: 16px;
+            font-size: 1.15rem;
+            color: #e2e8f0;
+            line-height: 1.6;
+            border-left: 4px solid #34d399;
+        }
+
+        .flashcard-ctrls {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-card-ctrl {
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            border: 2px solid var(--border);
+            background: var(--bg-card);
+            color: #ffffff;
+            transition: all 0.2s;
+        }
+
+        .btn-card-ctrl:hover {
             transform: translateY(-2px);
+            border-color: var(--text-cyan);
+        }
+
+        /* ======================= [인쇄 및 치트시트 스타일] ======================= */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-size: 11pt !important;
+            }
+            #authGate, header, .exam-selector, .mode-switcher, .controls, .nav-tabs, .cbt-view, #flashcard-view, .btn-action, .btn-exam, .btn-mode, .modal-overlay, #ddayBanner {
+                display: none !important;
+            }
+            #table-view, #table-view .subject-group {
+                display: block !important;
+            }
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            table {
+                border-collapse: collapse !important;
+                width: 100% !important;
+                margin-bottom: 20px !important;
+                page-break-inside: avoid !important;
+            }
+            th, td {
+                border: 1px solid #333333 !important;
+                color: #000000 !important;
+                padding: 6px 8px !important;
+                font-size: 10pt !important;
+                background: #ffffff !important;
+            }
+            th {
+                background: #f1f5f9 !important;
+                font-weight: bold !important;
+            }
+            .ans-badge {
+                border: none !important;
+                background: none !important;
+                color: #b91c1c !important;
+                font-weight: bold !important;
+                font-size: 10.5pt !important;
+                text-decoration: underline !important;
+            }
+            .variant-box {
+                border: none !important;
+                background: none !important;
+                color: #333333 !important;
+                font-size: 9.5pt !important;
+            }
+            .variant-title { display: none !important; }
         }
 
         @media (max-width: 1100px) {
@@ -1050,6 +1217,10 @@
     <header>
         <h1>🌙 2026년 청소년상담사 2급 [600제 CBT 마스터 & 35분 실전 시험장 시스템]</h1>
         <p>1. [제0회·1회·2회·3회 600제 풀패키지] | 2. [1교시(35분)·2교시(35분) 실전] | 3. [1초 킬러 족집게] | 4. [오답노트]</p>
+        <div id="ddayBanner" style="margin-top:14px; display:inline-flex; align-items:center; gap:10px; background:rgba(239, 68, 68, 0.25); border:2px solid #ef4444; border-radius:30px; padding:8px 24px; color:#fca5a5; font-size:1.15rem; font-weight:900; box-shadow:0 0 15px rgba(239,68,68,0.35);">
+            <span style="font-size:1.4rem;">⏳</span>
+            <span>2026년 제25회 시험 D-Day: <strong id="ddayText" style="color:#ffffff; font-size:1.25rem;">D-Day 계산 중...</strong></span>
+        </div>
     </header>
 
     <!-- 0회 / 1회 / 2회 / 3회 모의고사 선택 바 -->
@@ -1068,16 +1239,63 @@
     </div>
 
     <!-- 모드 스위처 -->
-    <div class="mode-switcher">
+    <div class="mode-switcher" style="flex-wrap:wrap;">
         <button class="btn-mode active" id="btnModeTable" onclick="setAppMode('table')">
             📖 150제 요약 & 변형세트 표 모드
         </button>
         <button class="btn-mode" id="btnModeCBT" onclick="setAppMode('cbt')">
             📝 실전 5지선다 CBT 모의고사
         </button>
+        <button class="btn-mode" id="btnModeFlashcard" onclick="setAppMode('flashcard')" style="border-color:#8b5cf6; color:#ddd6fe;">
+            🗂️ 1초 킬러 암기 플래시카드
+        </button>
         <button class="btn-mode" id="btnModeTestType" onclick="toggleTestMode()" style="border: 2px solid #ec4899; color:#fbcfe8;">
             💡 즉시채점 학습모드
         </button>
+        <button class="btn-mode" onclick="window.print()" style="border-color:#10b981; color:#a7f3d0; background:#064e3b;">
+            🖨️ 직전 150제 치트시트 인쇄 (A4 출력)
+        </button>
+    </div>
+
+    <!-- ======================= [모드 C: 1초 킬러 플래시카드 화면] ======================= -->
+    <div id="flashcard-view">
+        <div class="flashcard-scene" onclick="flipFlashcard()">
+            <div class="flashcard" id="flashcardElement">
+                <!-- 앞면 -->
+                <div class="card-face card-front">
+                    <div class="card-meta">
+                        <span id="fcSubBadge">제1과목 청소년 상담 이론과 실제</span>
+                        <span id="fcProgress">카드 1 / 150</span>
+                    </div>
+                    <div class="card-prompt-text" id="fcPromptText">
+                        방어기제: 남 탓으로 돌림, 억압된 충동을 남에게 뒤집어씌움
+                    </div>
+                    <div style="text-align:center; color:#94a3b8; font-size:1.1rem; margin-top:10px;">
+                        💡 화면 또는 [스페이스바]를 누르면 정답이 뒤집힙니다!
+                    </div>
+                </div>
+                <!-- 뒷면 -->
+                <div class="card-face card-back">
+                    <div class="card-meta" style="color:#a7f3d0;">
+                        <span>🎯 100% 확정 정답</span>
+                        <span id="fcBackProgress">카드 1 / 150</span>
+                    </div>
+                    <div class="card-answer-text" id="fcAnswerText">
+                        투사 (Projection)
+                    </div>
+                    <div class="card-sub-info" id="fcSubInfo">
+                        • 투사: 내 탓을 남 탓으로 덮어씌움<br>• 전치: 만만한 대상에게 화풀이
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flashcard-ctrls">
+            <button class="btn-card-ctrl" onclick="prevFlashcard()">◀ 이전 (A / ←)</button>
+            <button class="btn-card-ctrl" onclick="flipFlashcard()" style="background:#4338ca; border-color:#818cf8;">🔄 뒤집기 (Space)</button>
+            <button class="btn-card-ctrl" onclick="nextFlashcard()" style="background:#047857; border-color:#34d399;">다음 ▶ (D / →)</button>
+            <button class="btn-card-ctrl" id="btnAutoScan" onclick="toggleAutoScan()">⏱️ 3초 자동 스캔 OFF</button>
+        </div>
     </div>
 
     <!-- ======================= [모드 A: 150제 요약표 화면] ======================= -->
@@ -2557,6 +2775,23 @@ function prevCbtQuestion() {
 
 // 키보드 단축키
 window.addEventListener('keydown', (e) => {
+    // 1) 플래시카드 모드 단축키
+    const fcView = document.getElementById('flashcard-view');
+    if (fcView && fcView.style.display === 'block') {
+        if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            flipFlashcard();
+        } else if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'd') {
+            e.preventDefault();
+            nextFlashcard();
+        } else if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') {
+            e.preventDefault();
+            prevFlashcard();
+        }
+        return;
+    }
+
+    // 2) CBT 모드 단축키
     if (document.getElementById('cbt-view').style.display === 'none') return;
     if (document.getElementById('scoreModal').style.display === 'flex') return;
     
@@ -2826,23 +3061,129 @@ function resetCurrentExam() {
     }
 }
 
+// ======================= [D-Day 실시간 카운트다운 엔진] =======================
+function initDDayCountdown() {
+    // 2026년 청소년상담사 2급 1차 필기시험 (2026년 10월 10일 09:00:00 기준)
+    const examDate = new Date('2026-10-10T09:00:00');
+    
+    function updateDDay() {
+        const now = new Date();
+        const diff = examDate - now;
+        const ddayElem = document.getElementById('ddayText');
+        if (!ddayElem) return;
+
+        if (diff <= 0) {
+            ddayElem.textContent = '🎉 2026년 시험 당일입니다! 수석합격을 응원합니다!';
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        ddayElem.innerHTML = `D-${days}일 <span style="color:#fde047; font-weight:800;">${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}</span> 남음`;
+    }
+
+    updateDDay();
+    setInterval(updateDDay, 1000);
+}
+
+// ======================= [1초 킬러 플래시카드 3D 엔진] =======================
+let currentFcIdx = 0;
+let isFcFlipped = false;
+let autoScanInterval = null;
+
+function renderFlashcard() {
+    if (!allQuestions || allQuestions.length === 0) {
+        buildCbtQuestions();
+    }
+    const q = allQuestions[currentFcIdx];
+    if (!q) return;
+
+    isFcFlipped = false;
+    const cardElem = document.getElementById('flashcardElement');
+    if (cardElem) cardElem.classList.remove('is-flipped');
+
+    document.getElementById('fcSubBadge').textContent = `[제${currentExamNum}회] ${q.subName}`;
+    document.getElementById('fcProgress').textContent = `카드 ${currentFcIdx + 1} / ${allQuestions.length}`;
+    document.getElementById('fcBackProgress').textContent = `카드 ${currentFcIdx + 1} / ${allQuestions.length}`;
+    document.getElementById('fcPromptText').textContent = q.qText;
+    document.getElementById('fcAnswerText').textContent = q.correct;
+    document.getElementById('fcSubInfo').innerHTML = q.feedback || '• 핵심 키워드를 반드시 암기하세요.';
+}
+
+function flipFlashcard() {
+    isFcFlipped = !isFcFlipped;
+    const cardElem = document.getElementById('flashcardElement');
+    if (cardElem) {
+        cardElem.classList.toggle('is-flipped', isFcFlipped);
+    }
+}
+
+function nextFlashcard() {
+    if (currentFcIdx < allQuestions.length - 1) {
+        currentFcIdx++;
+    } else {
+        currentFcIdx = 0; // 루프 순환
+    }
+    renderFlashcard();
+}
+
+function prevFlashcard() {
+    if (currentFcIdx > 0) {
+        currentFcIdx--;
+    } else {
+        currentFcIdx = allQuestions.length - 1;
+    }
+    renderFlashcard();
+}
+
+function toggleAutoScan() {
+    const btn = document.getElementById('btnAutoScan');
+    if (autoScanInterval) {
+        clearInterval(autoScanInterval);
+        autoScanInterval = null;
+        btn.textContent = '⏱️ 3초 자동 스캔 OFF';
+        btn.style.background = '';
+        btn.style.borderColor = '';
+    } else {
+        btn.textContent = '⏳ 3초 자동 스캔 ON';
+        btn.style.background = '#78350f';
+        btn.style.borderColor = '#fbbf24';
+        autoScanInterval = setInterval(() => {
+            if (!isFcFlipped) {
+                flipFlashcard();
+            } else {
+                nextFlashcard();
+            }
+        }, 3000);
+    }
+}
+
 // ======================= [화면 및 탭 전환] =======================
 function setAppMode(mode) {
     const btnTable = document.getElementById('btnModeTable');
     const btnCBT = document.getElementById('btnModeCBT');
+    const btnFC = document.getElementById('btnModeFlashcard');
     const tableView = document.getElementById('table-view');
     const cbtView = document.getElementById('cbt-view');
+    const fcView = document.getElementById('flashcard-view');
+
+    if (autoScanInterval) toggleAutoScan(); // 모드 변경 시 자동스캔 정지
+
+    if (btnTable) btnTable.className = (mode === 'table') ? 'btn-mode active' : 'btn-mode';
+    if (btnCBT) btnCBT.className = (mode === 'cbt') ? 'btn-mode active cbt-active' : 'btn-mode';
+    if (btnFC) btnFC.className = (mode === 'flashcard') ? 'btn-mode active' : 'btn-mode';
 
     if (mode === 'table') {
-        btnTable.className = 'btn-mode active';
-        btnCBT.className = 'btn-mode';
-        tableView.style.display = 'block';
-        cbtView.style.display = 'none';
-    } else {
-        btnTable.className = 'btn-mode';
-        btnCBT.className = 'btn-mode active cbt-active';
-        tableView.style.display = 'none';
-        cbtView.style.display = 'block';
+        if (tableView) tableView.style.display = 'block';
+        if (cbtView) cbtView.style.display = 'none';
+        if (fcView) fcView.style.display = 'none';
+    } else if (mode === 'cbt') {
+        if (tableView) tableView.style.display = 'none';
+        if (cbtView) cbtView.style.display = 'block';
+        if (fcView) fcView.style.display = 'none';
         
         if (!allQuestions || allQuestions.length === 0) {
             buildCbtQuestions();
@@ -2850,6 +3191,15 @@ function setAppMode(mode) {
         renderCbtQuestion();
         renderOmrGrid();
         startTimer();
+    } else if (mode === 'flashcard') {
+        if (tableView) tableView.style.display = 'none';
+        if (cbtView) cbtView.style.display = 'none';
+        if (fcView) fcView.style.display = 'block';
+        
+        if (!allQuestions || allQuestions.length === 0) {
+            buildCbtQuestions();
+        }
+        renderFlashcard();
     }
 }
 
@@ -2971,6 +3321,7 @@ function unlockApp() {
     const mainApp = document.getElementById('mainApp');
     if (authGate) authGate.style.display = 'none';
     if (mainApp) mainApp.style.display = 'block';
+    initDDayCountdown();
 }
 
 if (sessionStorage.getItem('qnet_auth_passed') === 'true') {
@@ -2982,6 +3333,7 @@ renderSummaryTable();
 buildCbtQuestions();
 renderCbtQuestion();
 renderOmrGrid();
+initDDayCountdown();
 </script>
 </body>
 </html>
