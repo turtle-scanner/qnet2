@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026년 청소년상담사 2급 [300제 CBT 마스터 & 4대 합격팩]</title>
+    <style>
+        :root {
+            --bg-main: #05070e;
+            --bg-card: #0f172a;
+            --bg-header: #020617;
+            --text-main: #ffffff;
+            --text-yellow: #fde047;
+            --text-cyan: #38bdf8;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --ans-bg: #064e3b;
+            --ans-text: #34d399;
+            --ans-border: #10b981;
+            --variant-bg: #1e1b4b;
+            --variant-text: #e9d5ff;
+            --variant-border: #6366f1;
+            --option-bg: #1e293b;
+            --option-hover: #334155;
+            --correct-bg: #065f46;
+            --correct-border: #34d399;
+            --wrong-bg: #7f1d1d;
+            --wrong-border: #f87171;
+            --bookmark-color: #fbbf24;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Malgun Gothic", "맑은 고딕", -apple-system, sans-serif !important;
+            letter-spacing: -0.3px;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            padding: 20px 16px;
+            line-height: 1.85;
+            font-size: 20px;
+        }
+
+        .container {
+            max-width: 1580px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 22px;
+            background: linear-gradient(135deg, #020617, #1e1b4b, #172554);
+            color: #ffffff;
+            padding: 34px 20px;
+            border-radius: 22px;
+            border: 2px solid var(--border);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            color: var(--text-yellow);
+            font-weight: 800;
+        }
+
+        /* 1회 / 2회 모의고사 선택 바 */
+        .exam-selector {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-exam {
+            padding: 16px 36px;
+            border-radius: 18px;
+            border: 2px solid #4f46e5;
+            background: #1e1b4b;
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 1.35rem;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .btn-exam:hover {
+            transform: translateY(-2px);
+            border-color: #a5b4fc;
+        }
+
+        .btn-exam.active {
+            background: linear-gradient(135deg, #4338ca, #6366f1);
+            border-color: #c084fc;
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.6);
+        }
+
+        /* 모드 스위처 */
+        .mode-switcher {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            justify-content: center;
+        }
+
+        .btn-mode {
+            padding: 16px 32px;
+            border-radius: 16px;
+            border: 2px solid var(--border);
+            background: var(--bg-card);
+            color: #ffffff;
+            font-weight: 900;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-mode:hover {
+            transform: translateY(-2px);
+            border-color: var(--text-cyan);
+        }
+
+        .btn-mode.active {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            border-color: #60a5fa;
+            color: #ffffff;
+            box-shadow: 0 6px 25px rgba(37, 99, 235, 0.5);
+        }
+
+        .btn-mode.cbt-active {
+            background: linear-gradient(135deg, #047857, #10b981);
+            border-color: #34d399;
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        /* 150제 요약표 화면 컨트롤러 */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 22px;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 16px 20px 16px 52px;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            background: #05070e;
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--text-cyan);
+            box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-yellow);
+            font-size: 20px;
+        }
+
+        .btn-action {
+            padding: 16px 26px;
+            border-radius: 12px;
+            border: 2px solid var(--ans-border);
+            background: var(--ans-bg);
+            color: #a7f3d0;
+            font-weight: 900;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover {
+            background: #059669;
+            color: #ffffff;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 26px;
+        }
+
+        .tab-btn {
+            padding: 14px 22px;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            font-weight: 900;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            background: #1e293b;
+            color: #ffffff;
+        }
+
+        .tab-btn.active {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #60a5fa;
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.5);
+        }
+
+        /* 요약표 스타일 */
+        .table-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 35px;
+        }
+
+        .table-header {
+            padding: 22px 28px;
+            background: #020617;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h2 {
+            font-size: 1.55rem;
+            color: #ffffff;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge {
+            font-size: 1rem;
+            background: #1e3a8a;
+            color: #93c5fd;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 900;
+            border: 1px solid rgba(147, 197, 253, 0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background: #0b1329;
+            padding: 18px 22px;
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: var(--text-yellow);
+            border-bottom: 2px solid var(--border);
+        }
+
+        td {
+            padding: 20px 22px;
+            border-bottom: 1px solid #1e293b;
+            font-size: 1.2rem;
+            vertical-align: middle;
+            color: #ffffff;
+            line-height: 1.75;
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background-color: #172554; }
+
+        .col-num {
+            width: 70px;
+            text-align: center;
+            font-weight: 900;
+            font-size: 1.35rem;
+            color: var(--text-cyan);
+        }
+
+        .col-q { width: 35%; color: #ffffff; font-weight: 700; }
+        .col-a { width: 23%; }
+        .col-variant { width: 42%; }
+
+        .ans-badge {
+            display: inline-block;
+            background: var(--ans-bg);
+            color: var(--ans-text);
+            font-weight: 900;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            border: 2px solid var(--ans-border);
+            transition: all 0.2s;
+        }
+
+        .variant-box {
+            background: var(--variant-bg);
+            color: var(--variant-text);
+            border: 2px solid var(--variant-border);
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            font-weight: 600;
+        }
+
+        .variant-title {
+            color: #c084fc;
+            font-weight: 900;
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ans-hidden .ans-badge {
+            background: #05070e;
+            color: transparent;
+            border-color: #475569;
+            user-select: none;
+            cursor: pointer;
+        }
+        
+        .ans-hidden .ans-badge::after {
+            content: "👀 정답 확인 (클릭)";
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            font-weight: 900;
+        }
+
+        .ans-hidden .ans-badge.revealed {
+            background: var(--ans-bg);
+            color: var(--ans-text);
+            border-color: var(--ans-border);
+        }
+        .ans-hidden .ans-badge.revealed::after { content: ""; }
+
+        /* ======================= [CBT 화면 레이아웃] ======================= */
+        #cbt-view {
+            display: none;
+        }
+
+        .cbt-layout {
+            display: grid;
+            grid-template-columns: 1fr 410px;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .cbt-main-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            border: 2px solid var(--border);
+            padding: 36px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .cbt-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 18px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .cbt-progress {
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--text-cyan);
+        }
+
+        .cbt-timer {
+            font-size: 1.35rem;
+            font-weight: 900;
+            background: #172554;
+            color: var(--text-yellow);
+            padding: 8px 18px;
+            border-radius: 20px;
+            border: 2px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cbt-score {
+            font-size: 1.25rem;
+            font-weight: 900;
+            background: #064e3b;
+            color: #34d399;
+            padding: 8px 18px;
+            border-radius: 20px;
+            border: 2px solid #10b981;
+        }
+
+        .cbt-question-box {
+            position: relative;
+            background: #020617;
+            padding: 28px 32px;
+            border-radius: 18px;
+            border-left: 8px solid var(--text-yellow);
+            margin-bottom: 30px;
+        }
+
+        .cbt-question {
+            font-size: 1.65rem;
+            font-weight: 900;
+            line-height: 1.7;
+            color: #ffffff;
+        }
+
+        .btn-bookmark {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #475569;
+            transition: all 0.2s;
+        }
+
+        .btn-bookmark.active {
+            color: var(--bookmark-color);
+            transform: scale(1.2);
+            text-shadow: 0 0 15px rgba(251, 191, 36, 0.8);
+        }
+
+        .cbt-options {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .cbt-option {
+            background: var(--option-bg);
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 20px 24px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cbt-option:hover {
+            background: var(--option-hover);
+            border-color: var(--text-cyan);
+            transform: translateX(6px);
+        }
+
+        .cbt-option.selected-correct {
+            background: var(--correct-bg) !important;
+            border-color: var(--correct-border) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 25px rgba(52, 211, 153, 0.4);
+        }
+
+        .cbt-option.selected-wrong {
+            background: var(--wrong-bg) !important;
+            border-color: var(--wrong-border) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 25px rgba(248, 113, 113, 0.4);
+        }
+
+        .cbt-option.show-correct {
+            border-color: #34d399 !important;
+            background: rgba(16, 185, 129, 0.25) !important;
+        }
+
+        .cbt-feedback {
+            display: none;
+            background: #1e1b4b;
+            border: 3px solid #818cf8;
+            border-radius: 18px;
+            padding: 26px 30px;
+            margin-bottom: 30px;
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .cbt-feedback.show {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cbt-feedback-title {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #c084fc;
+            margin-bottom: 12px;
+        }
+
+        .cbt-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-cbt-nav {
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-prev { background: #334155; color: #ffffff; }
+        .btn-prev:hover { background: #475569; }
+        .btn-next { background: #2563eb; color: #ffffff; }
+        .btn-next:hover { background: #1d4ed8; }
+
+        .btn-score-report {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            color: #ffffff;
+            border: 2px solid #fbbf24;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+        }
+        .btn-score-report:hover {
+            background: #f59e0b;
+        }
+
+        .key-hint {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* 우측 OMR 패널 */
+        .omr-panel {
+            background: var(--bg-card);
+            border-radius: 24px;
+            border: 2px solid var(--border);
+            padding: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .omr-header {
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .omr-title {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* OMR 필터 버튼 (전체, 오답노트, 북마크) */
+        .omr-filters {
+            display: flex;
+            gap: 6px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-filter {
+            flex: 1;
+            padding: 8px 6px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: #1e293b;
+            color: #cbd5e1;
+            font-weight: 800;
+            font-size: 0.92rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-filter.active {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #60a5fa;
+        }
+
+        .btn-filter.filter-wrong.active {
+            background: #7f1d1d;
+            border-color: #ef4444;
+            color: #fecaca;
+        }
+
+        .btn-filter.filter-bookmark.active {
+            background: #78350f;
+            border-color: #f59e0b;
+            color: #fef3c7;
+        }
+
+        .omr-stats {
+            display: flex;
+            gap: 6px;
+            font-size: 0.92rem;
+            font-weight: 800;
+        }
+
+        .stat-item {
+            padding: 4px 8px;
+            border-radius: 8px;
+        }
+        .stat-correct { background: #065f46; color: #34d399; }
+        .stat-wrong { background: #7f1d1d; color: #f87171; }
+        .stat-unsolved { background: #1e293b; color: #cbd5e1; }
+
+        .omr-grid-wrapper {
+            overflow-y: auto;
+            flex: 1;
+            padding-right: 6px;
+        }
+
+        .omr-grid-wrapper::-webkit-scrollbar { width: 8px; }
+        .omr-grid-wrapper::-webkit-scrollbar-track { background: #0b0f19; border-radius: 4px; }
+        .omr-grid-wrapper::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+
+        .omr-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .omr-btn {
+            aspect-ratio: 1;
+            background: #1e293b;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            color: #cbd5e1;
+            font-weight: 900;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.15s;
+        }
+
+        .omr-btn:hover {
+            border-color: var(--text-cyan);
+            transform: scale(1.08);
+        }
+
+        .omr-btn.current {
+            border-color: var(--text-yellow) !important;
+            box-shadow: 0 0 14px rgba(253, 224, 71, 0.7);
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .omr-btn.correct {
+            background: #065f46 !important;
+            border-color: #34d399 !important;
+            color: #ffffff !important;
+        }
+
+        .omr-btn.wrong {
+            background: #7f1d1d !important;
+            border-color: #f87171 !important;
+            color: #ffffff !important;
+        }
+
+        .omr-btn .dot-bookmark {
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            color: var(--bookmark-color);
+            font-size: 12px;
+        }
+
+        /* ======================= [성적표 모달 팝업] ======================= */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #0f172a;
+            border: 2px solid var(--border);
+            border-radius: 24px;
+            max-width: 800px;
+            width: 90%;
+            padding: 36px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+            color: #ffffff;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .modal-header h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--text-yellow);
+        }
+
+        .report-summary-box {
+            display: flex;
+            justify-content: space-around;
+            background: #1e1b4b;
+            padding: 20px;
+            border-radius: 16px;
+            border: 2px solid #6366f1;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .report-stat-num {
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+        }
+
+        .report-table th, .report-table td {
+            padding: 14px 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            font-size: 1.1rem;
+        }
+
+        .report-table th {
+            background: #020617;
+            color: var(--text-cyan);
+            font-weight: 900;
+        }
+
+        .status-pass {
+            color: #34d399;
+            font-weight: 900;
+        }
+
+        .status-fail {
+            color: #f87171;
+            font-weight: 900;
+        }
+
+        .btn-modal-close {
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            border: none;
+            background: #2563eb;
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-modal-close:hover { background: #1d4ed8; }
+
+        @media (max-width: 1100px) {
+            .cbt-layout { grid-template-columns: 1fr; }
+            .omr-panel { position: static; max-height: 400px; margin-top: 24px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🌙 2026년 청소년상담사 2급 [300제 CBT 마스터 & 4대 합격팩]</h1>
+        <p>1.오답노트 모아풀기 | 2.북마크 찜 | 3.과락방지 실시간 성적표 | 4.키보드 초고속 단축키</p>
+    </header>
+
+    <!-- 1회 / 2회 모의고사 선택 바 -->
+    <div class="exam-selector">
+        <button class="btn-exam active" id="btnExam1" onclick="switchExam(1)">🎯 제1회 실전 적중 모의고사 (150제)</button>
+        <button class="btn-exam" id="btnExam2" onclick="switchExam(2)">🔥 제2회 고난도 변형 모의고사 (150제)</button>
+    </div>
+
+    <!-- 모드 스위처 -->
+    <div class="mode-switcher">
+        <button class="btn-mode active" id="btnModeTable" onclick="setAppMode('table')">
+            📖 150제 요약 & 변형세트 표 모드
+        </button>
+        <button class="btn-mode" id="btnModeCBT" onclick="setAppMode('cbt')">
+            📝 실전 5지선다형 모의고사 풀기 (CBT)
+        </button>
+    </div>
+
+    <!-- ======================= [모드 A: 150제 요약표 화면] ======================= -->
+    <div id="table-view">
+        <div class="controls">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="키워드 검색 (예: 투사, 반전, F값, 웩슬러, 보웬)...">
+            </div>
+            <button class="btn-action" id="toggleAnsBtn" onclick="toggleAnswerVisibility()">🙈 자가 테스트 (정답 가리기)</button>
+        </div>
+
+        <div class="nav-tabs" id="tabContainer">
+            <button class="tab-btn active" onclick="switchTab('all')">전체 과목 (150문항)</button>
+            <button class="tab-btn" onclick="switchTab('sub1')">1. 상담 이론과 실제</button>
+            <button class="tab-btn" onclick="switchTab('sub2')">2. 상담연구방법론</button>
+            <button class="tab-btn" onclick="switchTab('sub3')">3. 심리측정 및 평가</button>
+            <button class="tab-btn" onclick="switchTab('sub4')">4. 청소년 이상심리</button>
+            <button class="tab-btn" onclick="switchTab('sub6')">5. 가족상담 (선택)</button>
+            <button class="tab-btn" onclick="switchTab('sub7')">6. 집단상담 (선택)</button>
+        </div>
+
+        <div class="table-card sub-section" id="sub1">
+            <div class="table-header"><h2>📘 제1과목: 청소년 상담의 이론과 실제 <span class="badge">기본 25문항</span></h2></div>
+            <table><thead><tr><th class="col-num">번호</th><th class="col-q">출제 예상 문제 (지문 단서)</th><th class="col-a">확정 정답</th><th class="col-variant">🔄 출제 변형 세트 (4~5대 형제 개념)</th></tr></thead><tbody id="tbody-sub1"></tbody></table>
+        </div>
+        <div class="table-card sub-section" id="sub2">
+            <div class="table-header"><h2>📊 제2과목: 상담연구방법론의 기초 <span class="badge" style="background:#7f1d1d; color:#fca5a5;">과락주의 25문항</span></h2></div>
+            <table><thead><tr><th class="col-num">번호</th><th class="col-q">출제 예상 문제 (지문 단서)</th><th class="col-a">확정 정답</th><th class="col-variant">🔄 출제 변형 세트 (4~5대 형제 개념)</th></tr></thead><tbody id="tbody-sub2"></tbody></table>
+        </div>
+        <div class="table-card sub-section" id="sub3">
+            <div class="table-header"><h2>📑 제3과목: 심리측정 및 평가의 활용 <span class="badge">기본 25문항</span></h2></div>
+            <table><thead><tr><th class="col-num">번호</th><th class="col-q">출제 예상 문제 (지문 단서)</th><th class="col-a">확정 정답</th><th class="col-variant">🔄 출제 변형 세트 (4~5대 형제 개념)</th></tr></thead><tbody id="tbody-sub3"></tbody></table>
+        </div>
+        <div class="table-card sub-section" id="sub4">
+            <div class="table-header"><h2>🧠 제4과목: 청소년 이상심리 <span class="badge" style="background:#064e3b; color:#6ee7b7;">전략고득점 25문항</span></h2></div>
+            <table><thead><tr><th class="col-num">번호</th><th class="col-q">출제 예상 문제 (지문 단서)</th><th class="col-a">확정 정답</th><th class="col-variant">🔄 출제 변형 세트 (4~5대 형제 개념)</th></tr></thead><tbody id="tbody-sub4"></tbody></table>
+        </div>
+        <div class="table-card sub-section" id="sub6">
+            <div class="table-header"><h2>🏡 제5과목: 가족상담 <span class="badge" style="background:#78350f; color:#fde68a;">선택 25문항</span></h2></div>
+            <table><thead><tr><th class="col-num">번호</th><th class="col-q">출제 예상 문제 (지문 단서)</th><th class="col-a">확정 정답</th><th class="col-variant">🔄 출제 변형 세트 (4~5대 형제 개념)</th></tr></thead><tbody id="tbody-sub6"></tbody></table>
+        </div>
+        <div class="table-card sub-section" id="sub7">
+            <div class="table-header"><h2>👥 제6과목: 집단상담 <span class="badge" style="background:#78350f; color:#fde68a;">선택 25문항</span></h2></div>
+            <table><thead><tr><th class="col-num">번호</th><th class="col-q">출제 예상 문제 (지문 단서)</th><th class="col-a">확정 정답</th><th class="col-variant">🔄 출제 변형 세트 (4~5대 형제 개념)</th></tr></thead><tbody id="tbody-sub7"></tbody></table>
+        </div>
+    </div>
+
+    <!-- ======================= [모드 B: 실전 CBT 모의고사 화면] ======================= -->
+    <div id="cbt-view">
+        <div class="cbt-layout">
+            <div class="cbt-main-card">
+                <div class="cbt-header">
+                    <span class="cbt-progress" id="cbtProgress">문제 1 / 150</span>
+                    <span class="cbt-timer" id="cbtTimer">⏱️ 00:00:00</span>
+                    <button class="btn-action" id="btnSoundToggle" onclick="toggleSound()" style="padding:8px 18px; font-size:1.1rem; border-radius:20px; background:#065f46; border-color:#34d399;">🔊 소리 ON</button>
+                    <span class="cbt-score" id="cbtScore">정답: 0 / 0 (0%)</span>
+                </div>
+
+                <div class="cbt-question-box">
+                    <button class="btn-bookmark" id="btnBookmark" onclick="toggleCurrentBookmark()" title="북마크 찜하기 (별표)">⭐</button>
+                    <div class="cbt-question" id="cbtQuestionText">1. 문제가 로딩 중입니다...</div>
+                </div>
+
+                <div class="cbt-options" id="cbtOptionsContainer"></div>
+
+                <div class="cbt-feedback" id="cbtFeedbackBox">
+                    <div class="cbt-feedback-title" id="cbtFeedbackTitle">💡 1초 해설 & 출제 변형 포인트</div>
+                    <div id="cbtFeedbackContent"></div>
+                </div>
+
+                <div class="cbt-nav">
+                    <button class="btn-cbt-nav btn-prev" onclick="prevCbtQuestion()">⬅️ 이전 (A / ←)</button>
+                    <button class="btn-cbt-nav btn-score-report" onclick="showScoreReport()">📊 실시간 합격 성적표 확인</button>
+                    <button class="btn-cbt-nav btn-next" onclick="nextCbtQuestion()">다음 (D / →) ➡️</button>
+                </div>
+                <div class="key-hint">⌨️ 키보드 1~5번으로 즉시 정답 선택 / Space: 다음문제 / A: 이전 / D: 다음</div>
+            </div>
+
+            <!-- 우측 OMR 패널 -->
+            <div class="omr-panel">
+                <div class="omr-header">
+                    <div class="omr-title">
+                        <span>📋 OMR 현황판</span>
+                        <span id="omrTotalAnswered" style="font-size:1.1rem; color:var(--text-cyan);">0 / 150</span>
+                    </div>
+                    <div class="omr-filters">
+                        <button class="btn-filter active" onclick="setOmrFilter('all')">전체</button>
+                        <button class="btn-filter filter-wrong" onclick="setOmrFilter('wrong')">❌ 오답노트</button>
+                        <button class="btn-filter filter-bookmark" onclick="setOmrFilter('bookmark')">⭐ 북마크</button>
+                    </div>
+                    <div class="omr-stats">
+                        <span class="stat-item stat-correct" id="omrCorrectStat">⭕ 0</span>
+                        <span class="stat-item stat-wrong" id="omrWrongStat">❌ 0</span>
+                        <span class="stat-item stat-unsolved" id="omrUnsolvedStat">⚪ 150</span>
+                    </div>
+                </div>
+                <div class="omr-grid-wrapper">
+                    <div class="omr-grid" id="omrGridContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======================= [실시간 합격 판정 성적표 모달] ======================= -->
+<div class="modal-overlay" id="scoreModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>🏆 2026 청소년상담사 2급 실전 성적표</h2>
+            <p id="modalExamTitle" style="color:var(--text-cyan); font-weight:800; font-size:1.2rem; margin-top:6px;">제1회 실전 적중 모의고사</p>
+        </div>
+
+        <div class="report-summary-box">
+            <div>
+                <div style="color:var(--text-muted); font-size:1rem; font-weight:700;">총 푼 문제수</div>
+                <div class="report-stat-num" id="reportAnsweredNum">0 / 150</div>
+            </div>
+            <div>
+                <div style="color:var(--text-muted); font-size:1rem; font-weight:700;">전체 정답률 / 평균점수</div>
+                <div class="report-stat-num" id="reportAvgScore" style="color:var(--text-yellow);">0점</div>
+            </div>
+            <div>
+                <div style="color:var(--text-muted); font-size:1rem; font-weight:700;">최종 합격 여부</div>
+                <div class="report-stat-num" id="reportPassStatus">-</div>
+            </div>
+        </div>
+
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th>교시</th>
+                    <th>과목명</th>
+                    <th>맞힌 수 / 문항수</th>
+                    <th>환산 점수</th>
+                    <th>과락 여부 (40점)</th>
+                </tr>
+            </thead>
+            <tbody id="reportTableBody">
+                <!-- 6과목 성적 동적 렌더링 -->
+            </tbody>
+        </table>
+
+        <button class="btn-modal-close" onclick="closeScoreReport()">확인 및 계속 풀기</button>
+    </div>
+</div>
+
+<script>
+// ======================= [제1회 & 제2회 전체 300문항 데이터] =======================
+const examData = {
+    exam1: {
+        sub1: [
+            ["01", "방어기제: 자신이 저지른 잘못을 인정하지 않고 남 탓으로 돌림", "투사 (Projection)", "• 투사: 내 탓을 남 탓으로 덮어씌움<br>• 전치: 만만한 대상에게 화풀이 (동생 때림)<br>• 반동형성: 미운 놈에게 떡 하나 더 주기<br>• 합리화: 그럴듯한 핑계 대기 (신포도 기제)"],
+            ["02", "방어기제: 공격적·성적 본능을 운동/예술/학문으로 전환", "승화 (Sublimation)", "• 승화: 가장 성숙한 방어기제 (사회적 인정)<br>• 억압: 고통스러운 기억을 무의식으로 누름<br>• 퇴행: 스트레스 시 어린아이 시절로 돌아감"],
+            ["03", "아들러 생활양식: 사회적 관심 낮고 활동수준 높아 공격적", "지배형 (Ruling)", "• 지배형: 독재적, 공격적, 타인 지배<br>• 획득형(기생형): 타인에게 기대기만 함 (의존)<br>• 회피형: 실패가 두려워 도망침 (무기력)<br>• 사회적 유용형: 둘 다 높음 (가장 건강)"],
+            ["04", "로저스 인간중심: 평가나 조건 없이 온전히 수용함", "무조건적 긍정적 존중", "• 무조건적 존중: 조건 없이 인간 자체를 수용<br>• 일치성(진실성): 상담자의 내면과 외면의 일치<br>• 공감적 이해: 내담자의 사적 세계를 그의 눈으로 이해"],
+            ["05", "게슈탈트: 남을 향한 분노나 공격성을 자신에게 돌림 (자책/자해)", "반전 (Retroflection)", "• 반전: 남을 향한 분노를 나에게 돌림 (자해/자책)<br>• 내사: 남의 기준을 비판 없이 꿀꺽 삼킴<br>• 융합: 경계선이 없어 남과 내가 하나라고 착각<br>• 편향: 초점을 흐려 위협이나 갈등을 회피"],
+            ["06", "엘리스 REBT: 비합리적 신념(B)을 깨뜨리는 상담자 작업", "논박 (D: Disputation)", "• 논리적 논박: '그 생각이 논리적으로 타당한가?'<br>• 경험적 논박: '그 생각의 현실적 증거가 어디 있나?'<br>• 실용적 논박: '그 생각이 당신 삶에 도움이 되나?'<br>• 철학적 논박: '그것이 인생의 행복을 좌우하는가?'"],
+            ["07", "벡 인지치료: 사소한 단점 하나만 확대하여 전체 판단", "선택적 추상화", "• 선택적 추상화: 잘한 99개 두고 실수 1개에만 집착<br>• 흑백논리: 1등 아니면 무조건 꼴찌/실패자<br>• 파국화: 작은 실수 하나에 '인생 끝장났다' 비약<br>• 과잉일반화: 한 번 시험 못 봤다고 '난 평생 망할 거야'"],
+            ["08", "현실치료 WDEP 중 좋은 계획(P)을 수립할 때 갖추어야 할 5대 원칙", "SAMIC 원칙", "• S (Simple): 단순하고 이해하기 쉬워야 함<br>• A (Attainable): 달성 가능한 현실적 목표<br>• M (Measurable): 측정 가능해야 함<br>• I (Immediate): 즉시 실천할 수 있어야 함<br>• C (Controlled): 내담자가 스스로 통제 가능해야 함"],
+            ["09", "수용전념치료(ACT): 불편한 감정을 회피하지 않고 품음", "수용 (Acceptance)", "• 인지적 탈융합: 생각과 자신을 동일시하지 않기<br>• 맥락으로서의 자기: 생각을 관찰하는 순수한 나<br>• 현재에 머물기: 지금-여기 알아차림<br>• 가치와 전념: 삶의 가치를 향해 행동 실천"],
+            ["10", "상담 기술: 내담자의 언어와 비언어적 모순을 지적", "직면 (Confrontation)", "• 직면: 말과 행동, 이전 말과 지금 말의 모순 지적<br>• 반영: 내담자의 감정을 거울처럼 비춰줌<br>• 재진술: 내담자의 생각/내용을 다른 말로 패러프레이징<br>• 명료화: 모호한 말을 분명하게 정리"],
+            ["11", "상담 기술: 내담자의 모호한 진술을 명확하게 다듬어 줌", "명료화 (Clarification)", "• 개방형 질문: 자유롭게 표현하도록 돕는 질문<br>• 폐쇄형 질문: '예/아니오' 사실 확인 질문<br>• 요약: 상담 세션 전반의 핵심 내용을 종합 정리"],
+            ["12", "마샤 정체감: 위기(탐색)를 거쳐 스스로 정체성을 확립", "정체감 성취", "• 정체감 성취: 탐색 O + 확립 O (가장 성숙)<br>• 정체감 유예: 탐색 O + 확립 X (치열한 고민 중)<br>• 정체감 유실: 탐색 X + 확립 O (부모 뜻 맹종)<br>• 정체감 혼미: 탐색 X + 확립 X (방황과 무기력)"],
+            ["13", "피아제 발달: 가설을 세워 논리적으로 추론하는 청소년기", "형식적 조작기", "• 감각운동기(영아) → 전조작기(유아, 자기중심성)<br>• 구체적 조작기(초등, 보존개념, 구체물 논리)<br>• 형식적 조작기(청소년, 가설연역, 추상적 사고)"],
+            ["14", "엘킨드: 모든 사람이 나만 쳐다보고 있다는 착각", "상상적 관중", "• 상상적 관중: 자의식 과잉, 무대 위 주인공 착각<br>• 개인적 우화: 자신의 감정은 너무 독특해 아무도 모름<br>• 불사조 신념: 나에게는 사고나 불행이 비켜갈 것"],
+            ["15", "엘킨드: '나는 특별해서 불행이나 사고가 비켜갈 거야'", "개인적 우화", "• 개인적 우화: 비현실적 무적 신념으로 위험행동 유발<br>• 상상적 관중과 함께 청소년기 2대 자기중심성 형성"],
+            ["16", "청소년 자살위기 상담 시 최우선 사정 사항", "구체적 계획 및 수단", "• 자살 의도: 죽고 싶은 생각이 얼마나 명확한가<br>• 자살 계획: 시간, 장소, 치명적 방법이 구체적인가<br>• 치명적 수단: 번개탄, 수면제, 흉기 등 소지 여부<br>• 과거 시도력: 과거 자살 시도 경험 유무"],
+            ["17", "비밀보장의 절대적 예외 사유", "자살, 타해, 아동학대", "• 내담자가 자신을 해치려 할 때 (자살 위기)<br>• 내담자가 타인을 해치려 할 때 (살인/폭행 위협)<br>• 아동학대 및 성폭력 피해 사실을 알게 되었을 때<br>• 법원의 합법적 명령이나 영장이 있을 때"],
+            ["18", "상담자가 내담자 부모와 사적 동업/금전거래를 함", "다중관계 금지 위반", "• 성적 다중관계: 내담자 및 가족과의 성적 접촉 금지<br>• 비성적 다중관계: 동업, 금전거래, 사적 친분 금지<br>• 사유: 상담자의 객관적 치료적 판단 훼손 방지"],
+            ["19", "해결중심 질문: '자고 일어났더니 문제가 다 사라졌다면?'", "기적질문", "• 기적질문: 문제 없는 미래의 희망적 상태 상상<br>• 예외질문: 문제가 발생하지 않았던 성공 순간 탐색<br>• 척도질문: 1~10점 점수로 현재 상태와 변화 측정<br>• 대처질문: '그 힘든 상황에서 어떻게 버텨냈니?'<br>• 관계성질문: '엄마가 본다면 네가 어떻게 달라졌다고 할까?'"],
+            ["20", "해결중심 질문: '문제가 일어나지 않았던 과거 순간은?'", "예외질문", "• 예외질문: 문제가 없었던 '예외 상황'에서 자원 발견<br>• 기적질문: 미래 해결 상태 구축<br>• 척도질문: 수치화를 통한 구체적 목표 설정<br>• 대처질문: 내담자의 잠재적 강점과 생존력 인정<br>• 관계성질문: 타인의 관점을 통한 변화 확인"],
+            ["21", "동기강화상담(MI) 핵심 4대 기술(OARS)에 없는 것", "강제적 설득 (X)", "• O (Open questions): 열린 질문<br>• A (Affirmations): 인정과 칭찬<br>• R (Reflections): 공감적 반영<br>• S (Summaries): 종합 요약"],
+            ["22", "교류분석(TA): 겉과 속이 다른 이중 메시지 교류", "이면교류", "• 상보교류: 자극과 반응이 평행 (원활한 소통)<br>• 교차교류: 자극과 엉뚱한 반응이 교차 (갈등 발생)<br>• 이면교류: 사회적 수준과 심리적 수준의 메시지 불일치"],
+            ["23", "청소년 사이버/전화상담의 가장 큰 장점", "접근성, 익명성, 즉시성", "• 시공간의 제약 없는 편리한 접근성<br>• 신분 노출 걱정 없는 철저한 익명성 보장<br>• 자살/가출 등 위기 상황 시 즉각적인 긴급 개입"],
+            ["24", "학교폭력 사안을 인지한 전문상담사의 법적 의무", "학교장/전담기구 즉시보고", "• 학교폭력예방법상 인지 즉시 학교장 보고 의무<br>• 상담 비밀보장보다 학생의 생명과 신체 안전이 절대 우선"],
+            ["25", "상담 종결 단계의 핵심 과업", "성과평가, 이별감정, 재발방지", "• 상담 목표 달성도 및 성과 종합 평가<br>• 종결에 따른 상실감과 이별 감정 다루기<br>• 문제 재발 방지 대책 및 사후 추수회기 안내"]
+        ],
+        sub2: [
+            ["01", "절대영점(0) 존재 + 사칙연산과 비율 계산 가능", "비율척도 (Ratio)", "• 명목척도: 단순 분류/구분 (성별, 혈액형, 종교)<br>• 서열척도: 순위/석차만 제공 (학년, 등수, 선호도)<br>• 등간척도: 임의영점, 덧셈/뺄셈만 가능 (온도, IQ, 점수)<br>• 비율척도: 절대영점, 사칙연산/비율 가능 (키, 몸무게, 시간)"],
+            ["02", "자아존중감 점수, IQ, 섭씨온도가 속하는 척도", "등간척도 (Interval)", "• 등간척도는 '0'이 무(無)를 뜻하지 않음 (임의영점)<br>• 'IQ 140이 IQ 70보다 2배 똑똑하다'는 비율 표현 불가"],
+            ["03", "실제로 참인 영가설을 잘못 기각하는 오류", "제1종 오류 (α)", "• 제1종 오류(α): 효과 없는데 효과 있다고 잘못 판단<br>• 제2종 오류(β): 효과 있는데 효과 없다고 잘못 판단<br>• 유의수준 α를 낮추면(0.05→0.01) 1종 오류 감소, 2종 오류 증가"],
+            ["04", "실제로 거짓인 영가설을 기각 못하고 채택하는 오류", "제2종 오류 (β)", "• 제2종 오류(β) = 참인 대립가설을 놓치는 오류<br>• 검정력(Power) = 1 - β (올바르게 차이를 밝혀낼 확률)"],
+            ["05", "통계적 검정력(Power)의 올바른 수학적 계산식", "1 - β", "• 검정력 상승 조건: 표본 크기(N) 증가, 유의수준(α) 증가, 효과크기 증가, 측정오차 감소"],
+            ["06", "성별(남/여 2집단)에 따른 평균 차이 검증", "독립표본 t-검정", "• 독립표본 t-검정: 서로 다른 2개 독립 집단 평균 비교<br>• 대응표본 t-검정: 동일 집단의 전/후(사전-사후) 평균 비교<br>• 일원배치 ANOVA: 3개 이상 집단 평균 비교"],
+            ["07", "동일 집단의 상담 사전-사후 우울 점수 평균 비교", "대응표본 t-검정", "• 동일 피험자의 사전점수와 사후점수 짝(Pair) 비교<br>• 3회 이상 측정 시 반복측정 분산분석(RM ANOVA) 사용"],
+            ["08", "3개 학년(중1, 중2, 중3) 집단 간 평균 차이 검증", "일원 분산분석 (ANOVA)", "• 집단이 3개 이상일 때 t-검정 다중실시 시 1종 오류 증가<br>• 따라서 분산분석(F-검정) 실시 후 사후검증(Scheffe, Tukey)"],
+            ["09", "ANOVA 표에서 F 통계량 산출 공식", "F = MS_B / MS_W", "• F = 집단간 평균제곱(MS_B) ÷ 집단내(오차) 평균제곱(MS_W)<br>• F값이 1보다 현저히 크고 유의확률 p < .05 이면 집단간 차이 유의"],
+            ["10", "이원 분산분석에서 두 독립변수가 결합하여 내는 효과", "상호작용 효과", "• 주효과: 각 독립변수(예: 성별, 학년)가 단독으로 미치는 영향<br>• 상호작용 효과: 두 독립변수의 조합에 따라 종속변수 효과가 달라짐"],
+            ["11", "성별(남/여)과 학교폭력(유/무) 간의 빈도 관련성 검증", "카이제곱 검정 (χ²)", "• 명목척도(교차분할표)의 빈도 자료 분석<br>• 적합도 검정 vs 독립성/동질성 검정"],
+            ["12", "단순회귀에서 독립변수가 설명하는 종속변수 분산 비율", "결정계수 (R²)", "• 결정계수 R² = 피어슨 상관계수 r의 제곱 ($0 \le R^2 \le 1$)<br>• 설명력: r = 0.4 이면 $R^2 = 0.16$ (종속변수의 16% 설명)"],
+            ["13", "다중회귀에서 독립변수 간 너무 높은 상관으로 인한 왜곡", "다중공선성", "• 독립변수들끼리 상관이 너무 높아 회귀계수 추정치 왜곡<br>• 진단 지표: 분산팽창지수(VIF) 10 이상이면 다중공선성 의심"],
+            ["14", "독립변수가 매개변수를 거쳐 종속변수에 도달하는 경로", "매개효과", "• 매개효과 (X → M → Y): '왜/어떻게' 영향을 주는지 메커니즘 설명<br>• 완전매개(직접효과 사라짐) vs 부분매개(직접효과도 유의)"],
+            ["15", "독립변수가 종속변수에 미치는 영향의 강도를 바꾸는 변수", "조절효과", "• 조절효과 (X → Y 관계를 Z가 조절): '언제/누구에게' 효과가 다른지 조건 설명<br>• 회귀분석에서 상호작용 항(X × Z)으로 검증"],
+            ["16", "내적타당도 저해: 사전-사후 사이에 발생한 외부 사건", "역사 요인 (History)", "• 실험 도중 상담 관련 사건이나 사회적 뉴스 발생<br>• 성숙: 시간 경과에 따른 피험자의 자연스러운 성장/노화"],
+            ["17", "내적타당도 저해: 시간 경과에 따른 자연스러운 성장", "성숙 요인 (Maturation)", "• 피험자가 나이가 들거나 피로해져 점수가 변하는 현상<br>• 통제집단을 두어 실험집단과 성숙 효과를 비교 통제"],
+            ["18", "내적타당도 저해: 극단 점수자가 사후에 평균으로 근접", "통계적 회귀", "• 사전검사에서 가장 점수가 낮았던 집단은 사후에 저절로 점수 상승<br>• 무작위 할당으로 회귀 편향 완화"],
+            ["19", "내적타당도 저해: 실험 도중 피험자가 중도 포기/탈락", "피험자 상실 (탈락)", "• 결석, 전학, 거부로 인해 실험 후 두 집단 동질성 파괴<br>• 탈락자 특성을 분석하여 편향 확인"],
+            ["20", "표집: 모집단을 하위집단으로 나눈 후 비율 맞춰 무작위 추출", "층화표집 (Stratified)", "• 층화표집: 하위집단 내부는 동질, 집단 간은 이질 (비율 보장)<br>• 군집표집: 하위집단 내부는 이질, 집단 간은 동질 (자연 집락)"],
+            ["21", "표집: 학급, 학교 등 자연 집락 자체를 통째로 표집", "군집 / 집락표집", "• 1개 반, 1개 학교를 통째로 추출하여 조사 비용/시간 절감<br>• 단순무선표집보다 표집오차가 커질 수 있음"],
+            ["22", "표집틀(목록)의 요소들이 주기성을 띠지 않아야 함", "체계적 / 계통표집", "• 첫 번째 무작위 번호 K 선정 후 K+n번째마다 규칙 추출<br>• 표집틀에 주기적 패턴이 있으면 표본 편향 치명적 발생"],
+            ["23", "단일대상연구: A(기초)-B(처치)-A-B 순 인과성 입증", "반전설계 (ABAB)", "• A(기초선) → B(처치) → A(처치철회) → B(처치재도입)<br>• 중다기초선설계: 행동간, 상황간, 대상자간 기초선 설계"],
+            ["24", "질적연구: 특정 집단의 공유된 문화를 현장 관찰로 연구", "문화기술지", "• 문화기술지: 현장 참여관찰과 심층면담으로 문화 기술<br>• 현상학: 살아있는 주관적 체험의 본질 규명<br>• 근거이론: 지속적 비교로 귀납적 이론 도출"],
+            ["25", "인간 연구윤리(벨몬트 보고서): 이익과 부담의 공정성", "정의의 원칙 (Justice)", "• 정의: 연구의 혜택과 위험 부담이 특정 집단에 편중되지 않음<br>• 인간존중(자율성): 자발적 참여 및 사전동의(Informed Consent)<br>• 선행: 위험 최소화 및 이익 극대화"]
+        ],
+        sub3: [
+            ["01", "측정 도구가 오차 없이 일관되게 측정하는 정도", "신뢰도 (Reliability)", "• 검사-재검사 신뢰도: 시간 간격 두고 동일 검사 2회 실시 (안정성)<br>• 동형검사 신뢰도: 문항 내용이 동등한 2개 검사 실시 (동등성)<br>• 반분 신뢰도: 검사를 반으로 나누어 상관 산출 (내적일관성)<br>• 문항내적일치도: Cronbach's α 계수"],
+            ["02", "단 1회 실시로 문항 간 내적 일관성을 측정하는 계수", "Cronbach's α", "• 크론바흐 알파: 문항 간 상관계수의 평균에 기초<br>• 문항 수가 많을수록, 문항 간 상관이 높을수록 α값 상승<br>• 통상 0.70 이상이면 신뢰도 양호로 판정"],
+            ["03", "신뢰도(r)가 상승할 때 측정 표준오차(SEM)의 변화", "표준오차(SEM) 감소", "• $SEM = S\sqrt{1-r}$ ($S$: 표준편차, $r$: 신뢰도)<br>• 신뢰도가 1.0(완벽)이면 $SEM = 0$<br>• 신뢰도가 높을수록 점수의 오차 범위(신뢰구간)가 좁아짐"],
+            ["04", "측정하고자 하는 구인을 실제로 얼마나 정확히 측정하는가", "타당도 (Validity)", "• 내용타당도: 전문가가 문항이 영역을 대표하는지 논리적 평가<br>• 준거타당도: 외적 준거와의 관련성 (공인타당도, 예측타당도)<br>• 구인타당도: 심리적 특성 측정 여부 (요인분석, 수렴/변별타당도)"],
+            ["05", "검사 점수가 미래의 준거 행동을 얼마나 잘 예측하는가", "예측타당도", "• 예측타당도: 현재 점수로 미래 행동 예측 (수능 점수 → 대학 학점)<br>• 공인타당도: 현재 공인된 기존 검사 점수와의 상관 (새 우울검사 vs BDI)"],
+            ["06", "신뢰도와 타당도의 수리적 역학 관계", "타당도 높음 ➔ 신뢰도 높음", "• 타당도가 높으면 신뢰도는 반드시 높음<br>• 신뢰도가 높다고 해서 타당도가 반드시 높은 것은 아님 (필요조건)<br>• 신뢰도는 타당도의 상한선($\sqrt{\text{신뢰도}}$)을 결정"],
+            ["07", "Z점수가 +2일 때 이에 해당하는 T점수 계산", "70점", "• Z점수: 평균 0, 표준편차 1 ($Z = +2$)<br>• T점수: 평균 50, 표준편차 10 ($T = 10Z + 50 = 70$)<br>• 웩슬러 IQ: 평균 100, 표준편차 15 ($IQ = 15Z + 100 = 130$)<br>• 스테나인: 평균 5, 표준편차 2 ($Stanine = 2Z + 5 = 9등급$)"],
+            ["08", "MMPI 타당도: 도덕적으로 결백하게 보이려는 방어성", "L 척도 (Lie)", "• L 척도: 사소한 결점도 부인하는 순진한 방어성<br>• F 척도: 비전형적 반응, 심각한 고통, 증상 과장/꾀병<br>• K 척도: 문제를 세련되게 부인하고 교정하는 방어성"],
+            ["09", "MMPI 타당도: 심각한 고통, 증상 과장, 비전형적 반응", "F 척도 (Infrequency)", "• F 척도 급상승: 무작위 응답, 도움 요청(Cry for help), 심각한 정신병리<br>• Fb(후반부 결함), Fp(정신병리 과장) 척도와 감별"],
+            ["10", "MMPI 타당도: 문제를 세련되게 감추려는 영리한 방어성", "K 척도 (Correction)", "• K 척도: 지적이고 사회경제적 지위가 높은 수검자의 방어성<br>• 임상척도 5개(1, 4, 7, 8, 9번)에 K 교정 점수 가산"],
+            ["11", "MMPI 프로파일: L, K 낮고 F 급상승(역V자형)", "도움 요청 (Cry for help)", "• L, K 낮고 F 높음(역V자): 극심한 정서적 혼란과 도움 요청<br>• L, K 높고 F 낮음(V자형): 문제를 철저히 부인하는 완강한 방어"],
+            ["12", "MMPI 4번(Pd)과 9번(Ma)이 동반 상승한 청소년", "충동성, 반항, 비행, 공격성", "• 4-9 / 9-4 코드: 반사회적 행동, 교칙 위반, 충동 통제 곤란, 공격성<br>• 2-7 / 7-2 코드: 우울, 불안, 자책, 강박성, 신경증적 고통"],
+            ["13", "MMPI 2번(D)과 7번(Pt)이 동반 상승한 청소년", "우울, 만성불안, 죄책감", "• 2-7 코드: 가장 흔한 신경증 프로파일 (우울+불안)<br>• 6-8 코드: 피해의식, 망상, 사고장애, 조현병 프로파일"],
+            ["14", "K-WISC-V: 공통성, 어휘 소검사 포함 기본 지표", "언어이해지표 (VCI)", "• VCI (언어이해): 공통성, 어휘 (언어적 추론, 결정성 지능)<br>• VSI (시공간): 토막짜기, 퍼즐 (공간지각, 시각-운동 협응)<br>• FRI (유동추론): 행렬추리, 무게비교 (새로운 문제해결력)<br>• WMI (작업기억): 숫자, 그림기억 (주의집중, 단기기억)<br>• PSI (처리속도): 기호쓰기, 동형찾기 (시각 탐색 신속성)"],
+            ["15", "K-WISC-V: 토막짜기, 퍼즐 소검사 포함 기본 지표", "시공간지표 (VSI)", "• 시공간 관계 지각, 전체와 부분의 통합 능력 측정<br>• 유동추론지표(FRI: 행렬추리, 무게비교)와 구별"],
+            ["16", "K-WISC-V: 행렬추리, 무게비교 소검사 포함 기본 지표", "유동추론지표 (FRI)", "• 유동성 지능 측정 (문화적/언어적 영향이 가장 적음)<br>• 시각 자극의 규칙성 발견 및 귀납/연역 추론"],
+            ["17", "K-WISC-V: 숫자, 그림기억 소검사 포함 기본 지표", "작업기억지표 (WMI)", "• 청각적/시각적 정보를 단기 유지하며 조작하는 능력<br>• ADHD, 학습장애 아동에게서 저하되기 쉬움"],
+            ["18", "K-WISC-V: 기호쓰기, 동형찾기 소검사 포함 기본 지표", "처리속도지표 (PSI)", "• 단순 시각 정보를 빠르고 정확하게 처리하는 속도<br>• 손-눈 협응 및 정신운동 속도 측정"],
+            ["19", "웩슬러 아동지능검사 IQ의 평균과 표준편차", "평균 100, 표준편차 15", "• IQ 130 이상: 최우수 (상위 2.2%)<br>• IQ 90~109: 보통/평균<br>• IQ 70 이하: 매우 낮음 (지적장애 진단 기준)"],
+            ["20", "클로닝거 TCI에서 '세로토닌' 방출과 관련된 기질", "위험회피 (HA)", "• 도파민 ➔ 자극추구 (NS: Novelty Seeking)<br>• 세로토닌 ➔ 위험회피 (HA: Harm Avoidance)<br>• 노르에피네프린 ➔ 사회적 민감성 (RD: Reward Dependence)<br>• 인내력 (P: Persistence)"],
+            ["21", "로샤(Rorschach) 검사에서 형태반응(F%)의 의미", "자아통제력 / 현실검증력", "• 순수 형태반응(F%): 감정에 휘둘리지 않고 현실을 지각하는 능력<br>• 형태질(FQ): 현실 지각의 적절성<br>• 운동반응(M): 내적 상상력과 지적 능력<br>• 색채반응(C): 정서적 반응성과 흥분성"],
+            ["22", "BGT(벤더-게슈탈트)가 1차적으로 선별하는 영역", "기질적 뇌손상 / 협응", "• 9개 기하학적 도형 모사를 통한 신경심리학적 선별<br>• 시각-운동 협응 능력 및 기질적 뇌기능 장애 감별"],
+            ["23", "문장완성검사(SCT)의 대표적 임상적 장점", "즉각적 내면 탐색", "• 반구조화된 투사검사로 단시간 내 갈등 영역 파악<br>• 4대 영역: 가족, 성, 대인관계, 자기개념"],
+            ["24", "동적가족화(KFD)에서 가족의 '행동'을 그리게 하는 이유", "가족 역동 및 권력구조", "• 가족원들이 무언가를 하고 있는 '행동'을 그리게 함<br>• 인물의 크기/위치(권력), 인물 간 거리/구분선(단절) 파악"],
+            ["25", "HTP(집-나무-사람) 검사의 실시 원칙", "제한시간이 없다", "• 수검자에게 제한시간을 주지 않고 자유롭게 그리도록 함<br>• 집(Home): 가정환경 및 부모상<br>• 나무(Tree): 무의식적 자아상 및 성장과정<br>• 사람(Person): 현실적 자아상 및 대인관계"]
+        ],
+        sub4: [
+            ["01", "지적기능(IQ 70이하)과 적응행동 결함이 발달기에 시작", "지적장애 (지적발달장애)", "• 경도 (IQ 50~69): 초등 6학년 수준 학업 가능 (85%)<br>• 중등도 (IQ 35~49): 초등 2학년 수준, 단순 기술 훈련<br>• 중증 (IQ 20~34): 완전한 일상 감독 필요<br>• 최중증 (IQ 20 미만): 전 생애 전적인 보호 필요"],
+            ["02", "자폐스펙트럼(ASD)의 2대 핵심 진단 기준", "상호작용 결함 + 상동행동", "• 영역 1: 사회적 상호작용 및 의사소통의 지속적 결함<br>• 영역 2: 제한적이고 반복적인 행동 패턴, 흥미, 활동 (상동증)<br>• 감각 자극에 대한 과민성 또는 둔감성"],
+            ["03", "ADHD의 필수 진단 요건", "만12세 이전, 2개이상 환경", "• 발병 시기: 만 12세 이전 발병<br>• 상황성: 2개 이상의 환경 (가정, 학교 등)에서 증상 지속<br>• 하위 유형: 부주의 우세형, 과잉행동-충동 우세형, 복합형"],
+            ["04", "여러 운동 틱 + 1가지 이상 음성 틱이 1년 이상 지속", "뚜렛장애 (Tourette's)", "• 뚜렛장애: 다발성 운동 틱 + 1가지 이상 음성 틱 (1년 이상 지속)<br>• 지속성(만성) 틱: 운동 틱 또는 음성 틱 중 한 가지만 1년 이상<br>• 일과성 틱: 틱 증상이 1년 미만 지속"],
+            ["05", "적대적 반항장애(ODD)와 품행장애(CD)의 감별", "타인 권리 침해/폭력 유무", "• 적대적 반항장애(ODD): 어른에게 말대꾸, 화내기, 반항 (폭력/절도 없음)<br>• 품행장애(CD): 사람/동물에 대한 신체적 공격, 재산 파괴, 사기/절도, 중대한 규칙 위반"],
+            ["06", "만 6~18세 발병, 발달에 맞지 않는 극심한 분노폭발 주3회", "파괴적 기분조절부전(DMDD)", "• 주 3회 이상의 심각한 언어적/신체적 분노 폭발<br>• 분노 폭발 사이에도 만성적으로 짜증나고 과민한 기분 유지<br>• 양극성 장애의 과잉진단을 방지하기 위해 DSM-5에 신설"],
+            ["07", "청소년기 주요우울장애의 대표적 비전형적 양상", "짜증(과민성), 가면성 우울", "• 성인은 '우울한 기분'이지만 청소년은 '짜증과 과민성'으로 나타남<br>• 가면성 우울: 우울을 감추고 비행, 무단결석, 게임중독, 두통 등 신체화"],
+            ["08", "주요우울장애 진단을 위한 필수 증상 최소 기간", "최소 2주 이상 지속", "• 9개 증상 중 5개 이상 2주간 지속 (우울기분 또는 흥미/즐거움 상실 필수)<br>• 조증/경조증 삽화가 한 번도 없어야 함"],
+            ["09", "조증 삽화(Manic Episode) 진단을 위한 최소 기간", "최소 1주일 이상 지속", "• 고양되고 팽창된 기분, 수면욕구 감소, 과대망상, 말이 많아짐<br>• 경조증 삽화: 최소 4일 이상 지속 (입원할 정도는 아님)"],
+            ["10", "양극성 I형과 II형의 결정적 차이", "I형 조증 필수 / II형 경조증", "• 제I형 양극성 장애: 최소 1회의 확실한 '조증 삽화' 필수 (우울 없어도 진단 가능)<br>• 제II형 양극성 장애: '경조증 삽화' + '주요우울 삽화' (조증 삽화 절대 없음)"],
+            ["11", "극심한 공포/호흡곤란 + 예기불안이 1개월 이상 지속", "공황장애 (Panic)", "• 공황발작: 10분 이내 최고조에 달하는 극심한 공포와 신체증상 (심계항진, 질식감)<br>• 공황장애: 발작 후 '또 오면 어쩌지?' 하는 예기불안이 1개월 이상 지속"],
+            ["12", "타인에게 관찰/부정적 평가받을 것에 대한 극심한 두려움", "사회불안장애", "• 타인의 시선, 발표, 낯선 사람과의 대화 상황을 두려워하여 회피<br>• 범불안장애: 특정 대상 없이 일상 전반에 걸친 만성적 걱정 (6개월 이상)"],
+            ["13", "광장공포증 환자가 두려워하는 상황의 본질", "즉각 탈출하기 어려운 장소", "• 대중교통, 열린 공간, 밀폐 공간, 줄서기/군중 속, 집 밖 혼자 있기 중 2곳 이상 회피<br>• 공황 증상 발생 시 즉시 탈출하거나 도움받기 어려울까 봐 두려워함"],
+            ["14", "강박장애(OCD)의 대표적 인지행동치료(CBT) 기법", "노출 및 반응방지 (ERP)", "• 강박사고: 원치 않는 침습적 불안 생각<br>• 강박행동: 불안을 낮추기 위한 반복 행동 (손씻기, 확인하기)<br>• 치료: 불안 유발 자극에 노출시킨 뒤 강박행동을 못하게 차단(ERP)"],
+            ["15", "자신의 외모에 사소하거나 없는 결점이 있다고 집착", "신체변형장애", "• 타인은 눈치채지 못할 외모 결점에 집착하여 거울 자주 보기, 성형수술 반복<br>• 강박 및 관련 장애 하위 유형 (저장장애, 털뽑기장애, 피부뜯기장애)"],
+            ["16", "외상 후 3일~1개월 이내 급성 발병한 스트레스 증상", "급성스트레스장애 (ASD)", "• 외상 사건 후 3일 ~ 1개월 이내 증상 발생 및 소실<br>• 외상후 스트레스장애(PTSD): 외상 증상이 1개월 이상 지속"],
+            ["17", "신경성 식욕부진증(거식증)의 핵심 진단 준거", "체중공포 + 현저한 저체중", "• 극심한 체중 증가 공포 및 왜곡된 체형 지각<br>• 필수 기준: 체질량지수(BMI) 18.5 미만의 현저한 저체중 유지"],
+            ["18", "신경성 폭식증과 폭식장애의 결정적 차이", "보상행동(구토/하제) 유무", "• 신경성 폭식증: 폭식 후 체중 증가를 막기 위해 스스로 구토/하제 사용 (정상 체중)<br>• 폭식장애: 폭식은 하지만 구토 등 부적절한 보상행동을 하지 않음 (비만 유발)"],
+            ["19", "한 사람 안에 2개 이상의 독립된 인격이 존재", "해리성 정체감 장애 (DID)", "• 과거 '다중인격장애', 둘 이상의 서로 다른 성격 상태 분열<br>• 해리성 기억상실증: 중요한 개인적 외상 기억을 회상하지 못함"],
+            ["20", "조현병의 대표적 양성 증상", "환각, 망상, 와해된 언어", "• 양성 증상: 정상인에게 없는 것이 비정상적으로 나타남 (환청, 피해망상, 괴이한 행동)<br>• 도파민 과잉 활성과 연관 (항정신병 약물 반응 우수)"],
+            ["21", "조현병의 대표적 음성 증상", "정서둔마, 무의욕, 무언증", "• 음성 증상: 정상적으로 있어야 할 기능이 결손됨 (감정 표현 결여, 사회적 위축)<br>• 뇌 구조적 이상(뇌실 확장)과 연관 (약물 반응 낮고 예후 불량)"],
+            ["22", "반사회성 성격장애 진단 가능 최소 연령", "만 18세 이상", "• 만 18세 이상 성인에게만 진단 가능<br>• 필수 조건: 만 15세 이전에 '품행장애(CD)' 병력이 반드시 확인되어야 함"],
+            ["23", "대인관계 극단화, 버림받음 공포, 만성 공허감, 자해", "경계선 성격장애", "• 이상화와 평가절하를 극단적으로 오감 (분열 방어기제)<br>• 실제적/상상적 유기(버림받음)를 피하기 위한 필사적 노력 및 반복적 자해/자살시도"],
+            ["24", "자신의 중요성에 대한 과장된 지각, 특권의식, 거만함", "자기애성 성격장애", "• 과대한 자기중심성, 특별대우를 당연하게 여김<br>• 타인을 자신의 목적을 위해 착취하며 공감 능력이 결여됨"],
+            ["25", "관심의 초점이 되지 못하면 불편하고 성적 유혹적 태도", "연극성 성격장애", "• 타인의 관심과 주목을 받기 위해 과장되고 극적인 감정 표현<br>• 상황에 맞지 않게 유혹적이고 도발적인 외모와 태도"]
+        ],
+        sub6: [
+            ["01", "가족체계가 일정한 균형을 유지하려는 자기조절 경향", "항상성 (Homeostasis)", "• 부적 피드백(Negative feedback): 변화를 거부하고 기존 상태 유지 (항상성 유지)<br>• 정적 피드백(Positive feedback): 변화를 촉진하여 새로운 체계로 전환"],
+            ["02", "서로 다른 원인이라도 동일한 결과에 도달하는 원리", "동일결과성 (Equifinality)", "• 동일결과성: 출발 조건이 달라도 상호작용을 통해 동일한 결과에 도달<br>• 다원결과성: 동일한 출발 조건이라도 상호작용에 따라 완전히 다른 결과에 도달"],
+            ["03", "보웬: 사고와 감정을 분리하고 자율성을 유지하는 능력", "자기분화 (Differentiation)", "• 지적 기능과 정서적 기능의 분리 수준<br>• 미분화: 감정에 압도되어 맹목적 융합 또는 단절 발생<br>• 분화 수준이 높을수록 자율적이며 깊은 친밀감 유지"],
+            ["04", "보웬: 부부 불안을 줄이기 위해 자녀를 끌어들이는 역동", "삼각관계 (Triangulation)", "• 2자 관계의 긴장과 불안을 낮추기 위해 제3자(자녀, 시어머니 등)를 끌어들임<br>• 가족치료의 핵심 목표: 탈삼각화 (Detriangulation)"],
+            ["05", "보웬: 부모의 낮은 분화 수준이 자녀 세대로 대물림됨", "다세대 전수과정", "• 부모의 미분화가 가장 취약한 자녀에게 투사(가족투사과정)되어 세대를 거쳐 누적<br>• 3세대 이상에 걸쳐 조현병 등 심각한 병리 유발"],
+            ["06", "보웬 기법: 가족 감정에 휘말리지 않고 주체적 입장 표명", "나-입장 취하기 (I-Position)", "• '당신 때문에 집안이 이 모양이야' 식의 비난('너-메시지') 중단<br>• '나는 이렇게 생각하고 느낍니다' 식의 차분한 자기 입장 표명"],
+            ["07", "보웬 치료에서 3세대 이상 가족 관계를 시각화하는 도구", "가계도 (Genogram)", "• 3세대 이상의 가족 구조, 구성원 정보, 관계 역동(밀착, 갈등, 단절) 시각화<br>• 세대 간 반복되는 문제 패턴 탐색"],
+            ["08", "미누친 구조적 가족치료의 3대 핵심 개념", "구조, 하위체계, 경계선", "• 가족 구조: 가족원의 상호작용을 조직화하는 보이지 않는 규칙과 위계<br>• 하위체계: 부부, 부모, 부모-자녀, 형제자매 하위체계<br>• 경계선: 명확한 경계선, 밀착된(모호한) 경계선, 유리된(경직된) 경계선"],
+            ["09", "미누친: 자율성이 없고 지나치게 간섭하는 산만한 경계선", "밀착된 가족 (Enmeshed)", "• 경계선이 너무 모호하여 지나친 간섭과 과잉보호<br>• 가족 소속감은 매우 강하나 개인의 독립성과 자율성 상실"],
+            ["10", "미누친: 소통 단절, 거리감이 너무 큰 경직된 경계선", "유리된 가족 (Disengaged)", "• 경계선이 너무 두껍고 경직되어 소통과 상호교류 부재<br>• 개인의 자율성은 있으나 위기 시 가족의 지지와 온정 결여"],
+            ["11", "미누친 기법: 평소 갈등 행동을 상담실에서 직접 재연함", "실연 (Enactment)", "• 가족원들이 말로 설명하는 대신 평소 갈등 상호작용을 상담실에서 직접 연기<br>• 상담자가 현장에서 즉각 구조적 개입(자리 재배치, 경계선 세우기) 실시"],
+            ["12", "미누친 구조: 부모 1인과 자녀가 연합하여 다른 부모 공격", "세대 간 연합", "• 안정된 연합: 한 부모와 자녀가 지속적으로 동맹을 맺고 다른 부모를 배척<br>• 우회연합: 부부 갈등을 직접 다루지 않고 자녀 문제에 초점을 맞춰 갈등 회피<br>• 삼각화: 부모 양쪽이 자녀에게 자신 편을 들라고 충성을 요구"],
+            ["13", "사티어 의사소통: 자기는 무시하고 타인 비위만 맞춤", "회유형 (Placating)", "• 자기(X) / 타인(O) / 상황(O) ➔ 비굴, 굴복, '다 내 잘못이야'<br>• 비난형: 자기(O) / 타인(X) / 상황(O) ➔ 독재자, 호통, 비난<br>• 초이성형: 자기(X) / 타인(X) / 상황(O) ➔ 차가운 논리, 규칙, 기계적<br>• 산만형: 자기(X) / 타인(X) / 상황(X) ➔ 딴청, 농담, 초점 회피<br>• 일치형: 자기(O) / 타인(O) / 상황(O) ➔ 진솔하고 건강한 소통"],
+            ["14", "사티어 의사소통: 타인은 무시하고 자신/상황만 내세움", "비난형 (Blaming)", "• 타인의 가치와 감정을 철저히 깎아내림<br>• 속으로는 외로움과 패배감을 느끼며 이를 방어하기 위해 공격"],
+            ["15", "사티어 의사소통: 자신, 타인, 상황을 모두 균형 있게 존중", "일치형 (Congruent)", "• 의사소통의 언어적 메시지와 비언어적 정서가 정확히 일치<br>• 높은 자아존중감과 개방적인 감정 표현"],
+            ["16", "사티어 기법: 신체 자세와 공간 배치를 통해 역동 시각화", "가족 조각 (Sculpting)", "• 가족원들의 신체적 위치, 거리, 표정, 자세를 조각품처럼 연출<br>• 말로 표현하지 못했던 무의식적 가족 역동과 정서적 거리 체험"],
+            ["17", "전략적 치료: 문제 증상에 긍정적 새로운 의미를 부여", "재명명 (Reframing)", "• 증상 행동의 맥락을 긍정적인 의미로 재해석 (예: 자녀의 반항 ➔ 가족 독립의 징표)<br>• 문제에 대한 가족의 인식을 전환하여 해결 촉진"],
+            ["18", "전략적 치료: 증상 행동을 일부러 더 많이 하도록 지시", "증상 처방 (역설적 개입)", "• 통제할 수 없다고 주장하는 증상(불면, 강박행동)을 자발적으로 수행하도록 처방<br>• 지시를 따르면 증상을 통제하게 되고, 거부하면 증상이 사라지는 치료적 이중구속"],
+            ["19", "전략적 치료: 증상 없애려 증상보다 더 번거로운 과제 부여", "고된 체험 기법 (Ordeal)", "• 증상이 나타날 때마다 유익하지만 매우 귀찮은 일(대청소, 운동)을 강제로 하도록 지시<br>• 증상을 유지하는 대가가 너무 커지게 만들어 증상 포기 유도"],
+            ["20", "밀란 학파: 가족원 간 차이와 관계망을 질문하여 통찰 촉진", "순환질문", "• 가족원 한 명에게 다른 두 사람의 관계나 상호작용에 대해 질문<br>• 선형적 인과관계를 깨고 순환적 가족 관계망을 자각하도록 촉진"],
+            ["21", "해결중심: 문제가 발생하지 않았던 예외적 순간 탐색", "예외질문", "• 문제가 일어나지 않았던 과거의 예외 상황과 성공 경험 탐색<br>• 내담자가 이미 가지고 있는 자원과 해결책을 활성화"],
+            ["22", "해결중심에서 내담자와 상담자 간의 3대 관계 유형", "방문형, 불평형, 고객형", "• 방문형: 타인에 의해 억지로 옴 (문제 인식 X) ➔ 칭찬과 선물<br>• 불평형: 타인의 문제만 호소 (자신의 역할 X) ➔ 관찰 과제<br>• 고객형: 자신의 문제를 해결할 준비가 됨 ➔ 직접적 행동 과제"],
+            ["23", "이야기치료: 문제와 사람을 분리하여 지칭하는 기법", "문제의 외재화", "• '사람이 문제가 아니라 문제가 문제이다'<br>• 문제를 내담자 내면의 결함이 아닌 외부의 독립된 실체(예: '우울이라는 불청객')로 대상화"],
+            ["24", "이야기치료의 핵심 철학 명제", "사람이 문제가 아니라 문제가 문제", "• 지배적인 억압적 이야기 해체(Deconstruction)<br>• 독특한 결과(Unique Outcomes) 발견을 통한 대안적 선호 이야기(Re-authoring) 재구성"],
+            ["25", "카터와 맥골드릭 가족생활주기의 제1단계", "집 떠나기 (미혼성인기)", "• 1단계: 집 떠나기 (독립된 미혼 성인기 - 원가족 분리)<br>• 2단계: 결혼을 통한 커플 형성 (신혼기)<br>• 3단계: 어린 자녀를 둔 가족<br>• 4단계: 청소년기 자녀를 둔 가족 (자녀 자립 인정)<br>• 5단계: 자녀 진수기 (자녀 독립 및 빈둥지기)<br>• 6단계: 노년기 가족 (상실과 노화 수용)"]
+        ],
+        sub7: [
+            ["01", "개인상담 대비 집단상담의 장점이 아닌 것", "개인 심층분석에 유리(X)", "• 개인상담의 장점: 1:1 심층 분석, 높은 비밀보장, 개별 맞춤 속도<br>• 집단상담의 장점: 경제성, 다양한 피드백, 보편성 경험, 대인관계 기술 실전 연습"],
+            ["02", "청소년 집단상담에 가장 이상적인 인원 규모", "6~10명 내외 (소집단)", "• 6명 미만: 상호작용과 역동 부족<br>• 10명 초과: 소외되는 집단원 발생 및 상담자의 통제력 저하<br>• 시간: 청소년은 회기당 60~90분 진행이 적절"],
+            ["03", "집단 구성 시 사전 선별(Screening) 면담의 주 목적", "부적합자 배제 & 목표공유", "• 집단에 부적합한 사람(급성 정신증, 심한 망상/환각, 극심한 반사회성/폭력성) 선별 배제<br>• 집단의 목표와 규칙 안내 및 자발적 참여 동기 확인"],
+            ["04", "개방집단 대비 폐쇄집단(Closed)의 가장 큰 장점", "응집력 형성에 절대 유리", "• 폐쇄집단: 정해진 인원으로 시작해 끝까지 유지 ➔ 높은 응집력과 신뢰 형성<br>• 개방집단: 수시로 신규 회원이 입퇴회 ➔ 현실 사회와 유사하나 응집력 형성 어려움"],
+            ["05", "코리(Corey) 집단 발달 4단계 순서", "초기 ➔ 과도기 ➔ 작업 ➔ 종결", "• 초기 단계: 오리엔테이션, 탐색, 신뢰감 형성, 구조화<br>• 과도기 단계: 불안, 저항, 통제권 갈등, 상담자 시험<br>• 작업 단계: 높은 응집력, 깊은 자기개방, 통찰과 대안행동 실천<br>• 종결 단계: 성과 평가, 이별 감정 다루기, 일상생활로의 일반화"],
+            ["06", "집단 발달: 오리엔테이션, 신뢰감 형성, 규준 설정", "초기 단계", "• 집단원들의 불안과 어색함 해소<br>• 비밀보장과 집단 규칙(규준) 설정<br>• 집단원의 개인 목표 명료화 및 자기개방 격려"],
+            ["07", "집단 발달: 불안, 저항, 상담자에 대한 시험, 갈등", "과도기 단계", "• 권력과 통제권을 둘러싼 집단원 간 갈등 및 상담자에 대한 불신/도전<br>• 방어와 저항을 인정하고 안전한 분위기 속에서 갈등을 생산적으로 다룸"],
+            ["08", "집단 발달: 응집력 최고조, 깊은 자기개방과 피드백", "작업 단계", "• 높은 신뢰감과 집단 응집력(We-ness)<br>• '지금-여기'의 솔직하고 직접적인 피드백 교환<br>• 미해결 과제 해결 및 새로운 행동 패턴 연습"],
+            ["09", "집단 발달: 미해결 과제 처리, 이별 감정, 일상 전이", "종결 단계", "• 남아있는 미해결 감정 처리<br>• 헤어짐에 따른 아쉬움과 상실감 다루기<br>• 집단에서 배운 변화를 일상생활과 외부 대인관계로 전이"],
+            ["10", "얄롬 요인: '나 혼자만 이런 고민을 하는 게 아니구나' 안도", "보편성 (Universality)", "• 자신의 고통과 문제가 자신만의 것이 아님을 깨닫고 고립감 탈피<br>• 얄롬의 11대 치료요인 중 집단 초기에 가장 강력한 치유 효과"],
+            ["11", "얄롬 요인: 다른 집단원의 긍정적 변화를 보며 희망 획득", "희망의 고취", "• 다른 집단원이 회복되고 성장하는 모습을 보며 자신도 나아질 수 있다는 확신 획득"],
+            ["12", "얄롬 요인: 다른 집단원을 도우며 자기가치감 획득", "이타주의 (Altruism)", "• 자신이 다른 사람에게 도움이 되는 존재임을 경험하며 자존감 향상"],
+            ["13", "얄롬 요인: 억압된 강한 감정을 쏟아내어 정화함", "카타르시스 (Catharsis)", "• 억눌렸던 슬픔, 분노, 두려움의 감정을 안전하게 밖으로 표출하여 해소"],
+            ["14", "얄롬 집단 핵심 원리: '지금-여기(Here-and-Now)'", "현재 회기 상호작용 초점", "• 과거의 역사나 바깥세상 이야기(Then-and-There)를 길게 늘어놓는 것 지양<br>• 지금 이 순간 상담실 안에서 일어나는 집단원 간의 상호작용과 감정에 집중"],
+            ["15", "상담자 기술: 두 집단원의 유사한 감정/경험을 엮어줌", "연결 (Linking)", "• A의 이야기와 B의 유사한 고민을 연결하여 상호작용과 보편성 촉진<br>• 집단원 간의 유대감과 응집력 강화"],
+            ["16", "상담자 기술: 인신공격, 지나친 캐묻기, 파괴행동 중단", "차단 (Blocking)", "• 다른 집단원에 대한 공격, 사생활 침해, 가십, 소외 행위를 즉시 개입하여 중단<br>• 집단원의 심리적 안전 보호 및 생산적 집단 분위기 유지"],
+            ["17", "상담자 기술: 집단원의 모호한 말을 명확히 정리해 줌", "명료화 (Clarifying)", "• 혼란스럽거나 모호한 발언의 핵심을 분명하게 짚어주어 소통 오해 방지"],
+            ["18", "상담자 기술: 솔직한 소통을 상담자가 직접 보여줌", "모델링 (Modeling)", "• 상담자가 진솔성, 수용, 적절한 자기개방을 직접 시범 보여 집단원의 모방행동 촉진"],
+            ["19", "집단원 문제행동: 혼자 발언권을 독점하여 타인 방해", "독점 (Monopolizing)", "• 인정받고 싶거나 침묵에 대한 불안 때문에 끊임없이 혼자 말함<br>• 타인의 참여를 가로막고 집단 분위기를 저해"],
+            ["20", "독점 행동 집단원에 대한 가장 올바른 상담자 개입", "인정욕구 수용 & 기회분배", "• 집단원을 비난하지 않고 그의 인정 욕구와 열정을 수용한 뒤<br>• '다른 분들의 생각도 들어볼까요?'라며 자연스럽게 발언권을 분배"],
+            ["21", "집단 내에서 몇몇이 소집단을 만들어 나머지를 소외시킴", "하위집단 형성 (Subgrouping)", "• 집단 밖에서 사적으로 어울리며 집단 안에서 편을 가르고 비밀을 공유<br>• 전체 집단의 신뢰와 응집력을 심각하게 저해"],
+            ["22", "하위집단 형성에 대한 상담자의 올바른 대처", "전체 공론의 장으로 올림", "• 하위집단을 비밀스럽게 방치하거나 처벌하지 않고<br>• '지금 집단 안에 형성된 소그룹 현상'을 집단 전체의 공론의 장(수면 위)으로 올려 솔직히 탐색"],
+            ["23", "집단원이 장시간 침묵을 지킬 때의 올바른 상담자 개입", "침묵의 비언어적 의미 공감", "• 억지로 말을 시키거나 다그치지 않고<br>• 침묵 속에 담긴 두려움, 불안, 관망 등의 비언어적 의미를 공감하고 탐색"],
+            ["24", "심리극(Psychodrama)에서 활용되는 기법이 아닌 것", "빈의자 기법 (X)", "• 빈의자 기법은 '게슈탈트 치료'의 고유 기법임<br>• 심리극(모레노) 5대 구성요소: 무대, 주인공, 연출가(상담자), 보조자아, 관객<br>• 심리극 주요 기법: 역할교환, 거울기법, 이중자아 기법, 실연"],
+            ["25", "집단상담 종결 시 사후 추수회기(Follow-up) 목적", "효과의 장기적 지속성 점검", "• 집단 종결 후 일정 기간(1~3개월) 뒤에 모여 상담 효과의 지속성 평가<br>• 일상생활 적응 상태 점검 및 재발 방지 지지망 확인"]
+        ]
+    },
+    exam2: {
+        sub1: [
+            ["01", "방어기제: 직장 상사에게 혼난 뒤 집에 와서 동생이나 반려견에게 화풀이함", "전치 (Displacement)", "• 전치(대치): 덜 위협적인 만만한 대상에게 충동/감정을 쏟아부음<br>• 투사: 내 잘못을 남 탓으로 돌림<br>• 반동형성: 미운 놈에게 떡 하나 더 주기<br>• 합리화: 그럴듯한 핑계 대기"],
+            ["02", "방어기제: 마음속으로는 몹시 미워하면서 겉으로는 지나치게 친절하게 대함", "반동형성 (Reaction Formation)", "• 반동형성: 용납할 수 없는 무의식적 충동과 정반대로 행동함<br>• 억압: 기억 자체를 무의식으로 억누름<br>• 승화: 예술/운동으로 승화"],
+            ["03", "아들러 생활양식: 인생의 과제나 문제에 부딪히면 두려워 도망치고 외면함", "회피형 (Avoiding)", "• 회피형: 사회적 관심과 활동수준 모두 낮음 (실패 회피)<br>• 획득형: 타인에게 의존하여 얻기만 바람<br>• 지배형: 독재적 공격성<br>• 사회적 유용형: 협동적이고 건강함"],
+            ["04", "로저스 인간중심: 상담자가 상담 시간 동안 가식 없이 진실한 자기 자신으로 머무름", "일치성 / 진실성 (Congruence)", "• 일치성: 상담자의 내면적 경험과 외적 표현이 일치함<br>• 무조건적 존중: 조건 없는 수용<br>• 공감적 이해: 내담자의 틀에서 세상을 느낌"],
+            ["05", "게슈탈트: 부모나 사회의 도덕적 규범과 가치관을 무비판적으로 삼켜버림", "내사 (Introjection)", "• 내사: 남의 기준을 소화하지 않고 꿀꺽 삼킴 ('~해야만 한다')<br>• 투사: 내 감정을 남의 것이라고 뒤집어씌움<br>• 융합: 너와 내가 구분 없는 동일시<br>• 반전: 남에게 할 화를 나에게 돌림"],
+            ["06", "벡 인지치료: 모든 사건을 '완벽한 성공' 아니면 '완전한 실패'의 양극단으로만 판단", "이분법적 사고 / 흑백논리", "• 흑백논리: 중간 지대를 인정하지 않는 전부 아니면 전무의 사고<br>• 과잉일반화: 한 번의 실수를 평생의 법칙으로 확대<br>• 파국화: 최악의 재앙으로 비약"],
+            ["07", "수용전념치료(ACT): 떠오르는 생각은 단지 생각일 뿐 현실이나 사실이 아님을 깨달음", "인지적 탈융합 (Defusion)", "• 인지적 탈융합: 생각과 자신을 분리하여 한 발짝 물러서서 바라봄<br>• 수용: 기꺼이 고통스러운 감정을 경험함<br>• 가치: 자신이 진정 원하는 삶의 방향"],
+            ["08", "현실치료 WDEP 중 좋은 계획(SAMIC)의 'M'이 의미하는 바", "측정 가능성 (Measurable)", "• S: Simple (단순한)<br>• A: Attainable (달성 가능한)<br>• M: Measurable (측정/계량 가능한)<br>• I: Immediate (즉각 실천 가능한)<br>• C: Controlled (내담자가 통제 가능한)"],
+            ["09", "마샤 정체감: 치열하게 진로와 가치관을 고민하고 탐색 중이나 아직 결정을 내리지 못함", "정체감 유예 (Moratorium)", "• 정체감 유예: 위기(탐색) O, 전념(확립) X<br>• 정체감 성취: 위기 O, 전념 O<br>• 정체감 유실: 위기 X, 전념 O (부모 결정 복종)<br>• 정체감 혼미: 위기 X, 전념 X"],
+            ["10", "피아제 발달: 눈앞의 구체적 사물이 없어도 '가설을 세우고 연역적으로 추론' 가능", "형식적 조작기", "• 형식적 조작기: 청소년기 이후, 추상적 개념 및 조합적 사고 발달<br>• 구체적 조작기: 구체적 대상이 주어져야 논리적 조작 가능 (보존개념 획득)"],
+            ["11", "청소년이 오토바이를 난폭하게 타면서 '나에게는 절대 사고가 안 날 거야'라고 믿음", "개인적 우화 (불사조 신념)", "• 개인적 우화: 자신은 특별하고 불멸의 존재라는 비현실적 착각<br>• 상상적 관중: 남들이 나만 쳐다본다는 착각"],
+            ["12", "해결중심 질문: '오늘 상담실 문을 열고 들어올 때 당신의 고통은 10점 만점에 몇 점인가요?'", "척도질문 (Scaling)", "• 척도질문: 점수화를 통해 모호한 상태를 구체화하고 변화 추적<br>• 기적질문: 미래 해결 상태 구축<br>• 예외질문: 성공 경험 발견<br>• 대처질문: 생존 역량 격려"],
+            ["13", "해결중심 질문: '그렇게 견디기 힘든 왕따를 당하면서도 지금까지 어떻게 학교를 다닐 수 있었니?'", "대처질문 (Coping)", "• 대처질문: 최악의 상황 속에서도 포기하지 않고 견뎌온 강점과 대처능력 발견<br>• 관계성질문: 의미 있는 타인의 관점 조망"],
+            ["14", "동기강화상담(MI)에서 내담자의 변화 동기를 촉진하는 4대 핵심 기술(OARS)의 'R'", "공감적 반영 (Reflections)", "• O: Open question (열린 질문)<br>• A: Affirmation (인정과 칭찬)<br>• R: Reflection (공감적 반영)<br>• S: Summary (종합 요약)"],
+            ["15", "교류분석(TA): 성인(A) 자아상태로 질문했는데 상대방이 비난하는 비판적 어버이(CP)로 반응함", "교차교류 (Crossed)", "• 교차교류: 기대했던 반응선과 엇갈려 대화가 단절되고 갈등이 일어나는 교류<br>• 상보교류: 평행선 소통 (원활)<br>• 이면교류: 겉과 속의 이중메시지"],
+            ["16", "청소년 상담 비밀보장의 한계에 해당하지 않는 것", "단순 학업 성적 부진 및 이성 고민", "• 비밀보장 해제 사유: 자살 기도, 타인 살해/폭행 위협, 아동학대 및 성범죄 피해<br>• 단순 고민, 성적 고민, 연애 상담은 철저한 비밀보장 대상임"],
+            ["17", "전문상담사가 내담자인 청소년과 사적인 연애 감정을 갖고 사귀기 시작함", "성적 다중관계 윤리 위반", "• 상담자와 내담자 간의 성적 관계는 절대 금지<br>• 종결 후에도 최소 일정 기간(통상 2~5년) 성적 관계 금지"],
+            ["18", "엘리스 REBT에서 내담자의 '나는 모든 사람에게 인정받아야만 한다'는 신념", "비합리적 신념 (당위적 사고)", "• 당위적 신념(Musts): 자신, 타인, 세상에 대한 비현실적 절대적 요구<br>• 상담의 목표: 당위적 신념을 선호적(유연한) 신념으로 수정"],
+            ["19", "상담 초기 단계의 가장 중요한 과업", "라포(Rapport) 형성 및 구조화", "• 초기: 촉진적 상담관계(라포) 형성, 상담 구조화, 목표 설정<br>• 중기: 심층 탐색, 통찰, 대안 행동 실천<br>• 종결: 성과 평가, 이별 감정 다루기"],
+            ["20", "상담 기법: 내담자가 말한 핵심 생각과 의미를 상담자가 다른 쉬운 말로 바꾸어 표현함", "재진술 (Paraphrasing)", "• 재진술: 내담자의 '인지적 내용/생각'을 바꾸어 말함<br>• 반영: 내담자의 '감정/정서'를 비춰줌<br>• 직면: 모순 지적"],
+            ["21", "아들러 개인심리학에서 인간 행동의 가장 근본적인 동기", "열등감 극복과 우월성 추구", "• 보편적 열등감을 극복하고 자기완성(우월성)을 향해 나아가는 목적론적 존재<br>• 사회적 관심(Social Interest)의 발달이 정신건강의 척도"],
+            ["22", "행동주의 상담에서 불안을 일으키는 자극을 이완 상태와 점진적으로 짝지어 둔감화시킴", "체계적 둔감화 (Systematic Desensitization)", "• 울페(Wolpe)의 상호억제 원리: 근육 이완 ➔ 불안 위계 목록 작성 ➔ 점진적 노출<br>• 홍수법: 극도의 공포 자극에 즉각 한꺼번에 노출"],
+            ["23", "청소년 집단상담에서 참여 학생이 결석이나 침묵으로 상담 진행을 방해하는 현상", "저항 (Resistance)", "• 변화에 대한 두려움과 불안 때문에 나타나는 방어적 태도<br>• 저항을 비난하지 않고 안전하게 다루어 통찰을 도움"],
+            ["24", "청소년 사이버 상담에서 시각적 비언어적 단서 부재를 극복하기 위한 기법", "이모티콘 및 명확한 언어화", "• 표정, 목소리 톤이 없으므로 정서적 단어를 구체적으로 명시하고 적절한 기호 활용"],
+            ["25", "상담 종결 시 내담자가 호소하는 의존심과 불안감을 다루는 올바른 태도", "상실감 공감 및 자립능력 지지", "• 상담 종결에 따른 자연스러운 아쉬움과 두려움을 수용하고 혼자서도 잘 해낼 수 있음을 지지"]
+        ],
+        sub2: [
+            ["01", "변수 값을 크기 순서로 정렬할 수 있으나 간격이 동일하지 않은 척도", "서열척도 (Ordinal)", "• 명목: 단순 분류 (성별, 지역)<br>• 서열: 순위만 제공 (석차, 선호도 순위)<br>• 등간: 간격 일정, 임의영점 (온도, IQ)<br>• 비율: 절대영점, 사칙연산 (키, 무게, 시간)"],
+            ["02", "실제로 치료 효과가 없는데도(영가설 참), 효과가 있다고 잘못 결론 내리는 오류", "제1종 오류 (알파 오류)", "• 1종 오류(α): 무죄인 사람에게 유죄 판결 (위양성)<br>• 2종 오류(β): 유죄인 사람을 무죄 방면 (위음성)<br>• 유의수준(α = .05)을 .01로 낮추면 1종 오류 감소"],
+            ["03", "통계적 검정력(1-β)을 높이기 위한 가장 확실한 연구 방법", "표본의 크기(N) 증가", "• 표본 수(N) 확대, 유의수준(α) 상승, 효과크기 증가, 측정오차 감소 시 검정력 상승"],
+            ["04", "동일한 학생들에게 상담 프로그램을 실시하기 전(사전)과 후(사후)의 점수 평균 비교", "대응표본 t-검정 (Paired t-test)", "• 대응표본: 동일 집단의 전-후 짝지어진 점수 비교<br>• 독립표본: 남학생 집단 vs 여학생 집단 등 독립된 2집단 비교"],
+            ["05", "3개 이상의 상담 치료 집단(인지치료, 행동치료, 통제집단)의 효과 평균을 동시 비교", "일원 분산분석 (One-way ANOVA)", "• 집단이 3개 이상일 때 t-검정을 반복하면 1종 오류가 급증하므로 ANOVA(F-검정) 실시<br>• 유의할 경우 사후검증(Tukey, Scheffe) 수행"],
+            ["06", "분산분석 표에서 집단간 분산(MS_B)이 오차분산(MS_W)보다 훨씬 클 때 F값의 변화", "F 통계량 증가 (유의성 증가)", "• F = MS_B / MS_W 이므로 집단간 차이가 클수록 F값이 커지고 p값이 작아짐"],
+            ["07", "두 개의 독립변수(예: 상담유형과 성별)가 종속변수(우울감)에 미치는 복합 효과", "이원 분산분석의 상호작용 효과", "• 두 독립변수의 결합 조건에 따라 결과가 다르게 나타나는 현상"],
+            ["08", "두 범주형 변수(예: 성별 남/여와 흡연 여부 유/무) 간의 빈도 관련성 검증", "카이제곱 독립성 검정 (χ²)", "• 분할표를 이용한 명목변수 간의 독립성/동질성 검정"],
+            ["09", "상관계수 r = 0.6 일 때, 독립변수가 종속변수를 설명하는 결정계수(R²)", "0.36 (36% 설명력)", "• 결정계수 R² = r² = 0.6 × 0.6 = 0.36 (36%)"],
+            ["10", "다중회귀분석에서 설명변수들끼리 너무 높은 상관관계를 보여 회귀계수가 불안정해짐", "다중공선성 (Multicollinearity)", "• VIF(분산팽창계수) 10 이상이면 다중공선성 존재로 변수 제거 필요"],
+            ["11", "독립변수(X)가 종속변수(Y)에 영향을 미치는 경로와 원인을 설명하는 제3의 변수", "매개변수 (Mediator)", "• 매개: X ➔ M ➔ Y (전달자 역할)<br>• 조절: X ➔ Y 관계의 강도를 바꾸는 조건 변수"],
+            ["12", "상담 효과 연구 도중 피험자들이 나이가 들거나 자연적으로 성숙해져 점수가 향상됨", "성숙 요인 (Maturation)", "• 내적타당도 저해 요인: 시간 경과에 따른 신체적/심리적 자연 성장<br>• 통제집단과의 비교로 통제"],
+            ["13", "사전검사에서 가장 점수가 낮았던 극단 집단이 사후검사에서 자연스럽게 평균으로 이동함", "통계적 회귀 (Statistical Regression)", "• 극단적인 측정치가 반복 측정 시 평균값으로 되돌아가는 현상"],
+            ["14", "실험 도중 특정 집단의 피험자들이 대거 이사를 가거나 중도 포기하여 결과가 왜곡됨", "피험자 상실 / 탈락 (Mortality)", "• 실험집단과 통제집단의 동질성이 깨져 내적타당도 저해"],
+            ["15", "모집단을 성별, 학년별 비율에 맞추어 계층을 나눈 뒤 각 계층 내에서 무작위 표집", "층화 표집 (Stratified Sampling)", "• 하위 집단별 대표성을 완벽하게 보장하는 확률표집법"],
+            ["16", "개별 학생이 아니라 서울 시내 중학교 5개 학교(집락)를 통째로 추출하여 조사함", "군집 / 집락 표집 (Cluster Sampling)", "• 자연 집단 자체를 추출하여 시간과 비용 절감 (표집오차는 다소 증가)"],
+            ["17", "전화번호부 목록에서 10번째 사람을 무작위로 뽑은 뒤, 매 50번째마다 규칙적으로 추출", "체계적 / 계통 표집 (Systematic)", "• 일정한 표집 간격(k)을 두고 추출 (주기성이 없어야 함)"],
+            ["18", "단일대상연구에서 기초선(A) ➔ 처치(B) ➔ 처치제거(A) ➔ 처치재도입(B) 설계", "반전 설계 (ABAB Design)", "• 처치의 인과적 효과를 가장 명확히 입증하는 설계"],
+            ["19", "질적연구에서 지속적인 비교 분석을 통해 귀납적으로 실질적 이론을 구축하는 방법", "근거이론 (Grounded Theory)", "• 개방코딩 ➔ 축코딩 ➔ 선택코딩을 거쳐 패러다임 모형 도출"],
+            ["20", "연구윤리: 피험자에게 실험 목적, 절차, 위험 요소를 충분히 설명하고 자발적 서명을 받음", "사전동의 (Informed Consent)", "• 벨몬트 보고서의 '인간존중(자율성)' 원칙에 기초"],
+            ["21", "질적연구에서 연구자가 특정 현상을 살아가는 개인들의 주관적 체험의 본질을 밝힘", "현상학적 연구 (Phenomenology)", "• '체험된 의미의 본질'을 심층 면담을 통해 규명"],
+            ["22", "변수 간의 인과관계를 입증하기 위해 만족해야 할 3대 조건이 아닌 것", "독립변수와 종속변수의 절대적 음의 상관 (X)", "• 인과관계 3대 요건: 시간적 선행성, 두 변수 간의 경험적 상관, 외생변수(제3변수) 통제"],
+            ["23", "단순회귀모형의 회귀식 $\hat{Y} = 2X + 10$ 에서 기울기(2)가 의미하는 바", "X가 1단위 증가할 때 Y의 변화량", "• 독립변수 1단위 증가에 따른 종속변수의 예측 증가량"],
+            ["24", "질적연구의 진실성과 타당성을 높이기 위해 여러 자료원과 연구자, 이론을 교차 검증", "삼각측량법 (Triangulation)", "• 다각도 교차 검증을 통한 질적 연구의 신뢰성 확보"],
+            ["25", "벨몬트 보고서 3대 연구윤리 원칙: 연구의 혜택과 위험이 사회적으로 공정하게 배분됨", "정의의 원칙 (Justice)", "• 특정 취약계층에게만 위험이 전가되지 않도록 공정하게 대상자 선정"]
+        ],
+        sub3: [
+            ["01", "검사를 동일한 대상에게 일정한 시간 간격을 두고 2회 실시하여 일관성을 검증", "검사-재검사 신뢰도 (안정성)", "• 시간 간격에 따른 점수의 안정성 측정 (이월효과/기억효과 주의)"],
+            ["02", "하나의 검사를 두 개의 동등한 반쪽으로 나누어 두 점수 간의 상관을 산출하는 신뢰도", "반분 신뢰도 (Split-half)", "• 홀짝 반분, 전후 반분 후 스피어만-브라운 공식으로 교정"],
+            ["03", "신뢰도 계수(r)가 1.0(완벽)일 때, 측정의 표준오차(SEM) 값", "0 (오차 없음)", "• $SEM = S\sqrt{1-r}$ 이므로 $r=1$ 이면 $SEM=0$"],
+            ["04", "새로 개발한 우울검사가 공인된 기존 벡 우울척도(BDI)와 얼마나 높은 상관을 보이는가", "공인 타당도 (Concurrent Validity)", "• 현재 시점에서 기준이 되는 공인된 검사와의 상관관계"],
+            ["05", "검사가 측정하고자 하는 심리적 개념과 이론적으로 다른 구인을 측정하는 검사와 상관이 낮음", "변별 타당도 (Discriminant Validity)", "• 수렴타당도: 같은 구인과는 높은 상관<br>• 변별타당도: 다른 구인과는 낮은 상관"],
+            ["06", "어떤 학생의 Z점수가 -1.0 일 때, 이를 T점수로 환산한 값", "40점", "• T = 10Z + 50 = 10(-1) + 50 = 40점<br>• 웩슬러 IQ 환산 시: IQ = 15Z + 100 = 85점"],
+            ["07", "MMPI-2 타당도 척도 중 가장 순진하고 도덕적으로 완벽하게 보이려는 척도", "L 척도 (Lie Scale)", "• L: 거짓말/도덕적 결백 주장<br>• F: 비전형적/고통 호소/과장<br>• K: 세련된 방어성"],
+            ["08", "MMPI-2 임상척도 중 2번(D)과 7번(Pt)이 동반 상승했을 때의 임상적 특징", "만성 우울, 불안, 자책감, 신경증적 고통", "• 2-7 / 7-2: 가장 전형적인 우울-불안 신경증 프로파일"],
+            ["09", "MMPI-2 임상척도 중 4번(Pd)과 9번(Ma)이 동반 상승한 청소년의 특징", "충동성, 반사회적 행동, 공격성, 비행", "• 4-9 / 9-4: 교칙 위반, 품행 문제, 충동 조절 장애"],
+            ["10", "K-WISC-V 기본 지표 중 '행렬추리, 무게비교' 소검사가 포함된 지표", "유동추론 지표 (FRI)", "• VCI(언어이해), VSI(시공간), FRI(유동추론), WMI(작업기억), PSI(처리속도)"],
+            ["11", "K-WISC-V 기본 지표 중 '숫자, 그림기억' 소검사가 포함된 지표", "작업기억 지표 (WMI)", "• 정보를 단기 유지하며 인지적으로 조작하는 능력"],
+            ["12", "클로닝거 TCI에서 '도파민' 신경전달물질의 활성화와 관련된 기질 차원", "자극추구 (Novelty Seeking)", "• 도파민 ➔ 자극추구(NS)<br>• 세로토닌 ➔ 위험회피(HA)<br>• 노르에피네프린 ➔ 사회적민감성(RD)"],
+            ["13", "로샤 검사에서 잉크 반점의 색채(Color)에 주로 반응했을 때 해석되는 심리적 특성", "정서적 반응성과 흥분성", "• 색채반응(C): 감정/정서 조절<br>• 운동반응(M): 내적 상상력/지능<br>• 형태(F): 자아통제"],
+            ["14", "BGT(벤더 게슈탈트 검사)에서 도형 회전, 왜곡, 보속증이 나타날 때 시사하는 바", "기질성 뇌손상 및 뇌기능 장애", "• 시각-운동 통합 결함 및 신경심리학적 손상 선별"],
+            ["15", "동적가족화(KFD)에서 특정 가족 구성원 주위에 굵은 테두리나 구획선이 그어져 있음", "심리적 고립 및 소통 단절", "• 가족원 간의 정서적 장벽 및 격리 역동"],
+            ["16", "문장완성검사(SCT)가 투사검사이면서도 갖는 가장 큰 장점", "실시와 채점의 간편성 및 즉각적 내면 탐색", "• 반구조화된 검사로 단시간에 내담자의 갈등 영역 파악"],
+            ["17", "HTP 검사에서 '나무(Tree)'가 상징하는 무의식적 심리 요소", "무의식적 자아상 및 정신적 성장 과정", "• 집(Home): 가정환경/부모<br>• 사람(Person): 현실적 자아/대인관계"],
+            ["18", "웩슬러 지능검사에서 전체 IQ가 70 이하이고 적응행동 결함이 있을 때 진단", "지적장애 (지적발달장애)", "• 정규분포 상 하위 2.2% 이하 (-2SD 이하)"],
+            ["19", "규준지향검사(상대평가)와 준거지향검사(절대평가)의 올바른 예시", "수능 백분위(규준) vs 청소년상담사 자격시험 60점 합격(준거)", "• 규준지향: 타인과의 상대적 위치 비교<br>• 준거지향: 특정 기준 도달 여부 평가"],
+            ["20", "검사 점수를 해석할 때 상담자가 지켜야 할 윤리적 원칙", "검사 결과를 단독으로 절대화하지 않고 면담 등 다각적 정보와 통합", "• 단일 검사 점수만으로 낙인 금지, 수검자의 언어로 알기 쉽게 설명"],
+            ["21", "로샤 검사에서 형태질(FQ)이 통계적으로 비전형적이거나 왜곡되어 있을 때 시사점", "현실검증력 저하 (정신증적 경향)", "• 현실을 객관적으로 지각하는 능력의 결함"],
+            ["22", "심리평가 보고서(Psychological Report) 작성 시 가장 핵심적인 고려 사항", "의뢰 사유(Referred Question)에 대한 명확한 답변 제시", "• 평가 결과를 전문용어 나열 대신 의뢰 질문에 맞추어 통합 서술"],
+            ["23", "K-WISC-V 처리속도지표(PSI)의 대표 소검사 2가지", "기호쓰기, 동형찾기", "• 단순 시각-운동 협응 속도 및 주의집중력 측정"],
+            ["24", "MMPI-2 프로파일에서 6번(Pa)과 8번(Sc)이 동반 상승한 경우", "피해의식, 망상, 사고장애, 조현병 프로파일", "• 6-8: 의심증, 피해망상, 기괴한 사고, 조현병 스펙트럼"],
+            ["25", "측정도구의 신뢰도가 0.81 일 때, 이 검사가 가질 수 있는 타당도의 이론적 상한선", "0.90", "• 타당도의 상한선 = $\sqrt{\text{신뢰도}} = \sqrt{0.81} = 0.90$"]
+        ],
+        sub4: [
+            ["01", "자폐스펙트럼장애(ASD)에서 타인의 관점과 마음을 이해하지 못하는 인지적 결함", "마음이론(Theory of Mind)의 결함", "• 타인의 믿음, 의도, 감정을 추론하는 능력 결손"],
+            ["02", "ADHD의 3대 핵심 증상", "부주의, 과잉행동, 충동성", "• 만 12세 이전 발병, 2개 이상 환경에서 지속"],
+            ["03", "1가지 이상의 음성 틱 또는 운동 틱 중 어느 한 가지만 1년 이상 지속됨", "지속성(만성) 틱장애", "• 뚜렛장애: 운동틱 + 음성틱 둘 다 1년 이상<br>• 일과성 틱: 1년 미만 지속"],
+            ["04", "사람이나 동물에 대한 잔혹한 신체 공격, 재산 파괴, 사기/절도 등 타인의 권리를 심각하게 침해", "품행장애 (Conduct Disorder)", "• 성인 반사회성 성격장애의 선행 질환 (만 15세 이전 발병 증거)"],
+            ["05", "만 6~18세에 발병하며, 주 3회 이상의 극심한 언어적/신체적 분노 폭발이 지속됨", "파괴적 기분조절부전장애 (DMDD)", "• 만성적 짜증과 과민성, 소아기 양극성 장애 과잉진단 방지"],
+            ["06", "조증 삽화는 없으나, '경조증 삽화(최소 4일)'와 '주요우울 삽화(최소 2주)'가 번갈아 나타남", "제II형 양극성 장애", "• I형: 확실한 조증 삽화 필수 (1주일 이상)<br>• II형: 경조증 + 주요우울"],
+            ["07", "특별한 이유 없이 갑작스러운 극심한 공포와 질식감, 심계항진 후 예기불안이 1개월 이상 지속", "공황장애 (Panic Disorder)", "• 공황발작 후 '또 오면 어쩌지?' 하는 예기불안과 회피행동 동반"],
+            ["08", "특정 대상 없이 일상생활 전반에 걸친 통제할 수 없는 만성적 걱정이 최소 6개월 이상 지속", "범불안장애 (GAD)", "• 6개월 이상 지속되는 만성적 불안, 근육 긴장, 피로감"],
+            ["09", "자신의 손이 오염되었다는 침습적 생각(사고)과 이를 없애려 손을 100번 씻는 행동(행동)", "강박장애 (OCD)", "• 치료: 노출 및 반응방지법 (ERP)"],
+            ["10", "체중 증가에 대한 극심한 공포로 음식을 거부하여 체질량지수(BMI) 18.5 미만의 현저한 저체중", "신경성 식욕부진증 (거식증)", "• 왜곡된 신체상, 현저한 저체중 유지 (치사율 높음)"],
+            ["11", "짧은 시간 동안 통제력을 잃고 폭식한 후, 체중 증가를 막기 위해 스스로 구토하거나 설사제를 복용", "신경성 폭식증 (Bulimia)", "• 폭식 + 부적절한 보상행동(구토), 정상 체중 유지"],
+            ["12", "폭식은 자주 하지만 구토 등의 보상행동을 하지 않아 비만으로 이어지는 섭식장애", "폭식장애 (Binge Eating)", "• 폭식 후 자책감과 고통을 느끼나 구토는 하지 않음"],
+            ["13", "충격적인 외상 사건 후 3일에서 1개월 이내에 나타나는 침습, 해리, 각성 증상", "급성 스트레스 장애 (ASD)", "• 1개월 이내 소실되면 ASD, 1개월 이상 지속되면 PTSD(외상후 스트레스장애)"],
+            ["14", "조현병의 대표적인 '양성 증상'에 해당하는 것", "환각, 망상, 와해된 언어와 행동", "• 양성: 정상인에게 없는 것이 비정상적으로 나타남 (도파민 과잉)"],
+            ["15", "조현병의 대표적인 '음성 증상'에 해당하는 것", "정서적 둔마, 무의욕증, 무언증, 사회적 위축", "• 음성: 정상적인 기능이 결손됨 (뇌 구조 이상, 예후 불량)"],
+            ["16", "타인의 권리를 침해하고 법을 위반하며 죄책감이 전혀 없는 성격장애 (진단 기준: 만 18세 이상)", "반사회성 성격장애", "• 만 15세 이전에 품행장애 병력이 확인되어야 함"],
+            ["17", "타인에게 버림받는 것을 극도로 두려워하고 자해, 감정 기복, 극단적 이상화와 평가절하 반복", "경계선 성격장애", "• 불안정한 자기상, 만성적 공허감, 충동성"],
+            ["18", "자신이 대단히 특별하다고 믿고 과대한 특권의식을 가지며 타인을 착취하고 공감 능력이 없음", "자기애성 성격장애", "• 과도한 찬사 요구, 오만한 태도"],
+            ["19", "타인의 관심과 주목을 받기 위해 과장되고 연극적인 감정 표현과 성적 유혹적인 행동을 보임", "연극성(히스테리성) 성격장애", "• 관심의 중심에 서지 못하면 불편해함"],
+            ["20", "비판이나 거절에 대한 극심한 두려움 때문에 대인관계를 맺고 싶어도 회피하고 은둔함", "회피성 성격장애", "• 대인관계를 원하지만 거절이 두려움 (분열성 성격장애는 애초에 관계를 원치 않음)"],
+            ["21", "질서, 완벽주의, 통제에 지나치게 집착하여 오히려 효율성을 잃고 융통성이 없는 성격장애", "강박성 성격장애", "• 자아동조적(자신의 방식을 고수함), 강박장애(자아이질적)와 감별"],
+            ["22", "심각한 심리적 갈등이나 스트레스가 마비, 실명 등 신경학적 신체 증상으로 전환되어 나타남", "전환장애 (기능성 신경학적 증상장애)", "• 의학적으로 설명되지 않는 감각/운동 기능 상실"],
+            ["23", "자신의 건강에 심각한 질병이 걸렸다는 두려움과 집착에 빠져 의사의 정상 소견을 불신함", "질병불안장애 (과거 건강염려증)", "• 신체 증상은 없거나 경미함에도 암/불치병에 걸렸다고 확신"],
+            ["24", "청소년 인터넷 게임 및 스마트폰 중독의 핵심 진단 특징", "내성(시간 증가), 금단 증상, 일상생활 붕괴", "• 통제력 상실과 부정적 결과에도 불구하고 지속적 몰입"],
+            ["25", "청소년 비자살성 자해(NSSI)의 가장 주된 심리적 기능", "극심한 부정적 정서와 고통의 일시적 경감", "• 죽으려는 의도가 아니라 견디기 힘든 정서적 고통을 신체 고통으로 해소하려는 시도"]
+        ],
+        sub6: [
+            ["01", "가족체계에서 외부 변화에 저항하고 기존의 평형상태를 유지하려는 경향", "항상성 (Homeostasis)", "• 부적 피드백 루프를 통해 체계의 균형 유지"],
+            ["02", "보웬 이론: 가족 구성원이 감정적 반응에 휩쓸리지 않고 이성적으로 대처하는 능력", "자기분화 (Differentiation)", "• 사고와 감정의 분리, 자신과 타인의 분리 수준"],
+            ["03", "보웬 이론: 두 사람 간의 갈등과 불안을 완화하기 위해 취약한 제3자를 끌어들임", "삼각관계 (Triangulation)", "• 부부 갈등 시 자녀를 끌어들여 긴장 완화 ➔ 치료 목표: 탈삼각화"],
+            ["04", "보웬 이론: 부모의 낮은 분화 수준과 불안이 여러 세대에 걸쳐 전수되어 누적됨", "다세대 전수과정", "• 3세대 이상 가계도를 통해 반복되는 역동 파악"],
+            ["05", "보웬 기법: 상대방을 비난하지 않고 자신의 생각과 감정을 주체적으로 표현", "나-입장 취하기 (I-Position)", "• '너-메시지' 비난을 멈추고 '나는 이렇게 생각합니다' 진술"],
+            ["06", "미누친 구조적 치료: 부부, 부모, 부모-자녀, 형제자매 등 기능을 수행하는 단위", "하위체계 (Subsystems)", "• 적절한 위계질서와 상호작용 규칙 필요"],
+            ["07", "미누친: 가족 구성원 간에 자율성이 없고 지나치게 간섭하며 경계가 모호함", "밀착된 가족 (Enmeshed Family)", "• 소속감은 강하나 독립성과 프라이버시 상실"],
+            ["08", "미누친: 가족 간에 소통이 전혀 없고 지나치게 거리감이 크며 무관심함", "유리된 가족 (Disengaged Family)", "• 독립성은 있으나 위기 시 지지와 유대감 결여"],
+            ["09", "미누친 기법: 평소 가족 갈등 상호작용을 상담실 현장에서 직접 재연하도록 지시", "실연 (Enactment)", "• 현장에서 가족 구조를 직접 관찰하고 개입"],
+            ["10", "사티어 의사소통 유형: 자신의 감정과 욕구는 무시하고 타인의 비위만 맞춤", "회유형 (Placating)", "• '다 내 탓이야', 비굴함, 자존감 저하"],
+            ["11", "사티어 의사소통 유형: 타인의 감정은 무시하고 공격하며 호통치고 지배하려 함", "비난형 (Blaming)", "• 독재자, 비판, 내면의 외로움 방어"],
+            ["12", "사티어 의사소통 유형: 자신과 타인의 감정을 모두 배제하고 오직 차가운 논리만 주장", "초이성형 (Super-reasonable)", "• 기계적 소통, 감정 억압, 지나친 이성"],
+            ["13", "사티어 의사소통 유형: 자신, 타인, 상황을 모두 무시하고 딴청을 피우며 회피함", "산만형 (Irrelevant)", "• 농담, 산만함, 핵심 갈등 회피"],
+            ["14", "사티어 의사소통 유형: 자신, 타인, 상황을 모두 존중하며 진솔하게 소통함", "일치형 (Congruent)", "• 가장 건강하고 자아존중감이 높은 의사소통"],
+            ["15", "사티어 기법: 가족원들의 신체 자세와 공간적 배치를 조각품처럼 연출하여 역동을 시각화", "가족 조각 (Family Sculpting)", "• 비언어적 자세를 통해 무의식적 거리감과 권력 구조 체험"],
+            ["16", "전략적 가족치료: 문제 행동에 긍정적이거나 새로운 치료적 의미를 부여하여 인식을 바꿈", "재명명 (Reframing)", "• 고집불통 ➔ 심지가 굳은 아이, 반항 ➔ 독립의 신호"],
+            ["17", "전략적 가족치료: 통제할 수 없다는 증상 행동을 일부러 더 많이 수행하도록 역설적 지시", "증상 처방 (Symptom Prescription)", "• 역설적 개입: 지시를 따르면 통제하게 되고, 거부하면 증상이 사라짐"],
+            ["18", "밀란 학파 기법: 가족 구성원들에게 다른 두 사람의 관계와 차이에 대해 질문함", "순환 질문 (Circular Questioning)", "• 순환적 인과관계를 깨닫게 하여 새로운 시각 유도"],
+            ["19", "해결중심 가족치료: 내담자가 자신의 문제를 해결할 준비가 되어 있고 협력적인 관계", "고객형 관계 (Customer-type)", "• 방문형(억지로 옴), 불평형(남 탓만 함), 고객형(행동 과제 부여)"],
+            ["20", "이야기치료 기법: '사람이 문제가 아니라 문제가 문제이다'라며 문제와 사람을 분리함", "문제의 외재화 (Externalization)", "• 문제를 외부의 독립된 실체(예: '우울이라는 녀석')로 명명"],
+            ["21", "이야기치료: 지배적인 문제 이야기에서 벗어난 예외적 성공 경험이나 긍정적 사건", "독특한 결과 (Unique Outcomes)", "• 새로운 대안적 선호 이야기(Re-authoring)를 구성하는 단서"],
+            ["22", "카터와 맥골드릭 가족생활주기 중 '청소년기 자녀를 둔 가족'의 핵심 발달 과업", "청소년 자녀의 자립을 인정하고 부모-자녀 경계선의 유연화", "• 자녀의 독립성 인정과 부부 관계 재조정"],
+            ["23", "미누친 구조적 치료: 한 부모와 자녀가 동맹을 맺고 다른 부모를 지속적으로 공격/소외시킴", "안정된 연합 (Cross-generational Coalition)", "• 부모 하위체계의 붕괴 및 세대 간 경계선 침범"],
+            ["24", "해결중심 질문: '오늘 상담을 통해 1주일 전보다 무엇이 조금이라도 나아졌나요?'", "변화에 대한 질문 (Pre-session change)", "• 상담 이전부터 발생한 긍정적 변화를 발견하여 자원 활성화"],
+            ["25", "사티어의 '빙산 탐색' 모델에서 가장 깊은 내면에 존재하는 영역", "영적 자기 (Self / 열망)", "• 행동 ➔ 대처 ➔ 감정 ➔ 지각 ➔ 기대 ➔ 열망 ➔ 참된 자기"]
+        ],
+        sub7: [
+            ["01", "집단상담의 장점이 아닌 것", "개인 내담자의 심층적 무의식 분석에 가장 효과적이다 (X)", "• 개인 무의식 심층 분석은 개인상담이 훨씬 유리함"],
+            ["02", "청소년 집단상담을 구성할 때 가장 적절한 집단 크기", "6 ~ 10명 내외", "• 역동성과 개별 참여를 보장하는 최적 규모"],
+            ["03", "새로운 구성원이 중간에 언제든지 자유롭게 참여하고 나갈 수 있는 집단", "개방 집단 (Open Group)", "• 개방집단: 현실 사회 반영, 응집력 형성 어려움<br>• 폐쇄집단: 높은 응집력과 신뢰"],
+            ["04", "코리(Corey)의 집단 발달 단계 중 '불안, 방어, 권력 갈등, 상담자에 대한 도전'이 나타나는 단계", "과도기 단계 (Transition Stage)", "• 초기(오리엔테이션) ➔ 과도기(갈등/저항) ➔ 작업(응집력/통찰) ➔ 종결"],
+            ["05", "코리의 '작업 단계(Working Stage)'의 가장 대표적인 특징", "높은 집단 응집력, 깊은 자기개방과 피드백, 미해결 과제 해결", "• 생산적인 변화와 실천이 최고조에 달하는 단계"],
+            ["06", "얄롬(Yalom)의 치료요인: 다른 집단원들도 나와 비슷한 고통과 고민을 안고 있음을 알고 안도함", "보편성 (Universality)", "• '나 혼자만이 아니구나'라는 깊은 위로"],
+            ["07", "얄롬의 치료요인: 자신이 다른 집단원에게 도움을 주고 지지해 주면서 자기가치감을 느낌", "이타주의 (Altruism)", "• 타인에게 유용한 존재임을 깨달음"],
+            ["08", "얄롬의 치료요인: 억압되었던 강렬한 정서적 감정을 안전한 집단에서 쏟아내어 정화함", "카타르시스 (Catharsis)", "• 정서적 해소와 해방감"],
+            ["09", "집단상담에서 '지금-여기(Here and Now)'에 초점을 맞춘다는 것의 의미", "현재 회기 내에서 일어나는 집단원 간의 상호작용과 감정에 집중함", "• 바깥세상이나 과거 이야기(Then-and-There)를 늘어놓는 것을 지양"],
+            ["10", "집단상담자 기술: 서로 다른 두 집단원의 경험과 감정의 공통점을 엮어주어 유대감을 높임", "연결하기 (Linking)", "• 집단원 간의 상호작용과 보편성 촉진"],
+            ["11", "집단상담자 기술: 다른 집단원에 대한 인신공격, 지나친 사생활 캐묻기 등 파괴적 행동을 즉시 중단시킴", "차단하기 (Blocking)", "• 집단원의 심리적 안전 보호"],
+            ["12", "집단원 문제행동: 집단 시간 내내 혼자서 끊임없이 말을 독점하여 다른 사람의 참여를 가로막음", "독점 (Monopolizing)", "• 인정 욕구 및 불안에서 기인"],
+            ["13", "발언을 독점하는 집단원에 대한 상담자의 가장 바람직한 개입", "그의 열정을 수용해 준 뒤 다른 집단원들의 의견으로 자연스럽게 초점을 넘김", "• 비난하지 않고 참여 동기를 인정한 후 발언 기회 분배"],
+            ["14", "집단 내에서 몇몇 구성원이 사적 모임을 만들어 편을 가르고 다른 사람을 소외시킴", "하위집단 형성 (Subgrouping)", "• 전체 집단의 응집력을 저해하므로 집단 전체의 공론장으로 올려 다룸"],
+            ["15", "집단원이 장시간 침묵을 지킬 때 상담자의 올바른 개입 태도", "침묵 속에 담긴 두려움이나 관망의 비언어적 의미를 공감하고 탐색함", "• 억지로 말하게 다그치지 않고 침묵의 의미 탐색"],
+            ["16", "모레노의 심리극(Psychodrama) 5대 구성 요소", "무대, 주인공, 연출가(상담자), 보조자아, 관객", "• 빈의자 기법은 게슈탈트 치료 기법임"],
+            ["17", "심리극 기법: 주인공과 상대방 역할을 서로 맞바꾸어 연기하게 함으로써 상대방 관점을 체험", "역할 교환 (Role Reversal)", "• 타인에 대한 깊은 공감과 통찰 촉진"],
+            ["18", "심리극 기법: 주인공이 무대 밖에서 관객이 되어 보조자아가 연기하는 자신의 모습을 객관적으로 바라봄", "거울 기법 (Mirror Technique)", "• 자신의 행동을 객관적으로 조망"],
+            ["19", "집단상담 종결 단계의 핵심 과업", "집단 경험의 종합 평가, 이별 감정 다루기, 일상생활로의 일반화", "• 미해결 과제 처리 및 재발 방지 계획"],
+            ["20", "집단 종결 후 1~3개월 뒤에 다시 모여 상담 효과의 지속성을 점검하는 모임", "추수 회기 (Follow-up Session)", "• 변화의 장기적 유지 및 문제점 점검"],
+            ["21", "집단 응집력(Group Cohesiveness)이 집단에 미치는 긍정적 영향", "집단원의 출석률 상승, 자기개방 증가, 피드백 수용도 향상", "• 개인상담의 치료적 동맹과 같은 핵심 요인"],
+            ["22", "집단상담자의 공동지도(Co-leadership)의 장점", "지도자 간 상호 피드백 및 다양한 관점 관찰 가능", "• 지도자 간의 권력 갈등은 주의 필요"],
+            ["23", "집단상담에서 구조화(Structuring)가 가장 집중적으로 이루어지는 단계", "초기 단계 (Initial Stage)", "• 집단 규칙, 비밀보장, 목표 설정"],
+            ["24", "집단 상담자가 자신의 인간적인 약점이나 경험을 치료적 목적을 위해 솔직하게 드러냄", "자기개방 (Self-disclosure)", "• 과도한 개방은 지양하고 모델링 목적으로 적절히 활용"],
+            ["25", "청소년 집단상담에서 비밀보장의 한계를 집단원들에게 안내하는 가장 적절한 시기", "집단 초기 오리엔테이션 및 규칙 설정 시", "• 사전 선별 면담 및 첫 회기에 명확히 안내"]
+        ]
+    }
+};
+
+// 전역 상태
+let currentExamNum = 1;
+let allQuestions = [];
+let currentQIdx = 0;
+let userAnswers = {}; // { qIdx: { isCorrect: bool, selectedText: string, isBookmarked: bool } }
+let timerInterval = null;
+let secondsElapsed = 0;
+let omrFilter = 'all';
+
+// ======================= [Web Audio API 사운드 엔진] =======================
+let audioCtx = null;
+let soundEnabled = true;
+
+function initAudio() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+}
+
+function playCorrectSound() {
+    if (!soundEnabled) return;
+    initAudio();
+    const notes = [523.25, 659.25, 1046.50];
+    notes.forEach((freq, idx) => {
+        setTimeout(() => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.45);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.45);
+        }, idx * 130);
+    });
+}
+
+function playWrongSound() {
+    if (!soundEnabled) return;
+    initAudio();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(160, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.4);
+    gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.45);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.45);
+}
+
+let tickTockToggle = false;
+function playTickSound() {
+    if (!soundEnabled) return;
+    initAudio();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'triangle';
+    const freq = tickTockToggle ? 1200 : 800;
+    tickTockToggle = !tickTockToggle;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.04);
+}
+
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    const btn = document.getElementById('btnSoundToggle');
+    if (soundEnabled) {
+        btn.innerHTML = '🔊 소리 ON';
+        btn.style.background = '#065f46';
+        btn.style.borderColor = '#34d399';
+        initAudio();
+    } else {
+        btn.innerHTML = '🔇 소리 OFF';
+        btn.style.background = '#334155';
+        btn.style.borderColor = '#64748b';
+    }
+}
+
+// ======================= [모의고사 회차 전환 엔진] =======================
+function switchExam(examNum) {
+    currentExamNum = examNum;
+    document.getElementById('btnExam1').className = (examNum === 1) ? 'btn-exam active' : 'btn-exam';
+    document.getElementById('btnExam2').className = (examNum === 2) ? 'btn-exam active' : 'btn-exam';
+
+    renderSummaryTable();
+    buildCbtQuestions();
+    userAnswers = {};
+    currentQIdx = 0;
+    renderCbtQuestion();
+    renderOmrGrid();
+}
+
+function renderSummaryTable() {
+    const curData = (currentExamNum === 1) ? examData.exam1 : examData.exam2;
+    for (let key in curData) {
+        const tbody = document.getElementById(`tbody-${key}`);
+        if (tbody) {
+            tbody.innerHTML = '';
+            curData[key].forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="col-num">${item[0]}</td>
+                    <td class="col-q">${item[1]}</td>
+                    <td class="col-a"><span class="ans-badge" onclick="this.classList.toggle('revealed')">${item[2]}</span></td>
+                    <td class="col-variant"><div class="variant-box"><div class="variant-title">🔄 변형 세트</div>${item[3]}</div></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    }
+}
+
+function buildCbtQuestions() {
+    const subNames = {
+        sub1: "제1과목 청소년 상담 이론과 실제",
+        sub2: "제2과목 상담연구방법론의 기초",
+        sub3: "제3과목 심리측정 및 평가의 활용",
+        sub4: "제4과목 청소년 이상심리",
+        sub6: "제5과목 가족상담 (선택)",
+        sub7: "제6과목 집단상담 (선택)"
+    };
+
+    allQuestions = [];
+    let qGlobalNum = 1;
+    const curData = (currentExamNum === 1) ? examData.exam1 : examData.exam2;
+
+    for (let sub in curData) {
+        curData[sub].forEach((item, idx) => {
+            let correctText = item[2];
+            let optionsPool = [
+                correctText,
+                "체계적 둔감화 및 인지 재구조화",
+                "합리화 및 반동형성 기법",
+                "상호작용 촉진 및 직면 모델",
+                "수용전념 치료 행동 원칙"
+            ];
+
+            if (currentExamNum === 1) {
+                if (sub === 'sub1' && item[0] === '01') optionsPool = ["투사 (Projection)", "전치 (Displacement)", "반동형성 (Reaction Formation)", "합리화 (Rationalization)", "승화 (Sublimation)"];
+                else if (sub === 'sub1' && item[0] === '03') optionsPool = ["지배형 (Ruling)", "획득형 (기생형)", "회피형 (Avoiding)", "사회적 유용형", "상승형"];
+                else if (sub === 'sub1' && item[0] === '05') optionsPool = ["반전 (Retroflection)", "내사 (Introjection)", "투사 (Projection)", "융합 (Confluence)", "편향 (Deflection)"];
+                else if (sub === 'sub1' && item[0] === '08') optionsPool = ["SAMIC 원칙", "SMART 원칙", "ABCDE 모형", "OARS 기술", "BASIC-ID 모델"];
+                else if (sub === 'sub1' && item[0] === '19') optionsPool = ["기적질문", "예외질문", "척도질문", "대처질문", "관계성질문"];
+                else if (sub === 'sub1' && item[0] === '20') optionsPool = ["예외질문", "기적질문", "척도질문", "대처질문", "관계성질문"];
+                else if (sub === 'sub2' && item[0] === '01') optionsPool = ["비율척도 (Ratio)", "등간척도 (Interval)", "서열척도 (Ordinal)", "명목척도 (Nominal)", "리커트 척도"];
+                else if (sub === 'sub2' && item[0] === '03') optionsPool = ["제1종 오류 (α)", "제2종 오류 (β)", "통계적 검정력 (1-β)", "유의수준", "표준오차"];
+                else if (sub === 'sub3' && item[0] === '07') optionsPool = ["70점", "60점", "50점", "40점", "30점"];
+                else if (sub === 'sub4' && item[0] === '04') optionsPool = ["뚜렛장애 (Tourette's)", "만성 운동틱장애", "만성 음성틱장애", "일과성 틱장애", "상동증적 운동장애"];
+                else if (sub === 'sub6' && item[0] === '13') optionsPool = ["회유형 (Placating)", "비난형 (Blaming)", "초이성형 (Super-reasonable)", "산만형 (Irrelevant)", "일치형 (Congruent)"];
+                else if (sub === 'sub7' && item[0] === '05') optionsPool = ["초기 ➔ 과도기 ➔ 작업 ➔ 종결", "초기 ➔ 작업 ➔ 과도기 ➔ 종결", "오리엔테이션 ➔ 갈등 ➔ 종결", "탐색 ➔ 저항 ➔ 일반화", "형성 ➔ 격동 ➔ 규범 ➔ 성취"];
+            } else {
+                if (sub === 'sub1' && item[0] === '01') optionsPool = ["전치 (Displacement)", "투사 (Projection)", "반동형성", "합리화", "승화"];
+                else if (sub === 'sub1' && item[0] === '05') optionsPool = ["내사 (Introjection)", "반전 (Retroflection)", "투사", "융합", "편향"];
+                else if (sub === 'sub1' && item[0] === '12') optionsPool = ["척도질문 (Scaling)", "기적질문", "예외질문", "대처질문", "관계성질문"];
+                else if (sub === 'sub1' && item[0] === '13') optionsPool = ["대처질문 (Coping)", "척도질문", "기적질문", "예외질문", "관계성질문"];
+                else if (sub === 'sub2' && item[0] === '01') optionsPool = ["서열척도 (Ordinal)", "명목척도", "등간척도", "비율척도", "절대척도"];
+                else if (sub === 'sub2' && item[0] === '06') optionsPool = ["F 통계량 증가 (유의성 증가)", "F 통계량 감소", "F값 0으로 수렴", "t값 급감", "유의확률 p 증가"];
+                else if (sub === 'sub3' && item[0] === '06') optionsPool = ["40점", "50점", "60점", "70점", "30점"];
+                else if (sub === 'sub3' && item[0] === '25') optionsPool = ["0.90", "0.81", "0.70", "0.64", "1.00"];
+                else if (sub === 'sub4' && item[0] === '06') optionsPool = ["제II형 양극성 장애", "제I형 양극성 장애", "순환감정장애", "파괴적 기분조절부전장애", "주요우울장애"];
+                else if (sub === 'sub6' && item[0] === '10') optionsPool = ["회유형 (Placating)", "비난형 (Blaming)", "초이성형", "산만형", "일치형"];
+                else if (sub === 'sub7' && item[0] === '04') optionsPool = ["과도기 단계 (Transition Stage)", "초기 단계", "작업 단계", "종결 단계", "준비 단계"];
+            }
+
+            let shuffled = [...optionsPool].sort(() => Math.random() - 0.5);
+            if (!shuffled.includes(correctText)) {
+                shuffled[0] = correctText;
+                shuffled.sort(() => Math.random() - 0.5);
+            }
+
+            allQuestions.push({
+                num: qGlobalNum++,
+                subKey: sub,
+                subName: subNames[sub],
+                qText: item[1] + "에 해당하는 것은?",
+                correct: correctText,
+                options: shuffled,
+                feedback: item[3]
+            });
+        });
+    }
+}
+
+// ======================= [CBT 렌더링 및 인터랙션] =======================
+function renderCbtQuestion() {
+    const q = allQuestions[currentQIdx];
+    if (!q) return;
+
+    document.getElementById('cbtProgress').textContent = `[제${currentExamNum}회 - ${q.subName}] 문제 ${q.num} / ${allQuestions.length}`;
+    document.getElementById('cbtQuestionText').textContent = `${q.num}. ${q.qText}`;
+
+    const bmBtn = document.getElementById('btnBookmark');
+    const isBm = userAnswers[currentQIdx] && userAnswers[currentQIdx].isBookmarked;
+    bmBtn.className = isBm ? 'btn-bookmark active' : 'btn-bookmark';
+
+    const container = document.getElementById('cbtOptionsContainer');
+    container.innerHTML = '';
+
+    const numbers = ['①', '②', '③', '④', '⑤'];
+    const alreadyAnswered = userAnswers[currentQIdx];
+
+    q.options.forEach((opt, idx) => {
+        const btn = document.createElement('div');
+        btn.className = 'cbt-option';
+        btn.innerHTML = `<span style="color:var(--text-yellow); font-size:1.45rem; font-weight:900;">${numbers[idx]}</span> ${opt}`;
+
+        if (alreadyAnswered && alreadyAnswered.selectedText) {
+            if (opt === q.correct) btn.classList.add('show-correct');
+            if (opt === alreadyAnswered.selectedText) {
+                btn.classList.add(alreadyAnswered.isCorrect ? 'selected-correct' : 'selected-wrong');
+            }
+        } else {
+            btn.onclick = () => selectCbtAnswer(btn, opt, q.correct, q.feedback);
+        }
+        container.appendChild(btn);
+    });
+
+    const fbBox = document.getElementById('cbtFeedbackBox');
+    const fbTitle = document.getElementById('cbtFeedbackTitle');
+    const fbContent = document.getElementById('cbtFeedbackContent');
+
+    if (alreadyAnswered && alreadyAnswered.selectedText) {
+        fbTitle.innerHTML = alreadyAnswered.isCorrect ? '🎉 1초 정답입니다! [출제 변형 포인트]' : '❌ 오답입니다! [정답 및 변형 감별]';
+        fbTitle.style.color = alreadyAnswered.isCorrect ? '#34d399' : '#f87171';
+        fbContent.innerHTML = `<strong style="font-size:1.35rem; color:#fde047;">정답: ${q.correct}</strong><br><br>${q.feedback}`;
+        fbBox.className = 'cbt-feedback show';
+    } else {
+        fbBox.className = 'cbt-feedback';
+    }
+
+    updateOmrStats();
+}
+
+function selectCbtAnswer(selectedBtn, selectedText, correctText, feedback) {
+    const isCorrect = (selectedText === correctText);
+    const prevBm = userAnswers[currentQIdx] ? userAnswers[currentQIdx].isBookmarked : false;
+    userAnswers[currentQIdx] = {
+        isCorrect: isCorrect,
+        selectedText: selectedText,
+        isBookmarked: prevBm
+    };
+
+    if (isCorrect) playCorrectSound();
+    else playWrongSound();
+
+    renderCbtQuestion();
+}
+
+function toggleCurrentBookmark() {
+    if (!userAnswers[currentQIdx]) {
+        userAnswers[currentQIdx] = { isCorrect: null, selectedText: null, isBookmarked: false };
+    }
+    userAnswers[currentQIdx].isBookmarked = !userAnswers[currentQIdx].isBookmarked;
+    renderCbtQuestion();
+}
+
+function nextCbtQuestion() {
+    if (currentQIdx < allQuestions.length - 1) {
+        currentQIdx++;
+        renderCbtQuestion();
+    } else {
+        showScoreReport();
+    }
+}
+
+function prevCbtQuestion() {
+    if (currentQIdx > 0) {
+        currentQIdx--;
+        renderCbtQuestion();
+    }
+}
+
+// 키보드 단축키
+window.addEventListener('keydown', (e) => {
+    if (document.getElementById('cbt-view').style.display === 'none') return;
+    if (document.getElementById('scoreModal').style.display === 'flex') return;
+    
+    if (['1', '2', '3', '4', '5'].includes(e.key)) {
+        const idx = parseInt(e.key) - 1;
+        const q = allQuestions[currentQIdx];
+        if (q && q.options[idx] && (!userAnswers[currentQIdx] || !userAnswers[currentQIdx].selectedText)) {
+            selectCbtAnswer(null, q.options[idx], q.correct, q.feedback);
+        }
+    } else if (e.key === ' ' || e.key === 'ArrowRight' || e.key === 'Enter' || e.key.toLowerCase() === 'd') {
+        e.preventDefault();
+        nextCbtQuestion();
+    } else if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'a') {
+        e.preventDefault();
+        prevCbtQuestion();
+    }
+});
+
+// ======================= [OMR 패널 & 필터 엔진] =======================
+function setOmrFilter(filter) {
+    omrFilter = filter;
+    document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
+    if (filter === 'all') document.querySelector('.omr-filters .btn-filter:nth-child(1)').classList.add('active');
+    if (filter === 'wrong') document.querySelector('.omr-filters .btn-filter:nth-child(2)').classList.add('active');
+    if (filter === 'bookmark') document.querySelector('.omr-filters .btn-filter:nth-child(3)').classList.add('active');
+    renderOmrGrid();
+}
+
+function renderOmrGrid() {
+    const grid = document.getElementById('omrGridContainer');
+    grid.innerHTML = '';
+
+    allQuestions.forEach((q, idx) => {
+        const u = userAnswers[idx];
+        if (omrFilter === 'wrong' && (!u || u.isCorrect !== false)) return;
+        if (omrFilter === 'bookmark' && (!u || !u.isBookmarked)) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'omr-btn';
+        btn.id = `omr-btn-${idx}`;
+        btn.innerHTML = `${q.num} ${u && u.isBookmarked ? '<span class="dot-bookmark">⭐</span>' : ''}`;
+        btn.onclick = () => {
+            currentQIdx = idx;
+            renderCbtQuestion();
+        };
+        grid.appendChild(btn);
+    });
+    updateOmrStats();
+}
+
+function updateOmrStats() {
+    let correctCount = 0;
+    let wrongCount = 0;
+    let answeredTotal = 0;
+
+    allQuestions.forEach((_, idx) => {
+        const btn = document.getElementById(`omr-btn-${idx}`);
+        const u = userAnswers[idx];
+
+        if (btn) {
+            btn.classList.remove('current', 'correct', 'wrong');
+            if (idx === currentQIdx) btn.classList.add('current');
+            if (u && u.selectedText) {
+                if (u.isCorrect) btn.classList.add('correct');
+                else btn.classList.add('wrong');
+            }
+        }
+
+        if (u && u.selectedText) {
+            answeredTotal++;
+            if (u.isCorrect) correctCount++;
+            else wrongCount++;
+        }
+    });
+
+    const unsolvedCount = allQuestions.length - answeredTotal;
+    document.getElementById('omrTotalAnswered').textContent = `${answeredTotal} / ${allQuestions.length}`;
+    document.getElementById('omrCorrectStat').textContent = `⭕ ${correctCount}`;
+    document.getElementById('omrWrongStat').textContent = `❌ ${wrongCount}`;
+    document.getElementById('omrUnsolvedStat').textContent = `⚪ ${unsolvedCount}`;
+
+    const scorePct = answeredTotal === 0 ? 0 : Math.round((correctCount / answeredTotal) * 100);
+    document.getElementById('cbtScore').textContent = `정답: ${correctCount} / ${answeredTotal} (${scorePct}%)`;
+}
+
+// ======================= [실시간 합격 성적표 판정 모달 엔진] =======================
+function showScoreReport() {
+    const modal = document.getElementById('scoreModal');
+    document.getElementById('modalExamTitle').textContent = (currentExamNum === 1) ? '🎯 제1회 실전 적중 모의고사 (150제)' : '🔥 제2회 고난도 변형 모의고사 (150제)';
+
+    const subOrder = ['sub1', 'sub2', 'sub3', 'sub4', 'sub6', 'sub7'];
+    const subNames = {
+        sub1: { name: '1. 청소년 상담의 이론과 실제', period: '1교시' },
+        sub2: { name: '2. 상담연구방법론의 기초', period: '1교시' },
+        sub3: { name: '3. 심리측정 및 평가의 활용', period: '1교시' },
+        sub4: { name: '4. 청소년 이상심리', period: '1교시' },
+        sub6: { name: '5. 가족상담 (선택)', period: '2교시' },
+        sub7: { name: '6. 집단상담 (선택)', period: '2교시' }
+    };
+
+    let totalCorrect = 0;
+    let totalAnswered = 0;
+    let hasFail = false; // 과락 여부
+
+    const tbody = document.getElementById('reportTableBody');
+    tbody.innerHTML = '';
+
+    subOrder.forEach(subKey => {
+        let subCorrect = 0;
+        let subAnswered = 0;
+
+        allQuestions.forEach((q, idx) => {
+            if (q.subKey === subKey) {
+                const u = userAnswers[idx];
+                if (u && u.selectedText) {
+                    subAnswered++;
+                    if (u.isCorrect) subCorrect++;
+                }
+            }
+        });
+
+        totalCorrect += subCorrect;
+        totalAnswered += subAnswered;
+
+        // 과목당 25문제 (1문제당 4점 = 100점 만점)
+        const subScore = subCorrect * 4;
+        const isSubFail = subScore < 40;
+        if (isSubFail) hasFail = true;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${subNames[subKey].period}</td>
+            <td style="text-align:left; font-weight:700;">${subNames[subKey].name}</td>
+            <td><strong>${subCorrect}</strong> / 25</td>
+            <td style="font-weight:900; color:${subScore >= 60 ? '#34d399' : (subScore >= 40 ? '#fde047' : '#f87171')};">${subScore}점</td>
+            <td class="${isSubFail ? 'status-fail' : 'status-pass'}">${isSubFail ? '⚠️ 과락 (40점 미만)' : '✅ 통과'}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+
+    const avgScore = Math.round((totalCorrect / 150) * 100);
+    const isFinalPass = (!hasFail && avgScore >= 60 && totalAnswered >= 150);
+
+    document.getElementById('reportAnsweredNum').textContent = `${totalAnswered} / 150`;
+    document.getElementById('reportAvgScore').textContent = `${avgScore}점`;
+
+    const passEl = document.getElementById('reportPassStatus');
+    if (totalAnswered < 150) {
+        passEl.textContent = '진행 중';
+        passEl.style.color = '#94a3b8';
+    } else if (isFinalPass) {
+        passEl.textContent = '🎉 최종 합격!';
+        passEl.style.color = '#34d399';
+    } else {
+        passEl.textContent = hasFail ? '❌ 과락 불합격' : '❌ 평균 미달';
+        passEl.style.color = '#f87171';
+    }
+
+    modal.style.display = 'flex';
+}
+
+function closeScoreReport() {
+    document.getElementById('scoreModal').style.display = 'none';
+}
+
+// ======================= [화면 및 탭 전환] =======================
+function setAppMode(mode) {
+    const btnTable = document.getElementById('btnModeTable');
+    const btnCBT = document.getElementById('btnModeCBT');
+    const tableView = document.getElementById('table-view');
+    const cbtView = document.getElementById('cbt-view');
+
+    if (mode === 'table') {
+        btnTable.className = 'btn-mode active';
+        btnCBT.className = 'btn-mode';
+        tableView.style.display = 'block';
+        cbtView.style.display = 'none';
+    } else {
+        btnTable.className = 'btn-mode';
+        btnCBT.className = 'btn-mode active cbt-active';
+        tableView.style.display = 'none';
+        cbtView.style.display = 'block';
+        renderCbtQuestion();
+        startTimer();
+    }
+}
+
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const sections = document.querySelectorAll('.sub-section');
+    if (tabId === 'all') {
+        sections.forEach(sec => sec.style.display = 'block');
+    } else {
+        sections.forEach(sec => {
+            sec.style.display = (sec.id === tabId) ? 'block' : 'none';
+        });
+    }
+}
+
+let answersHidden = false;
+function toggleAnswerVisibility() {
+    answersHidden = !answersHidden;
+    const body = document.body;
+    const btn = document.getElementById('toggleAnsBtn');
+    
+    if (answersHidden) {
+        body.classList.add('ans-hidden');
+        btn.textContent = '👀 정답 전체 보기';
+        btn.style.background = '#7f1d1d';
+        btn.style.borderColor = '#ef4444';
+        btn.style.color = '#fecaca';
+    } else {
+        body.classList.remove('ans-hidden');
+        document.querySelectorAll('.ans-badge').forEach(el => el.classList.remove('revealed'));
+        btn.textContent = '🙈 자가 테스트 (정답 가리기)';
+        btn.style.background = 'var(--ans-bg)';
+        btn.style.borderColor = 'var(--ans-border)';
+        btn.style.color = '#a7f3d0';
+    }
+}
+
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    const term = e.target.value.toLowerCase().trim();
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(term) ? '' : 'none';
+    });
+});
+
+function startTimer() {
+    if (timerInterval) clearInterval(timerInterval);
+    secondsElapsed = 0;
+    timerInterval = setInterval(() => {
+        secondsElapsed++;
+        playTickSound();
+        const hrs = String(Math.floor(secondsElapsed / 3600)).padStart(2, '0');
+        const mins = String(Math.floor((secondsElapsed % 3600) / 60)).padStart(2, '0');
+        const secs = String(secondsElapsed % 60).padStart(2, '0');
+        document.getElementById('cbtTimer').textContent = `⏱️ ${hrs}:${mins}:${secs}`;
+    }, 1000);
+}
+
+// 초기화
+renderSummaryTable();
+buildCbtQuestions();
+renderOmrGrid();
+</script>
+</body>
+</html>
