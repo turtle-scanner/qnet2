@@ -1822,24 +1822,45 @@ function buildCbtQuestions() {
         "영적 자기 (Self / 열망)": ["영적 자기 (Self / 열망, 참된 자기 본질)", "행동 (Behavior, 빙산 수면 위)", "대처 방식 (Coping Stances)", "감정과 지각 (Feelings & Perceptions)", "기대 (Expectations)"],
 
         // 6과목 (126~150번)
+        "개인 심층분석에 유리(X)": ["개인 심층분석에 가장 효과적이다 (X ➔ 개인상담 유리)", "경제적이고 시간 효율성이 높다", "타인과의 상호작용을 통해 사회적 기술을 실습할 수 있다", "다양한 피드백과 지지를 받을 수 있다", "자신의 문제에 대한 보편성을 경험할 수 있다"],
         "개인 내담자의 심층적 무의식 분석에 가장 효과적이다 (X)": ["개인 내담자의 심층적 무의식 분석에 가장 효과적이다 (X ➔ 개인상담 유리)", "경제적이고 시간 효율성이 높다", "타인과의 상호작용을 통해 사회적 기술을 실습할 수 있다", "다양한 피드백과 지지를 받을 수 있다", "자신의 문제에 대한 보편성을 경험할 수 있다"],
+        "6~10명 내외 (소집단)": ["6~10명 내외 (청소년 집단의 최적 크기)", "2~3명 (너무 적어 역동 부족)", "25~30명 (너무 많아 참여 불가)", "50명 이상 대규모 집단", "1명 (개인상담)"],
         "6 ~ 10명 내외": ["6 ~ 10명 내외 (청소년 집단의 최적 크기)", "2 ~ 3명 (너무 적어 역동 부족)", "25 ~ 30명 (너무 많아 참여 불가)", "50명 이상 대규모 집단", "1명 (개인상담)"],
+        "부적합자 배제 & 목표공유": ["부적합자 배제 및 집단 목표 공유", "집단 내 서열 및 리더 선출", "집단원의 개인 성적 평가", "상담료 사전 전액 징수", "개인 무의식 심층 분석"],
+        "응집력 형성에 절대 유리": ["응집력 및 신뢰 형성에 절대 유리", "수시 회원 가입의 개방성", "다양한 사회 현실의 축소판 반영", "결석자 발생 시 즉각 대체 가능", "운영 일정의 유연성"],
         "개방 집단 (Open Group)": ["개방 집단 (Open Group, 중간에 구성원이 자유롭게 입/퇴장)", "폐쇄 집단 (Closed Group, 시작 인원이 종결까지 유지)", "구조화 집단 (Structured Group)", "비구조화 집단 (Unstructured Group)", "자조 집단 (Self-help Group)"],
+        "초기 ➔ 과도기 ➔ 작업 ➔ 종결": ["초기 ➔ 과도기 ➔ 작업 ➔ 종결", "초기 ➔ 작업 ➔ 과도기 ➔ 종결", "오리엔테이션 ➔ 갈등 ➔ 종결", "탐색 ➔ 저항 ➔ 일반화", "형성 ➔ 격동 ➔ 규범 ➔ 성취"],
+        "초기 단계": ["초기 단계 (오리엔테이션, 신뢰감 형성, 구조화)", "과도기 단계 (불안, 저항, 갈등 다루기)", "작업 단계 (높은 응집력, 피드백, 통찰)", "종결 단계 (평가 및 일상 전이)", "추수 회기"],
+        "과도기 단계": ["과도기 단계 (불안, 저항, 갈등, 상담자 시험)", "초기 단계 (신뢰 형성)", "작업 단계 (응집력 최고조)", "종결 단계 (이별 감정)", "사전 선별 단계"],
         "과도기 단계 (Transition Stage)": ["과도기 단계 (Transition Stage, 불안, 방어, 권력 갈등, 저항)", "초기 단계 (Initial Stage, 오리엔테이션, 라포 형성, 탐색)", "작업 단계 (Working Stage, 높은 응집력, 피드백, 통찰)", "종결 단계 (Final Stage, 종합 평가, 이별 감정, 일반화)", "추수 회기 (Follow-up Session)"],
+        "작업 단계": ["작업 단계 (응집력 최고조, 깊은 자기개방, 미해결 과제 해결)", "초기 단계", "과도기 단계", "종결 단계", "추수 회기"],
+        "종결 단계": ["종결 단계 (미해결 과제 처리, 이별 감정, 일상 전이)", "초기 단계", "과도기 단계", "작업 단계", "선별 단계"],
         "높은 집단 응집력, 깊은 자기개방과 피드백, 미해결 과제 해결": ["작업 단계 (Working Stage, 높은 응집력, 깊은 자기개방, 미해결 과제 해결)", "초기 단계 (Initial Stage)", "과도기 단계 (Transition Stage)", "종결 단계 (Final Stage)", "사전 선별 단계 (Screening)"],
-        "보편성 (Universality)": ["보편성 (Universality, '나 혼자만이 고통받는 게 아니구나' 안도감)", "이타주의 (Altruism, 타인에게 도움을 주며 가치감 경험)", "카타르시스 (Catharsis, 억압된 정서의 정화 및 해소)", "희망의 주입 (Instillation of Hope)", "사회화 기술의 발달"],
+        "보편성 (Universality)": ["보편성 (Universality, '나 혼자만이 고통받는 게 아니구나' 안도감)", "이타주의 (Altruism, 타인에게 도움을 주며 가치감 경험)", "카타르시스 (Catharsis, 억압된 정서의 정화 및 해소)", "희망의 고취 (Instillation of Hope)", "사회화 기술의 발달"],
+        "희망의 고취": ["희망의 고취 (Instillation of Hope)", "보편성 (Universality)", "이타주의 (Altruism)", "카타르시스 (Catharsis)", "정보 전달"],
         "이타주의 (Altruism)": ["이타주의 (Altruism, 타인을 돕고 지지하며 자기가치감 획득)", "보편성 (Universality)", "카타르시스 (Catharsis)", "모방 행동 (Imitative Behavior)", "실존적 요인 (Existential Factors)"],
         "카타르시스 (Catharsis)": ["카타르시스 (Catharsis, 강렬한 정서적 응어리의 분출과 정화)", "보편성 (Universality)", "이타주의 (Altruism)", "정보 전달 (Imparting Information)", "가족 재연 (Corrective Recapitulation)"],
+        "현재 회기 상호작용 초점": ["현재 회기 내 집단원 간 상호작용과 감정에 집중 (Here-and-Now)", "과거 10년 전 역사적 사건 장황한 회상 (Then-and-There)", "미래 가상 시나리오에 대한 추상적 토론", "집단원 어린 시절 무의식 콤플렉스 단독 분석", "상담자 이론 강의 청취"],
         "현재 회기 내에서 일어나는 집단원 간의 상호작용과 감정에 집중함": ["현재 회기 내에서 일어나는 집단원 간의 상호작용과 감정에 집중 (Here-and-Now)", "상담실 밖에서 일어난 과거 10년 전 역사적 사건 장황한 회상 (Then-and-There)", "미래에 발생할 수 있는 가상 시나리오에 대한 추상적 토론", "집단원 개개인의 어린 시절 무의식 콤플렉스 단독 분석", "상담자가 준비한 이론 강의 청취"],
+        "연결 (Linking)": ["연결 (Linking, 서로 다른 집단원의 경험/감정 공통점을 엮어줌)", "차단 (Blocking, 파괴적 발언이나 인신공격을 즉시 중단시킴)", "명료화 (Clarifying, 모호한 진술을 명확하게 정리해 줌)", "직면 (Confronting, 모순 짚어주기)", "모델링 (Modeling, 지도자 행동 시범)"],
         "연결하기 (Linking)": ["연결하기 (Linking, 서로 다른 집단원의 경험/감정 공통점을 엮어줌)", "차단하기 (Blocking, 파괴적 발언이나 인신공격을 즉시 중단시킴)", "명료화 (Clarifying, 모호한 진술을 명확하게 정리해 줌)", "직면 (Confronting, 언어와 비언어적 모순을 짚어줌)", "모델링 (Modeling, 지도자의 바람직한 행동 시범)"],
+        "차단 (Blocking)": ["차단 (Blocking, 파괴적 발언/공격 즉시 중단)", "연결 (Linking)", "명료화 (Clarifying)", "직면 (Confronting)", "모델링 (Modeling)"],
         "차단하기 (Blocking)": ["차단하기 (Blocking, 인신공격, 사생활 캐묻기 등 파괴적 행동 중단)", "연결하기 (Linking)", "해석 (Interpreting)", "자기개방 (Self-disclosure)", "촉진하기 (Facilitating)"],
+        "명료화 (Clarifying)": ["명료화 (Clarifying, 모호한 진술의 핵심을 명확히 정리)", "연결 (Linking, 공통점 엮어주기)", "차단 (Blocking, 파괴적 행동 중단)", "직면 (Confronting, 모순 지적)", "모델링 (Modeling, 행동 시범)"],
+        "명료화": ["명료화 (Clarifying)", "연결 (Linking)", "차단 (Blocking)", "직면 (Confronting)", "모델링 (Modeling)"],
+        "모델링 (Modeling)": ["모델링 (Modeling, 솔직한 소통 시범)", "명료화 (Clarifying)", "연결 (Linking)", "차단 (Blocking)", "해석 (Interpretation)"],
         "독점 (Monopolizing)": ["독점 행동 (Monopolizing, 혼자 끊임없이 발언하여 타인의 참여 차단)", "침묵 (Silence, 집단 시간 내내 발언을 거부하고 관망)", "하위집단 형성 (Subgrouping, 몇몇이 뭉쳐 편을 가름)", "지성화 (Intellectualizing, 감정을 배제하고 이론적 논쟁만 함)", "적대감 (Hostility, 상담자와 집단원에 대한 공격)"],
+        "인정욕구 수용 & 기회분배": ["발언 열정과 인정욕구를 수용한 뒤 다른 집단원에게 발언권 자연스럽게 분배", "전체 집단원 앞에서 이기주의자라고 직설적으로 모욕", "독점 집단원을 즉시 집단에서 영구 제명 및 퇴장 조치", "세션이 끝날 때까지 독점 집단원의 발언을 무조건 방치", "독점 집단원에게 발언 금지 벌금을 부과"],
         "그의 열정을 수용해 준 뒤 다른 집단원들의 의견으로 자연스럽게 초점을 넘김": ["발언 열정을 인정/수용한 뒤 다른 집단원들에게 자연스럽게 발언권 분배", "전체 집단원 앞에서 '당신은 이기주의자'라고 직설적으로 모욕", "독점 집단원을 즉시 집단에서 영구 제명 및 퇴장 조치", "세션이 끝날 때까지 독점 집단원의 발언을 무조건 방치", "독점 집단원에게 발언 금지 벌금을 부과"],
         "하위집단 형성 (Subgrouping)": ["하위집단 형성 (Subgrouping, 파벌 조성 및 전체 응집력 저해)", "독점 (Monopolizing)", "침묵 (Silence)", "희생양 만들기 (Scapegoating)", "조언 남발 (Storytelling)"],
+        "전체 공론의 장으로 올림": ["소그룹 형성 현상을 집단 전체 공론의 장으로 올려 솔직히 탐색", "하위집단을 비밀스럽게 방치", "소그룹에 참여한 집단원 전원 퇴출", "상담자가 개인 면담으로 개별 훈계", "하위집단을 공식적으로 인정하고 집단 분리"],
+        "침묵의 비언어적 의미 공감": ["침묵 속에 담긴 두려움이나 관망의 비언어적 의미를 공감하고 탐색", "말을 할 때까지 강제로 질문을 퍼부으며 압박", "침묵하는 집단원을 무시하고 다른 집단원하고만 대화", "집단 규칙 위반으로 간주하여 퇴출 경고", "침묵을 깨뜨리기 위해 상담자가 혼자서 강의 진행"],
         "침묵 속에 담긴 두려움이나 관망의 비언어적 의미를 공감하고 탐색함": ["침묵 속에 담긴 두려움이나 관망의 심리적 의미를 안전하게 공감/탐색", "말을 할 때까지 강제로 질문을 퍼부으며 압박", "침묵하는 집단원을 무시하고 다른 집단원하고만 대화", "집단 규칙 위반으로 간주하여 퇴출 경고", "침묵을 깨뜨리기 위해 상담자가 혼자서 강의를 진행"],
+        "빈의자 기법 (X)": ["빈의자 기법 (X ➔ 게슈탈트 치료 고유 기법)", "역할교환 기법 (Role Reversal)", "거울 기법 (Mirror Technique)", "이중자아 기법 (Double)", "행동 실연 기법 (Enactment)"],
         "무대, 주인공, 연출가(상담자), 보조자아, 관객": ["무대, 주인공, 연출가(지도자), 보조자아, 관객", "상담실, 내담자, 기록자, 관찰자, 학부모", "무대, 각본, 주연배우, 조연배우, 심사위원", "빈의자, 방어기제, 자아상태, 각본, 게임", "가계도, 가족조각, 하위체계, 경계선, 실연"],
         "역할 교환 (Role Reversal)": ["역할 교환 (Role Reversal, 주인공과 상대방 역할을 맞바꿔 연기)", "거울 기법 (Mirror Technique, 무대 밖에서 자신의 연기를 관찰)", "이중자아 기법 (Double, 보조자아가 주인공의 속마음을 대신 표현)", "독백 기법 (Soliloquy, 마음속 숨은 감정을 혼잣말로 표현)", "빈의자 기법 (Empty Chair)"],
         "거울 기법 (Mirror Technique)": ["거울 기법 (Mirror Technique, 보조자아의 연기를 객관적으로 조망)", "역할 교환 (Role Reversal)", "이중자아 기법 (Double)", "행동 실연 (Enactment)", "미래 투사 (Future Projection)"],
+        "효과의 장기적 지속성 점검": ["상담 효과의 장기적 지속성 점검 및 재발 방지", "새로운 비밀 갈등 발굴 및 장기 세션 재시작", "집단원 간의 사적 연락처 공유 및 비밀 모임 결성", "상담자가 모든 집단원에게 개별 점수 및 등급 부여", "비밀보장 서약서의 완전한 파기"],
         "집단 경험의 종합 평가, 이별 감정 다루기, 일상생활로의 일반화": ["집단 경험의 종합 평가, 이별/상실 감정 다루기, 일상 적응 일반화", "새로운 비밀 갈등 발굴 및 장기 세션 재시작", "집단원 간의 사적 연락처 공유 및 비밀 모임 결성", "상담자가 모든 집단원에게 개별 점수 및 등급 부여", "비밀보장 서약서의 완전한 파기"],
         "추수 회기 (Follow-up Session)": ["추수 회기 (Follow-up Session, 종결 1~3개월 후 변화 지속성 점검)", "오리엔테이션 회기 (사전 규칙 설명)", "선별 면담 회기 (Screening Session)", "위기 개입 회기 (Crisis Intervention)", "구조화 실습 회기"],
         "집단원의 출석률 상승, 자기개방 증가, 피드백 수용도 향상": ["집단원의 출석률 상승, 자기개방 증가, 피드백 수용도 향상", "집단 내 갈등의 완전한 영구 소멸 및 무조건적 동조", "상담자의 전문적 지도 권한 완전 상실", "집단원 간의 비밀보장 유지 의무 면제", "개인상담 대비 시간/비용의 급격한 증가"],
@@ -1860,19 +1881,21 @@ function buildCbtQuestions() {
             let correctText = item[2];
             let optionsPool = [];
 
-            // 1) exactQuestionPools에서 1:1 매칭
+            // 1) exactQuestionPools에서 1:1 완벽 탐색
             if (exactQuestionPools[correctText]) {
                 optionsPool = [...exactQuestionPools[correctText]];
             } else {
                 for (let key in exactQuestionPools) {
-                    if (key.includes(correctText) || correctText.includes(key.split(' ')[0])) {
+                    const cleanKey = key.split(' ')[0].replace(/[^가-힣a-zA-Z0-9]/g, '');
+                    const cleanCorrect = correctText.split(' ')[0].replace(/[^가-힣a-zA-Z0-9]/g, '');
+                    if (cleanKey.length >= 2 && (cleanCorrect.includes(cleanKey) || cleanKey.includes(cleanCorrect))) {
                         optionsPool = [...exactQuestionPools[key]];
                         break;
                     }
                 }
             }
 
-            // 2) 매핑되지 않은 경우: 피드백 파싱 및 같은 과목 보충
+            // 2) 매핑되지 않은 경우: 피드백 파싱
             if (optionsPool.length === 0 && item[3]) {
                 const parts = item[3].split(/<br>|\n/);
                 parts.forEach(p => {
@@ -1915,15 +1938,22 @@ function renderCbtQuestion() {
     if (!q) return;
 
     // [실시간 1:1 기출 고난도 선지 치환 보장 엔진]
+    let targetPool = null;
     if (exactQuestionPools[q.correct]) {
-        q.options = [...exactQuestionPools[q.correct]].sort(() => Math.random() - 0.5);
-    } else if (!q.options || q.options.some(opt => opt.includes('체계적 둔감화') || opt.includes('합리화 및 반동') || opt.includes('수용전념 치료') || opt.includes('상호작용 촉진'))) {
+        targetPool = exactQuestionPools[q.correct];
+    } else {
         for (let key in exactQuestionPools) {
-            if (key.includes(q.correct) || q.correct.includes(key.split(' ')[0])) {
-                q.options = [...exactQuestionPools[key]].sort(() => Math.random() - 0.5);
+            const cleanKey = key.split(' ')[0].replace(/[^가-힣a-zA-Z0-9]/g, '');
+            const cleanCorrect = q.correct.split(' ')[0].replace(/[^가-힣a-zA-Z0-9]/g, '');
+            if (cleanKey.length >= 2 && (cleanCorrect.includes(cleanKey) || cleanKey.includes(cleanCorrect))) {
+                targetPool = exactQuestionPools[key];
                 break;
             }
         }
+    }
+
+    if (targetPool && targetPool.length >= 5) {
+        q.options = [...targetPool].sort(() => Math.random() - 0.5);
     }
 
     document.getElementById('cbtProgress').textContent = `[제${currentExamNum}회 - ${q.subName}] 문제 ${q.num} / ${allQuestions.length}`;
