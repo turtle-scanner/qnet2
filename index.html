@@ -2,11 +2,21 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>2026년 청소년상담사 2급 [300제 CBT 마스터 & 4대 합격팩]</title>
+    <title>2026년 청소년상담사 2급 [450제 CBT 마스터 & 실전 시험장 시스템]</title>
+    <script>
+        const APP_BUILD_VER = '2026_0912_v450_live';
+        if (localStorage.getItem('app_build_ver') !== APP_BUILD_VER) {
+            localStorage.setItem('app_build_ver', APP_BUILD_VER);
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    for (let name of names) caches.delete(name);
+                });
+            }
+        }
+    </script>
     <style>
         /* 비밀번호 보안 게이트 스타일 */
         #authGate {
@@ -1038,8 +1048,8 @@
 
 <div class="container" id="mainApp" style="display:none;">
     <header>
-        <h1>🌙 2026년 청소년상담사 2급 [300제 CBT 마스터 & 4대 합격팩]</h1>
-        <p>1.오답노트 모아풀기 | 2.북마크 찜 | 3.과락방지 실시간 성적표 | 4.키보드 초고속 단축키</p>
+        <h1>🌙 2026년 청소년상담사 2급 [450제 CBT 마스터 & 35분 실전 시험장 시스템]</h1>
+        <p>1. 1회·2회·3회 450제 풀패키지 | 2. 1교시(35분)·2교시(35분) 실전 시험 | 3. 과락방지 실시간 성적표 | 4. 오답노트</p>
     </header>
 
     <!-- 1회 / 2회 / 3회 모의고사 선택 바 -->
@@ -2572,7 +2582,12 @@ function setAppMode(mode) {
         btnCBT.className = 'btn-mode active cbt-active';
         tableView.style.display = 'none';
         cbtView.style.display = 'block';
+        
+        if (!allQuestions || allQuestions.length === 0) {
+            buildCbtQuestions();
+        }
         renderCbtQuestion();
+        renderOmrGrid();
         startTimer();
     }
 }
