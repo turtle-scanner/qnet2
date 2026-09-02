@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>2026년 청소년상담사 2급 [300제 CBT 마스터 & 4대 합격팩]</title>
     <style>
         /* 비밀번호 보안 게이트 스타일 */
@@ -1808,6 +1811,28 @@ function buildCbtQuestions() {
 function renderCbtQuestion() {
     const q = allQuestions[currentQIdx];
     if (!q) return;
+
+    // [실시간 자가치유 (Self-Healing) 엔진]: 더미 보기 감지 시 실시간으로 형제 선지로 강제 치환
+    if (!q.options || q.options.some(opt => opt.includes('체계적 둔감화') || opt.includes('합리화 및 반동') || opt.includes('수용전념 치료') || opt.includes('상호작용 촉진'))) {
+        let fixedPool = [];
+        for (let pool of topicPools) {
+            if (pool.some(opt => opt === q.correct || opt.includes(q.correct) || q.correct.includes(opt.split(' ')[0]))) {
+                fixedPool = [...pool];
+                break;
+            }
+        }
+        if (fixedPool.length === 0 && q.feedback) {
+            const parts = q.feedback.split(/<br>|\n/);
+            parts.forEach(p => {
+                let clean = p.replace(/<[^>]*>/g, '').trim();
+                if (clean.startsWith('•')) clean = clean.substring(1).trim();
+                let term = clean.split(/[:\-=–]/)[0].trim();
+                if (term && term.length >= 2 && term.length <= 25 && !term.includes('※')) fixedPool.push(term);
+            });
+        }
+        fixedPool.unshift(q.correct);
+        q.options = [...new Set(fixedPool.map(o => o.trim()))].slice(0, 5).sort(() => Math.random() - 0.5);
+    }
 
     document.getElementById('cbtProgress').textContent = `[제${currentExamNum}회 - ${q.subName}] 문제 ${q.num} / ${allQuestions.length}`;
     document.getElementById('cbtQuestionText').textContent = `${q.num}. ${q.qText}`;
