@@ -1753,33 +1753,36 @@ function buildCbtQuestions() {
             let correctText = item[2];
             let optionsPool = [];
 
-            // 1) 전문 주제별 풀에서 정답이 포함된 풀 탐색
+            // 1) feedback 데이터에서 형제 개념들 자동 추출
+            if (item[3]) {
+                const parts = item[3].split(/<br>|\n/);
+                parts.forEach(p => {
+                    let clean = p.replace(/<[^>]*>/g, '').trim();
+                    if (clean.startsWith('•')) clean = clean.substring(1).trim();
+                    let term = clean.split(/[:\-=–]/)[0].trim();
+                    if (term && term.length >= 2 && term.length <= 25 && !term.includes('※') && !term.includes('치료')) {
+                        optionsPool.push(term);
+                    }
+                });
+            }
+
+            // 2) 전문 주제별 풀에서 정답이 포함된 풀 탐색하여 보강
             for (let pool of topicPools) {
                 if (pool.some(opt => opt === correctText || opt.includes(correctText) || correctText.includes(opt.split(' ')[0]))) {
-                    optionsPool = [...pool];
+                    optionsPool.push(...pool);
                     break;
                 }
             }
 
-            // 2) 매핑되지 않은 경우: 같은 과목(sub) 내 다른 정답들 중에서 4개 무작위 추출!
-            if (optionsPool.length === 0) {
-                optionsPool.push(correctText);
-                const otherSubAnswers = subAllAnswers.filter(ans => ans !== correctText);
-                const sampled = [...otherSubAnswers].sort(() => Math.random() - 0.5).slice(0, 4);
-                optionsPool.push(...sampled);
-            }
+            // 3) 부족한 경우: 같은 과목(sub) 내 다른 정답들 중에서 보충
+            const otherSubAnswers = subAllAnswers.filter(ans => ans !== correctText);
+            optionsPool.push(...otherSubAnswers);
 
             // 정답 포함 보장
-            if (!optionsPool.includes(correctText)) {
-                optionsPool[0] = correctText;
-            }
+            optionsPool.unshift(correctText);
 
-            // 중복 제거 및 무작위 셔플
-            let uniqueOptions = [...new Set(optionsPool)];
-            while (uniqueOptions.length < 5) {
-                const randomFill = subAllAnswers[Math.floor(Math.random() * subAllAnswers.length)];
-                if (!uniqueOptions.includes(randomFill)) uniqueOptions.push(randomFill);
-            }
+            // 중복 제거 및 무작위 셔플하여 정확히 5개 선지 확정
+            let uniqueOptions = [...new Set(optionsPool.map(o => o.trim()))];
             uniqueOptions = uniqueOptions.slice(0, 5);
             uniqueOptions.sort(() => Math.random() - 0.5);
 
