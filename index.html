@@ -1897,20 +1897,10 @@ function renderSummaryTable() {
     }
 }
 
-function buildCbtQuestions() {
-    const subNames = {
-        sub1: "제1과목 청소년 상담 이론과 실제",
-        sub2: "제2과목 상담연구방법론의 기초",
-        sub3: "제3과목 심리측정 및 평가의 활용",
-        sub4: "제4과목 청소년 이상심리",
-        sub6: "제5과목 가족상담 (선택)",
-        sub7: "제6과목 집단상담 (선택)"
-    };
-
-    // 150개 전 문항 1:1 초정밀 기출 5지선다 고난도 데이터베이스
-    const exactQuestionPools = {
-        // 1과목 (1~25번)
-        "투사 (Projection)": ["투사 (Projection)", "전치 (Displacement)", "반동형성 (Reaction Formation)", "합리화 (Rationalization)", "승화 (Sublimation)"],
+// 150개 전 문항 1:1 초정밀 기출 5지선다 고난도 데이터베이스
+const exactQuestionPools = {
+    // 1과목 (1~25번)
+    "투사 (Projection)": ["투사 (Projection)", "전치 (Displacement)", "반동형성 (Reaction Formation)", "합리화 (Rationalization)", "승화 (Sublimation)"],
         "승화 (Sublimation)": ["승화 (Sublimation)", "억압 (Repression)", "퇴행 (Regression)", "취소 (Undoing)", "동일시 (Identification)"],
         "지배형 (Ruling)": ["지배형 (Ruling)", "획득형 (기생형, Getting)", "회피형 (Avoiding)", "사회적 유용형 (Socially useful)", "상승형"],
         "무조건적 긍정적 존중": ["무조건적 긍정적 존중", "일치성 (진실성, Congruence)", "공감적 이해 (Empathy)", "적극적 경청", "치료적 라포"],
@@ -2091,6 +2081,16 @@ function buildCbtQuestions() {
         "초기 단계 (Initial Stage)": ["초기 단계 (Initial Stage, 오리엔테이션 및 집단 규준/규칙 설정)", "과도기 단계 (Transition Stage, 갈등 및 저항 다루기)", "작업 단계 (Working Stage, 통찰 및 행동 변화)", "종결 단계 (Final Stage, 평가 및 일반화)", "추수 회기"],
         "자기개방 (Self-disclosure)": ["자기개방 (Self-disclosure, 치료적 모델링을 위한 적절한 나눔)", "직면 (Confrontation)", "차단하기 (Blocking)", "해석 (Interpretation)", "즉시성 (Immediacy)"],
         "집단 초기 오리엔테이션 및 규칙 설정 시": ["집단 초기 오리엔테이션 및 사전 선별 면담 시", "집단이 완전히 종결되는 마지막 10분 전", "집단원이 심각한 비밀을 모두 털어놓은 직후", "집단 과도기 갈등이 최고조에 달했을 때", "상담자가 집단원에게 화가 났을 때"]
+    };
+
+function buildCbtQuestions() {
+    const subNames = {
+        sub1: "제1과목 청소년 상담 이론과 실제",
+        sub2: "제2과목 상담연구방법론의 기초",
+        sub3: "제3과목 심리측정 및 평가의 활용",
+        sub4: "제4과목 청소년 이상심리",
+        sub6: "제5과목 가족상담 (선택)",
+        sub7: "제6과목 집단상담 (선택)"
     };
 
     allQuestions = [];
@@ -2704,6 +2704,7 @@ if (sessionStorage.getItem('qnet_auth_passed') === 'true') {
 // 초기화
 renderSummaryTable();
 buildCbtQuestions();
+renderCbtQuestion();
 renderOmrGrid();
 </script>
 </body>
