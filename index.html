@@ -824,45 +824,94 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
             z-index: 9999;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
 
         .modal-content {
             background: #0f172a;
-            border: 2px solid var(--border);
-            border-radius: 24px;
-            max-width: 800px;
-            width: 90%;
-            padding: 36px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+            border: 3px solid #3b82f6;
+            border-radius: 28px;
+            max-width: 860px;
+            width: 100%;
+            padding: 38px 32px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95);
             color: #ffffff;
-            max-height: 90vh;
+            max-height: 92vh;
             overflow-y: auto;
+            position: relative;
         }
 
         .modal-header {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
             padding-bottom: 16px;
             border-bottom: 2px solid var(--border);
         }
 
         .modal-header h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 900;
-            color: var(--text-yellow);
+            color: #ffffff;
+        }
+
+        /* 합격 / 불합격 / 과락 최종 판정 대형 배너 */
+        .result-banner {
+            padding: 24px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 24px;
+            border: 3px solid transparent;
+            animation: popIn 0.4s ease-out;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .result-banner.pass {
+            background: linear-gradient(135deg, #064e3b, #065f46);
+            border-color: #34d399;
+            box-shadow: 0 0 35px rgba(52, 211, 153, 0.5);
+        }
+
+        .result-banner.fail {
+            background: linear-gradient(135deg, #7f1d1d, #991b1b);
+            border-color: #f87171;
+            box-shadow: 0 0 35px rgba(248, 113, 113, 0.5);
+        }
+
+        .result-banner.warning {
+            background: linear-gradient(135deg, #78350f, #92400e);
+            border-color: #fbbf24;
+            box-shadow: 0 0 35px rgba(251, 191, 36, 0.5);
+        }
+
+        .result-status-text {
+            font-size: 2.3rem;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        .result-reason-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            opacity: 0.95;
+            line-height: 1.6;
         }
 
         .report-summary-box {
-            display: flex;
-            justify-content: space-around;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
             background: #1e1b4b;
             padding: 20px;
-            border-radius: 16px;
+            border-radius: 18px;
             border: 2px solid #6366f1;
             margin-bottom: 24px;
             text-align: center;
@@ -871,19 +920,22 @@
         .report-stat-num {
             font-size: 2rem;
             font-weight: 900;
+            margin-top: 4px;
         }
 
         .report-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 24px;
+            border-radius: 14px;
+            overflow: hidden;
         }
 
         .report-table th, .report-table td {
             padding: 14px 16px;
             text-align: center;
             border: 1px solid var(--border);
-            font-size: 1.1rem;
+            font-size: 1.15rem;
         }
 
         .report-table th {
@@ -892,29 +944,76 @@
             font-weight: 900;
         }
 
-        .status-pass {
+        .report-table tr:nth-child(even) td {
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .status-pass-badge {
+            display: inline-block;
+            background: #065f46;
             color: #34d399;
             font-weight: 900;
+            padding: 4px 12px;
+            border-radius: 12px;
+            border: 1px solid #10b981;
         }
 
-        .status-fail {
-            color: #f87171;
+        .status-fail-badge {
+            display: inline-block;
+            background: #7f1d1d;
+            color: #fca5a5;
             font-weight: 900;
+            padding: 4px 12px;
+            border-radius: 12px;
+            border: 1px solid #ef4444;
+            animation: pulse 1.5s infinite;
         }
 
-        .btn-modal-close {
-            width: 100%;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .modal-btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn-modal-action {
             padding: 16px;
             border-radius: 14px;
             border: none;
-            background: #2563eb;
-            color: #ffffff;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 900;
             cursor: pointer;
             transition: all 0.2s;
+            text-align: center;
         }
+
+        .btn-modal-review { background: #7f1d1d; color: #fecaca; border: 2px solid #ef4444; }
+        .btn-modal-review:hover { background: #991b1b; }
+        .btn-modal-retry { background: #1e293b; color: #cbd5e1; border: 2px solid #475569; }
+        .btn-modal-retry:hover { background: #334155; }
+        .btn-modal-close { background: #2563eb; color: #ffffff; border: 2px solid #60a5fa; }
         .btn-modal-close:hover { background: #1d4ed8; }
+
+        .btn-submit-exam {
+            background: linear-gradient(135deg, #b91c1c, #dc2626);
+            color: #ffffff;
+            border: 2px solid #f87171;
+            font-size: 1.25rem;
+            font-weight: 900;
+            padding: 16px 26px;
+            border-radius: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(220, 38, 38, 0.4);
+            transition: all 0.2s;
+        }
+        .btn-submit-exam:hover {
+            background: #ef4444;
+            transform: translateY(-2px);
+        }
 
         @media (max-width: 1100px) {
             .cbt-layout { grid-template-columns: 1fr; }
@@ -1027,7 +1126,7 @@
 
                 <div class="cbt-nav">
                     <button class="btn-cbt-nav btn-prev" onclick="prevCbtQuestion()">⬅️ 이전 (A / ←)</button>
-                    <button class="btn-cbt-nav btn-score-report" onclick="showScoreReport()">📊 실시간 합격 성적표 확인</button>
+                    <button class="btn-submit-exam" onclick="submitFinalExam()">🏁 최종 답안 제출 및 합격 판정</button>
                     <button class="btn-cbt-nav btn-next" onclick="nextCbtQuestion()">다음 (D / →) ➡️</button>
                 </div>
                 <div class="key-hint">⌨️ 키보드 1~5번으로 즉시 정답 선택 / Space: 다음문제 / A: 이전 / D: 다음</div>
@@ -1054,6 +1153,9 @@
                 <div class="omr-grid-wrapper">
                     <div class="omr-grid" id="omrGridContainer"></div>
                 </div>
+                <div style="margin-top:14px;">
+                    <button class="btn-submit-exam" onclick="submitFinalExam()" style="width:100%; padding:14px; font-size:1.15rem;">🏁 최종 답안 제출 및 채점</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1063,8 +1165,14 @@
 <div class="modal-overlay" id="scoreModal">
     <div class="modal-content">
         <div class="modal-header">
-            <h2>🏆 2026 청소년상담사 2급 실전 성적표</h2>
-            <p id="modalExamTitle" style="color:var(--text-cyan); font-weight:800; font-size:1.2rem; margin-top:6px;">제1회 실전 적중 모의고사</p>
+            <h2>🏆 2026년 청소년상담사 2급 최종 성적표</h2>
+            <p id="modalExamTitle" style="color:var(--text-cyan); font-weight:800; font-size:1.2rem; margin-top:6px;">제1회 실전 적중 모의고사 (150제)</p>
+        </div>
+
+        <!-- 최종 합격/불합격/과락 판정 대형 배너 -->
+        <div class="result-banner" id="resultBanner">
+            <div class="result-status-text" id="resultStatusText">🎉 최종 합격!</div>
+            <div class="result-reason-text" id="resultReasonText">축하합니다! 전 과목 과락 없이 평균 60점 이상을 달성하셨습니다.</div>
         </div>
 
         <div class="report-summary-box">
@@ -1077,8 +1185,8 @@
                 <div class="report-stat-num" id="reportAvgScore" style="color:var(--text-yellow);">0점</div>
             </div>
             <div>
-                <div style="color:var(--text-muted); font-size:1rem; font-weight:700;">최종 합격 여부</div>
-                <div class="report-stat-num" id="reportPassStatus">-</div>
+                <div style="color:var(--text-muted); font-size:1rem; font-weight:700;">소요 시간</div>
+                <div class="report-stat-num" id="reportTimeSpent" style="color:#38bdf8;">00:00:00</div>
             </div>
         </div>
 
@@ -1088,8 +1196,8 @@
                     <th>교시</th>
                     <th>과목명</th>
                     <th>맞힌 수 / 문항수</th>
-                    <th>환산 점수</th>
-                    <th>과락 여부 (40점)</th>
+                    <th>환산 점수 (100점 만점)</th>
+                    <th>과락 여부 (40점 기준)</th>
                 </tr>
             </thead>
             <tbody id="reportTableBody">
@@ -1097,7 +1205,11 @@
             </tbody>
         </table>
 
-        <button class="btn-modal-close" onclick="closeScoreReport()">확인 및 계속 풀기</button>
+        <div class="modal-btn-group">
+            <button class="btn-modal-action btn-modal-review" onclick="goToReviewWrong()">❌ 틀린 문제 오답노트 복습</button>
+            <button class="btn-modal-action btn-modal-retry" onclick="resetCurrentExam()">🔄 처음부터 다시 풀기</button>
+            <button class="btn-modal-action btn-modal-close" onclick="closeScoreReport()">확인 및 계속 풀기</button>
+        </div>
     </div>
 </div>
 
@@ -1806,15 +1918,53 @@ function updateOmrStats() {
     document.getElementById('cbtScore').textContent = `정답: ${correctCount} / ${answeredTotal} (${scorePct}%)`;
 }
 
-// ======================= [실시간 합격 성적표 판정 모달 엔진] =======================
-function showScoreReport() {
+function playFanfareSound() {
+    if (!soundEnabled) return;
+    initAudio();
+    const melody = [
+        { freq: 523.25, time: 0, dur: 0.15 },
+        { freq: 523.25, time: 0.15, dur: 0.15 },
+        { freq: 523.25, time: 0.30, dur: 0.15 },
+        { freq: 659.25, time: 0.45, dur: 0.35 },
+        { freq: 783.99, time: 0.80, dur: 0.35 },
+        { freq: 1046.50, time: 1.15, dur: 0.70 }
+    ];
+    melody.forEach(note => {
+        setTimeout(() => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(note.freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + note.dur);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + note.dur);
+        }, note.time * 1000);
+    });
+}
+
+// ======================= [최종 답안 제출 및 합격/불합격/과락 판정 엔진] =======================
+function submitFinalExam(isAuto = false) {
+    let answeredTotal = 0;
+    allQuestions.forEach((_, idx) => {
+        if (userAnswers[idx] && userAnswers[idx].selectedText) answeredTotal++;
+    });
+
+    const unsolved = allQuestions.length - answeredTotal;
+    if (!isAuto && unsolved > 0) {
+        const confirmSubmit = confirm(`⚠️ 총 ${allQuestions.length}문제 중 아직 ${unsolved}문제를 풀지 않았습니다.\n(풀지 않은 문제는 오답/0점 처리됩니다)\n\n정말 최종 제출하고 합격 여부 성적표를 확인하시겠습니까?`);
+        if (!confirmSubmit) return;
+    }
+
     const modal = document.getElementById('scoreModal');
     document.getElementById('modalExamTitle').textContent = (currentExamNum === 1) ? '🎯 제1회 실전 적중 모의고사 (150제)' : '🔥 제2회 고난도 변형 모의고사 (150제)';
 
     const subOrder = ['sub1', 'sub2', 'sub3', 'sub4', 'sub6', 'sub7'];
     const subNames = {
         sub1: { name: '1. 청소년 상담의 이론과 실제', period: '1교시' },
-        sub2: { name: '2. 상담연구방법론의 기초', period: '1교시' },
+        sub2: { name: '2. 상담연구방법론의 기초 (과락주의)', period: '1교시' },
         sub3: { name: '3. 심리측정 및 평가의 활용', period: '1교시' },
         sub4: { name: '4. 청소년 이상심리', period: '1교시' },
         sub6: { name: '5. 가족상담 (선택)', period: '2교시' },
@@ -1822,68 +1972,116 @@ function showScoreReport() {
     };
 
     let totalCorrect = 0;
-    let totalAnswered = 0;
-    let hasFail = false; // 과락 여부
+    let failedSubList = [];
 
     const tbody = document.getElementById('reportTableBody');
     tbody.innerHTML = '';
 
     subOrder.forEach(subKey => {
         let subCorrect = 0;
-        let subAnswered = 0;
-
         allQuestions.forEach((q, idx) => {
             if (q.subKey === subKey) {
                 const u = userAnswers[idx];
-                if (u && u.selectedText) {
-                    subAnswered++;
-                    if (u.isCorrect) subCorrect++;
-                }
+                if (u && u.selectedText && u.isCorrect) subCorrect++;
             }
         });
 
         totalCorrect += subCorrect;
-        totalAnswered += subAnswered;
-
         // 과목당 25문제 (1문제당 4점 = 100점 만점)
         const subScore = subCorrect * 4;
-        const isSubFail = subScore < 40;
-        if (isSubFail) hasFail = true;
+        const isSubFail = subScore < 40; // 40점 미만 과락
+        if (isSubFail) {
+            failedSubList.push(`${subNames[subKey].name}(${subScore}점)`);
+        }
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${subNames[subKey].period}</td>
             <td style="text-align:left; font-weight:700;">${subNames[subKey].name}</td>
             <td><strong>${subCorrect}</strong> / 25</td>
-            <td style="font-weight:900; color:${subScore >= 60 ? '#34d399' : (subScore >= 40 ? '#fde047' : '#f87171')};">${subScore}점</td>
-            <td class="${isSubFail ? 'status-fail' : 'status-pass'}">${isSubFail ? '⚠️ 과락 (40점 미만)' : '✅ 통과'}</td>
+            <td style="font-weight:900; font-size:1.25rem; color:${subScore >= 60 ? '#34d399' : (subScore >= 40 ? '#fde047' : '#f87171')};">${subScore}점</td>
+            <td>${isSubFail ? '<span class="status-fail-badge">⚠️ 과락 (40점 미만)</span>' : '<span class="status-pass-badge">✅ 통과 (40점 이상)</span>'}</td>
         `;
         tbody.appendChild(tr);
     });
 
     const avgScore = Math.round((totalCorrect / 150) * 100);
-    const isFinalPass = (!hasFail && avgScore >= 60 && totalAnswered >= 150);
+    const totalScore = totalCorrect * 4;
 
-    document.getElementById('reportAnsweredNum').textContent = `${totalAnswered} / 150`;
-    document.getElementById('reportAvgScore').textContent = `${avgScore}점`;
+    document.getElementById('reportAnsweredNum').textContent = `${answeredTotal} / 150`;
+    document.getElementById('reportAvgScore').textContent = `${avgScore}점 (${totalCorrect}개 / 150제)`;
+    document.getElementById('reportTimeSpent').textContent = document.getElementById('cbtTimer').textContent.replace('⏱️ ', '');
 
-    const passEl = document.getElementById('reportPassStatus');
-    if (totalAnswered < 150) {
-        passEl.textContent = '진행 중';
-        passEl.style.color = '#94a3b8';
-    } else if (isFinalPass) {
-        passEl.textContent = '🎉 최종 합격!';
-        passEl.style.color = '#34d399';
-    } else {
-        passEl.textContent = hasFail ? '❌ 과락 불합격' : '❌ 평균 미달';
-        passEl.style.color = '#f87171';
+    const banner = document.getElementById('resultBanner');
+    const statusText = document.getElementById('resultStatusText');
+    const reasonText = document.getElementById('resultReasonText');
+
+    banner.className = 'result-banner';
+
+    // 1) 전 과목 과락 없음 + 평균 60점 이상 ➔ 합격!
+    if (failedSubList.length === 0 && avgScore >= 60) {
+        banner.classList.add('pass');
+        statusText.innerHTML = '🎉 최종 [합격] 입니다!';
+        statusText.style.color = '#34d399';
+        reasonText.innerHTML = `축하합니다! 전 과목 과락 없이 평균 <strong>${avgScore}점</strong> (총점 ${totalScore}점 / 합격선 360점)으로 <strong>2026년 청소년상담사 2급 필기시험에 최종 합격</strong>하셨습니다! 🏆`;
+        playFanfareSound();
+    }
+    // 2) 평균은 60점 이상이나 특정 과목 40점 미만 과락 발생
+    else if (failedSubList.length > 0 && avgScore >= 60) {
+        banner.classList.add('warning');
+        statusText.innerHTML = '⚠️ 최종 [과락 불합격]';
+        statusText.style.color = '#fbbf24';
+        reasonText.innerHTML = `평균 점수는 <strong>${avgScore}점</strong>으로 합격 기준(60점)을 넘었으나, <span style="color:#fca5a5; font-weight:900;">[${failedSubList.join(', ')}]</span> 과목이 <strong>40점 미만 과락</strong>으로 판정되어 불합격 처리되었습니다.`;
+        playWrongSound();
+    }
+    // 3) 과락은 없으나 평균 60점 미달
+    else if (failedSubList.length === 0 && avgScore < 60) {
+        banner.classList.add('fail');
+        statusText.innerHTML = '❌ 최종 [불합격] (평균 미달)';
+        statusText.style.color = '#f87171';
+        reasonText.innerHTML = `전 과목 과락(40점 미만)은 없었으나, 평균 점수가 <strong>${avgScore}점</strong>으로 합격 기준(평균 60점 이상 / 90개 이상 정답)에 미달하여 불합격 처리되었습니다.`;
+        playWrongSound();
+    }
+    // 4) 과락 발생 + 평균 60점 미달
+    else {
+        banner.classList.add('fail');
+        statusText.innerHTML = '❌⚠️ 최종 [불합격] (과락 및 평균 미달)';
+        statusText.style.color = '#f87171';
+        reasonText.innerHTML = `평균 점수가 <strong>${avgScore}점</strong>으로 기준(60점)에 미달하였으며, <span style="color:#fca5a5; font-weight:900;">[${failedSubList.join(', ')}]</span> 과목 <strong>과락(40점 미만)</strong>이 동시 발생하여 불합격 처리되었습니다.`;
+        playWrongSound();
     }
 
     modal.style.display = 'flex';
 }
 
+function showScoreReport() {
+    submitFinalExam(false);
+}
+
 function closeScoreReport() {
     document.getElementById('scoreModal').style.display = 'none';
+}
+
+function goToReviewWrong() {
+    closeScoreReport();
+    setOmrFilter('wrong');
+    // 첫 번째 틀린 문제로 이동
+    const firstWrongIdx = allQuestions.findIndex((_, idx) => userAnswers[idx] && userAnswers[idx].isCorrect === false);
+    if (firstWrongIdx !== -1) {
+        currentQIdx = firstWrongIdx;
+        renderCbtQuestion();
+    }
+}
+
+function resetCurrentExam() {
+    if (confirm('현재 풀이한 모든 답안 기록을 초기화하고 처음부터 다시 푸시겠습니까?')) {
+        userAnswers = {};
+        currentQIdx = 0;
+        secondsElapsed = 0;
+        closeScoreReport();
+        renderCbtQuestion();
+        renderOmrGrid();
+    }
 }
 
 // ======================= [화면 및 탭 전환] =======================
