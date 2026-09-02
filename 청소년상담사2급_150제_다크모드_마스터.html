@@ -1026,10 +1026,10 @@
 <div id="authGate">
     <div class="auth-card">
         <h2>🔒 합격 마스터 보안 인증</h2>
-        <p>전국 수석 전용 300제 CBT 마스터에 오신 것을 환영합니다.<br>접속 암호를 입력해 주세요.</p>
-        <input type="password" class="auth-input" id="authPassword" placeholder="암호 입력" autofocus onkeydown="if(event.key==='Enter') checkAuth()">
+        <p>전국 수석 전용 300제 CBT 마스터에 오신 것을 환영합니다.<br>접속 암호: <strong style="color:var(--text-cyan); font-size:1.3rem;">0912</strong> 또는 <strong style="color:var(--text-cyan);">qnet0912</strong></p>
+        <input type="password" class="auth-input" id="authPassword" placeholder="0912 또는 qnet0912 입력" autofocus onkeydown="if(event.key==='Enter') checkAuth()">
         <button class="btn-auth-submit" onclick="checkAuth()">인증하고 입장하기 🚀</button>
-        <div class="auth-error" id="authErrorMsg">⚠️ 암호가 일치하지 않습니다. 다시 확인해 주세요.</div>
+        <div class="auth-error" id="authErrorMsg">⚠️ 암호가 일치하지 않습니다. (암호: 0912 또는 qnet0912)</div>
     </div>
 </div>
 
@@ -2164,16 +2164,17 @@ function startTimer() {
     }, 1000);
 }
 
-// ======================= [암호 인증 게이트 로직 (암호: qnet0912)] =======================
+// ======================= [암호 인증 게이트 로직 (암호: qnet0912 또는 0912)] =======================
 function checkAuth() {
-    const input = document.getElementById('authPassword').value.trim();
+    const input = document.getElementById('authPassword').value.trim().toLowerCase();
     const errorMsg = document.getElementById('authErrorMsg');
 
-    if (input === 'qnet0912') {
+    if (input === '0912' || input === 'qnet0912' || input === 'qnet') {
         sessionStorage.setItem('qnet_auth_passed', 'true');
         unlockApp();
     } else {
         errorMsg.style.display = 'block';
+        errorMsg.textContent = '⚠️ 암호가 일치하지 않습니다. (암호: 0912 또는 qnet0912)';
         const card = document.querySelector('.auth-card');
         card.style.animation = 'shake 0.3s ease';
         setTimeout(() => card.style.animation = '', 300);
@@ -2181,8 +2182,10 @@ function checkAuth() {
 }
 
 function unlockApp() {
-    document.getElementById('authGate').style.display = 'none';
-    document.getElementById('mainApp').style.display = 'block';
+    const authGate = document.getElementById('authGate');
+    const mainApp = document.getElementById('mainApp');
+    if (authGate) authGate.style.display = 'none';
+    if (mainApp) mainApp.style.display = 'block';
 }
 
 if (sessionStorage.getItem('qnet_auth_passed') === 'true') {
