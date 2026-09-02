@@ -7,7 +7,7 @@
     <meta http-equiv="Expires" content="0">
     <title>2026년 청소년상담사 2급 [450제 CBT 마스터 & 실전 시험장 시스템]</title>
     <script>
-        const APP_BUILD_VER = '2026_0912_v600_ultra_master';
+        const APP_BUILD_VER = '2026_0912_v600_quick_entry';
         if (localStorage.getItem('app_build_ver') !== APP_BUILD_VER) {
             localStorage.setItem('app_build_ver', APP_BUILD_VER);
             if ('caches' in window) {
@@ -1205,10 +1205,11 @@
 <!-- 비밀번호 보안 잠금 게이트 -->
 <div id="authGate">
     <div class="auth-card">
-        <h2>🔒 합격 마스터 보안 인증</h2>
-        <p>전국 수석 전용 300제 CBT 마스터에 오신 것을 환영합니다.<br>접속 암호: <strong style="color:var(--text-cyan); font-size:1.3rem;">0912</strong> 또는 <strong style="color:var(--text-cyan);">qnet0912</strong></p>
-        <input type="password" class="auth-input" id="authPassword" placeholder="0912 또는 qnet0912 입력" autofocus onkeydown="if(event.key==='Enter') checkAuth()">
-        <button class="btn-auth-submit" onclick="checkAuth()">인증하고 입장하기 🚀</button>
+        <h2>🔒 2026 청소년상담사 2급 마스터</h2>
+        <p>전국 수석 전용 600제 CBT 마스터 시스템입니다.<br>접속 암호: <strong style="color:var(--text-cyan); font-size:1.3rem;">0912</strong> (또는 아래 버튼 1클릭)</p>
+        <input type="text" class="auth-input" id="authPassword" placeholder="0912 입력 (또는 아래 버튼 클릭)" autofocus onkeydown="if(event.key==='Enter') checkAuth()">
+        <button class="btn-auth-submit" onclick="checkAuth()" style="margin-bottom:10px;">인증하고 입장하기 🚀</button>
+        <button class="btn-auth-submit" onclick="quickUnlock()" style="background:linear-gradient(135deg, #059669, #10b981); border:2px solid #34d399; color:#ffffff;">✨ 암호 자동입력 & 원클릭 즉시 입장 (0912)</button>
         <div class="auth-error" id="authErrorMsg">⚠️ 암호가 일치하지 않습니다. (암호: 0912 또는 qnet0912)</div>
     </div>
 </div>
@@ -3301,19 +3302,27 @@ function startTimer() {
 
 // ======================= [암호 인증 게이트 로직 (암호: qnet0912 또는 0912)] =======================
 function checkAuth() {
-    const input = document.getElementById('authPassword').value.trim().toLowerCase();
+    const input = document.getElementById('authPassword').value.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
     const errorMsg = document.getElementById('authErrorMsg');
 
-    if (input === '0912' || input === 'qnet0912' || input === 'qnet') {
+    if (input === '0912' || input === 'qnet0912' || input === 'qnet' || input === '912' || input.includes('0912')) {
         sessionStorage.setItem('qnet_auth_passed', 'true');
+        localStorage.setItem('qnet_auth_passed', 'true');
         unlockApp();
     } else {
         errorMsg.style.display = 'block';
-        errorMsg.textContent = '⚠️ 암호가 일치하지 않습니다. (암호: 0912 또는 qnet0912)';
+        errorMsg.textContent = '⚠️ 암호가 일치하지 않습니다. (암호: 0912 또는 [원클릭 즉시 입장] 클릭)';
         const card = document.querySelector('.auth-card');
         card.style.animation = 'shake 0.3s ease';
         setTimeout(() => card.style.animation = '', 300);
     }
+}
+
+function quickUnlock() {
+    document.getElementById('authPassword').value = '0912';
+    sessionStorage.setItem('qnet_auth_passed', 'true');
+    localStorage.setItem('qnet_auth_passed', 'true');
+    unlockApp();
 }
 
 function unlockApp() {
@@ -3324,7 +3333,7 @@ function unlockApp() {
     initDDayCountdown();
 }
 
-if (sessionStorage.getItem('qnet_auth_passed') === 'true') {
+if (sessionStorage.getItem('qnet_auth_passed') === 'true' || localStorage.getItem('qnet_auth_passed') === 'true') {
     unlockApp();
 }
 
