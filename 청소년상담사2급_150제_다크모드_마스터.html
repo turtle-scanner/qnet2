@@ -7,7 +7,7 @@
     <meta http-equiv="Expires" content="0">
     <title>2026년 청소년상담사 2급 [450제 CBT 마스터 & 실전 시험장 시스템]</title>
     <script>
-        const APP_BUILD_VER = '2026_0912_v600_quick_entry';
+        const APP_BUILD_VER = '2026_0912_v600_dday_fix';
         if (localStorage.getItem('app_build_ver') !== APP_BUILD_VER) {
             localStorage.setItem('app_build_ver', APP_BUILD_VER);
             if ('caches' in window) {
@@ -3064,8 +3064,8 @@ function resetCurrentExam() {
 
 // ======================= [D-Day 실시간 카운트다운 엔진] =======================
 function initDDayCountdown() {
-    // 2026년 청소년상담사 2급 1차 필기시험 (2026년 10월 10일 09:00:00 기준)
-    const examDate = new Date('2026-10-10T09:00:00');
+    // 2026년 9월 12일 (토) 청소년상담사 2급 1차 필기시험 (09:00 기준)
+    const examDate = new Date('2026-09-12T09:00:00');
     
     function updateDDay() {
         const now = new Date();
