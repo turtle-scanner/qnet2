@@ -7,7 +7,7 @@
     <meta http-equiv="Expires" content="0">
     <title>2026년 청소년상담사 2급 [450제 CBT 마스터 & 실전 시험장 시스템]</title>
     <script>
-        const APP_BUILD_VER = '2026_0912_v600_dday_fix';
+        const APP_BUILD_VER = '2026_0912_v600_real_dday_fixed_' + Date.now();
         if (localStorage.getItem('app_build_ver') !== APP_BUILD_VER) {
             localStorage.setItem('app_build_ver', APP_BUILD_VER);
             if ('caches' in window) {
@@ -3064,17 +3064,22 @@ function resetCurrentExam() {
 
 // ======================= [D-Day 실시간 카운트다운 엔진] =======================
 function initDDayCountdown() {
-    // 2026년 9월 12일 (토) 청소년상담사 2급 1차 필기시험 (09:00 기준)
-    const examDate = new Date('2026-09-12T09:00:00');
-    
     function updateDDay() {
         const now = new Date();
-        const diff = examDate - now;
+        const currentYear = now.getFullYear();
+        let examDate = new Date(currentYear, 8, 12, 9, 0, 0); // 매년 9월 12일 09:00 (월은 0부터 시작하므로 8=9월)
+        
+        // 만약 올해 9월 12일 시험이 이미 지났다면 내년 9월 12일로 설정
+        if (now.getTime() > examDate.getTime()) {
+            examDate = new Date(currentYear + 1, 8, 12, 9, 0, 0);
+        }
+
+        const diff = examDate.getTime() - now.getTime();
         const ddayElem = document.getElementById('ddayText');
         if (!ddayElem) return;
 
         if (diff <= 0) {
-            ddayElem.textContent = '🎉 2026년 시험 당일입니다! 수석합격을 응원합니다!';
+            ddayElem.textContent = '🎉 시험 당일입니다! 수석합격을 응원합니다!';
             return;
         }
 
