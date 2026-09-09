@@ -1199,6 +1199,461 @@
             .cbt-layout { grid-template-columns: 1fr; }
             .omr-panel { position: static; max-height: 400px; margin-top: 24px; }
         }
+    
+        /* ========================================================= */
+        /* 📱 태블릿(iPad, Galaxy Tab) 최적화 & 폰트 크기 조절 시스템 */
+        /* ========================================================= */
+        
+        :root {
+            --font-scale: 1;
+        }
+        
+        body.zoom-sm { font-size: 14px; }
+        body.zoom-md { font-size: 16px; }
+        body.zoom-lg { font-size: 18.5px; }
+        body.zoom-xl { font-size: 21px; }
+
+        /* 부드러운 반응형 컨테이너 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 20px 80px 20px;
+        }
+
+        /* 최상위 3단계 합격 커리큘럼 탭 바 */
+        .curriculum-nav {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .curriculum-btn {
+            background: #0f172a;
+            border: 2px solid #334155;
+            border-radius: 18px;
+            padding: 16px 14px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .curriculum-btn:hover {
+            border-color: #64748b;
+            transform: translateY(-2px);
+        }
+
+        .curriculum-btn.active {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .curriculum-btn.step1-active {
+            border-color: #f59e0b;
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.45);
+        }
+
+        .curriculum-btn.step2-active {
+            border-color: #3b82f6;
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.45);
+        }
+
+        .curriculum-btn.step3-active {
+            border-color: #ef4444;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.45);
+        }
+
+        .curr-step-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 3px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            width: fit-content;
+        }
+
+        .curriculum-btn:nth-child(1) .curr-step-tag { background: #78350f; color: #fef08a; border: 1px solid #f59e0b; }
+        .curriculum-btn:nth-child(2) .curr-step-tag { background: #1e3a8a; color: #bfdbfe; border: 1px solid #3b82f6; }
+        .curriculum-btn:nth-child(3) .curr-step-tag { background: #7f1d1d; color: #fecaca; border: 1px solid #ef4444; }
+
+        .curr-title {
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: #f8fafc;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .curr-sub {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+
+        /* 태블릿 폰트 크기 조절 툴바 */
+        .tablet-font-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #475569;
+            border-radius: 30px;
+            padding: 4px 12px;
+            margin-top: 12px;
+            backdrop-filter: blur(8px);
+        }
+
+        .font-bar-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #cbd5e1;
+            margin-right: 4px;
+        }
+
+        .btn-font-scale {
+            background: #1e293b;
+            border: 1px solid #475569;
+            color: #94a3b8;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+
+        .btn-font-scale:hover, .btn-font-scale.active {
+            background: #3b82f6;
+            border-color: #60a5fa;
+            color: #ffffff;
+            font-weight: 900;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+
+        /* 태블릿 터치 친화적 CBT 레이아웃 */
+        .cbt-option {
+            min-height: 56px;
+            padding: 14px 18px;
+            font-size: 1.12rem;
+            border-radius: 14px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .cbt-option:active {
+            transform: scale(0.985);
+        }
+
+        /* 태블릿 가로 (Landscape, 900px 이상): 분할 2열 레이아웃 완벽 보장 */
+        @media (min-width: 900px) {
+            .cbt-layout {
+                display: grid !important;
+                grid-template-columns: 1fr 340px !important;
+                gap: 22px !important;
+                align-items: start !important;
+            }
+            .omr-panel {
+                position: sticky !important;
+                top: 16px !important;
+                max-height: calc(100vh - 40px) !important;
+                overflow-y: auto !important;
+            }
+        }
+
+        /* 태블릿 세로 및 스마트폰 (< 900px) */
+        @media (max-width: 899px) {
+            .curriculum-nav {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .cbt-layout {
+                grid-template-columns: 1fr !important;
+            }
+            .omr-panel {
+                position: static !important;
+                max-height: none !important;
+                margin-top: 20px !important;
+            }
+        }
+
+        /* Step 3 스타일링 (인쇄오류 18제 소독 카드 & 3개년 사이클) */
+        .step3-container {
+            display: none;
+        }
+
+        .step3-banner {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(185, 28, 28, 0.25) 100%);
+            border: 2px solid #ef4444;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.3);
+        }
+
+        .step3-banner-title {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #fca5a5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .step3-banner-desc {
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .step3-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 14px 18px;
+        }
+
+        .step3-filters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn-s3-filter {
+            background: #1e293b;
+            border: 1px solid #475569;
+            color: #94a3b8;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+
+        .btn-s3-filter.active {
+            background: #ef4444;
+            border-color: #f87171;
+            color: #ffffff;
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.4);
+        }
+
+        .step3-search-input {
+            background: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 12px;
+            padding: 9px 16px;
+            color: #f8fafc;
+            font-size: 0.95rem;
+            min-width: 260px;
+            outline: none;
+        }
+
+        .step3-search-input:focus {
+            border-color: #ef4444;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+
+        .step3-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 20px;
+            margin-bottom: 36px;
+        }
+
+        .error-card {
+            background: #0f172a;
+            border: 2px solid #334155;
+            border-radius: 18px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: relative;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .error-card:hover {
+            border-color: #64748b;
+            transform: translateY(-2px);
+        }
+
+        .error-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 10px;
+        }
+
+        .error-badge-sub {
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 900;
+        }
+
+        .sub-badge-sub2 { background: #4c1d95; color: #ddd6fe; border: 1px solid #8b5cf6; }
+        .sub-badge-sub6 { background: #78350f; color: #fef08a; border: 1px solid #f59e0b; }
+        .sub-badge-sub7 { background: #064e3b; color: #a7f3d0; border: 1px solid #10b981; }
+
+        .error-year-tag {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 700;
+        }
+
+        .error-card-title {
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: #f8fafc;
+            line-height: 1.4;
+        }
+
+        .box-wrong {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1.5px solid #ef4444;
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
+
+        .box-wrong-label {
+            font-size: 0.82rem;
+            font-weight: 900;
+            color: #fca5a5;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .box-wrong-text {
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: #fee2e2;
+            text-decoration: line-through;
+            text-decoration-color: #ef4444;
+        }
+
+        .box-correct {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1.5px solid #10b981;
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
+
+        .box-correct-label {
+            font-size: 0.82rem;
+            font-weight: 900;
+            color: #6ee7b7;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .box-correct-text {
+            font-size: 1.08rem;
+            font-weight: 900;
+            color: #34d399;
+        }
+
+        .box-reason {
+            background: rgba(30, 41, 59, 0.7);
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 12px 12px 0;
+            padding: 12px 14px;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            line-height: 1.55;
+        }
+
+        .box-tip {
+            background: rgba(245, 158, 11, 0.12);
+            border: 1px dashed #f59e0b;
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: #fde68a;
+            line-height: 1.45;
+        }
+
+        /* 3개년 출제 사이클 테이블 스타일 */
+        .freq-cycle-section {
+            background: #0f172a;
+            border: 2px solid #334155;
+            border-radius: 20px;
+            padding: 24px;
+            margin-top: 30px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .freq-table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 16px;
+            border-radius: 14px;
+            border: 1px solid #334155;
+        }
+
+        .freq-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+
+        .freq-table th {
+            background: #1e293b;
+            color: #93c5fd;
+            font-size: 0.95rem;
+            font-weight: 900;
+            padding: 14px 16px;
+            border-bottom: 2px solid #3b82f6;
+            text-align: left;
+        }
+
+        .freq-table td {
+            padding: 14px 16px;
+            font-size: 0.92rem;
+            color: #e2e8f0;
+            border-bottom: 1px solid #1e293b;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+
+        .freq-table tr:hover td {
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .hit-cell {
+            background: rgba(245, 158, 11, 0.08);
+            font-weight: 800;
+            color: #fef08a;
+            border-left: 2px solid #f59e0b;
+        }
+
     </style>
 </head>
 <body>
@@ -1218,47 +1673,85 @@
     <header>
         <h1>🌙 2026년 청소년상담사 2급 [600제 CBT 마스터 & 35분 실전 시험장 시스템]</h1>
         <p>1. [제0회·1회·2회·3회 600제 풀패키지] | 2. [1교시(35분)·2교시(35분) 실전] | 3. [1초 킬러 족집게] | 4. [오답노트]</p>
-        <div id="ddayBanner" style="margin-top:14px; display:inline-flex; align-items:center; gap:10px; background:rgba(239, 68, 68, 0.25); border:2px solid #ef4444; border-radius:30px; padding:8px 24px; color:#fca5a5; font-size:1.15rem; font-weight:900; box-shadow:0 0 15px rgba(239,68,68,0.35);">
-            <span style="font-size:1.4rem;">⏳</span>
-            <span>2026년 제25회 시험 D-Day: <strong id="ddayText" style="color:#ffffff; font-size:1.25rem;">D-Day 계산 중...</strong></span>
+        
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:12px; margin-top:14px;">
+            <div id="ddayBanner" style="display:inline-flex; align-items:center; gap:10px; background:rgba(239, 68, 68, 0.25); border:2px solid #ef4444; border-radius:30px; padding:6px 20px; color:#fca5a5; font-size:1.05rem; font-weight:900; box-shadow:0 0 15px rgba(239,68,68,0.35);">
+                <span style="font-size:1.25rem;">⏳</span>
+                <span>2026년 제25회 시험 D-Day: <strong id="ddayText" style="color:#ffffff; font-size:1.15rem;">D-Day 계산 중...</strong></span>
+            </div>
+            <div class="tablet-font-bar">
+                <span class="font-bar-label">📱 태블릿 글자 크기:</span>
+                <button class="btn-font-scale" onclick="setFontZoom('sm')">A- (90%)</button>
+                <button class="btn-font-scale active" id="btnZoomMd" onclick="setFontZoom('md')">A 보통</button>
+                <button class="btn-font-scale" id="btnZoomLg" onclick="setFontZoom('lg')">A+ 크게</button>
+                <button class="btn-font-scale" id="btnZoomXl" onclick="setFontZoom('xl')">A++ 아주크게</button>
+            </div>
         </div>
     </header>
 
-    <!-- 0회 / 1회 / 2회 / 3회 모의고사 선택 바 -->
-    <div class="exam-selector" style="flex-wrap: wrap; margin-bottom: 12px;">
-        <button class="btn-exam active" id="btnExam0" onclick="switchExam(0)" style="border-color:#fbbf24; background:linear-gradient(135deg, #b45309 0%, #78350f 100%); color:#fef08a; font-weight:900; box-shadow:0 0 15px rgba(245,158,11,0.4);">👑 제0회 2026 수석합격 1초 킬러 (150제)</button>
-        <button class="btn-exam" id="btnExam1" onclick="switchExam(1)">🎯 제1회 실전 적중 (150제)</button>
-        <button class="btn-exam" id="btnExam2" onclick="switchExam(2)">🔥 제2회 고난도 변형 (150제)</button>
-        <button class="btn-exam" id="btnExam3" onclick="switchExam(3)" style="border-color:#f59e0b; background:#78350f;">⚡ 제3회 2026년 제25회 적중 기출 (150제)</button>
+    <!-- ========================================================= -->
+    <!-- 🏆 [최상단] 3단계 합격 올인원 커리큘럼 네비게이션 바 -->
+    <!-- ========================================================= -->
+    <nav class="curriculum-nav">
+        <button class="curriculum-btn step1-active active" id="btnStepNav1" onclick="switchMainStep(1)">
+            <span class="curr-step-tag">STEP 1</span>
+            <span class="curr-title">⚡ 1초 킬러 150제 마스터</span>
+            <span class="curr-sub">과목별 25제 핵심 요약표 & 1초 플래시카드</span>
+        </button>
+        <button class="curriculum-btn" id="btnStepNav2" onclick="switchMainStep(2)">
+            <span class="curr-step-tag">STEP 2</span>
+            <span class="curr-title">🎯 35분 실전 CBT 모의고사</span>
+            <span class="curr-sub">제0회~3회 600제 타임어택 & OMR 즉시채점</span>
+        </button>
+        <button class="curriculum-btn" id="btnStepNav3" onclick="switchMainStep(3)">
+            <span class="curr-step-tag">STEP 3</span>
+            <span class="curr-title">🛡️ 기출3개년 족집게 & 함정소독</span>
+            <span class="curr-sub">시험지 오류 18제 전수교정 & 빈출 사이클</span>
+        </button>
+    </nav>
+
+
+    
+    <!-- STEP 1 전용 서브 컨트롤 바 -->
+    <div id="step1-controls" style="margin-bottom: 20px;">
+        <div class="mode-switcher" style="flex-wrap:wrap; margin-bottom: 12px;">
+            <button class="btn-mode active" id="btnModeTable" onclick="setAppMode('table')">
+                📖 150제 요약 & 변형세트 표 모드
+            </button>
+            <button class="btn-mode" id="btnModeFlashcard" onclick="setAppMode('flashcard')" style="border-color:#8b5cf6; color:#ddd6fe;">
+                🗂️ 1초 킬러 암기 플래시카드 (3초 자동스캔)
+            </button>
+            <button class="btn-action" id="toggleAnsBtn" onclick="toggleAnswerVisibility()" style="margin-left:auto;">
+                🙈 자가 테스트 (정답 가리기)
+            </button>
+            <button class="btn-mode" onclick="window.open('cheatsheet.html', '_blank')" style="border-color:#10b981; color:#a7f3d0; background:#064e3b; font-weight:900;">
+                🖨️ 시험장 직전 치트시트 PDF / A4 인쇄
+            </button>
+        </div>
     </div>
 
-    <!-- 1교시(4과목/35분) vs 2교시(2과목/35분) 교시 선택 바 -->
-    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px;">
-        <button class="btn-action active" id="btnPeriodAll" onclick="setPeriodFilter('all')" style="background:#1e3a8a; border-color:#3b82f6; font-size:1.1rem; padding:10px 20px;">🎯 전 과목 풀세트 (1~6과목 / 150제 / 70분 완주)</button>
-        <button class="btn-action" id="btnPeriod1" onclick="setPeriodFilter('period1')" style="background:#064e3b; border-color:#10b981; font-size:1.1rem; padding:10px 20px;">🏛️ [1교시] 필수 4과목 (1~4과목 / 100제 / 35분 타임어택)</button>
-        <button class="btn-action" id="btnPeriod2" onclick="setPeriodFilter('period2')" style="background:#78350f; border-color:#f59e0b; font-size:1.1rem; padding:10px 20px;">🏡 [2교시] 선택 2과목 (5~6과목 / 50제 / 35분 타임어택)</button>
-    </div>
+    <!-- STEP 2 전용 서브 컨트롤 바 (모의고사 회차 및 교시 선택) -->
+    <div id="step2-controls" style="display:none; margin-bottom: 20px;">
+        <!-- 0회 / 1회 / 2회 / 3회 모의고사 선택 바 -->
+        <div class="exam-selector" style="flex-wrap: wrap; margin-bottom: 12px;">
+            <button class="btn-exam active" id="btnExam0" onclick="switchExam(0)" style="border-color:#fbbf24; background:linear-gradient(135deg, #b45309 0%, #78350f 100%); color:#fef08a; font-weight:900; box-shadow:0 0 15px rgba(245,158,11,0.4);">👑 제0회 2026 수석합격 1초 킬러 (150제)</button>
+            <button class="btn-exam" id="btnExam1" onclick="switchExam(1)">🎯 제1회 실전 적중 (150제)</button>
+            <button class="btn-exam" id="btnExam2" onclick="switchExam(2)">🔥 제2회 고난도 변형 (150제)</button>
+            <button class="btn-exam" id="btnExam3" onclick="switchExam(3)" style="border-color:#f59e0b; background:#78350f;">⚡ 제3회 2026년 제25회 적중 기출 (150제)</button>
+        </div>
 
-    <!-- 모드 스위처 -->
-    <div class="mode-switcher" style="flex-wrap:wrap;">
-        <button class="btn-mode active" id="btnModeTable" onclick="setAppMode('table')">
-            📖 150제 요약 & 변형세트 표 모드
-        </button>
-        <button class="btn-mode" id="btnModeCBT" onclick="setAppMode('cbt')">
-            📝 실전 5지선다 CBT 모의고사
-        </button>
-        <button class="btn-mode" id="btnModeFlashcard" onclick="setAppMode('flashcard')" style="border-color:#8b5cf6; color:#ddd6fe;">
-            🗂️ 1초 킬러 암기 플래시카드
-        </button>
-        <button class="btn-mode" id="btnModeTestType" onclick="toggleTestMode()" style="border: 2px solid #ec4899; color:#fbcfe8;">
-            💡 즉시채점 학습모드
-        </button>
-        <button class="btn-mode" onclick="window.open('cheatsheet.html', '_blank')" style="border-color:#10b981; color:#a7f3d0; background:#064e3b; font-weight:900;">
-            🖨️ 시험장 직전 150제 치트시트 PDF / A4 인쇄
-        </button>
+        <!-- 1교시(4과목/35분) vs 2교시(2과목/35분) 교시 선택 바 & 학습모드 토글 -->
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px;">
+            <button class="btn-action active" id="btnPeriodAll" onclick="setPeriodFilter('all')" style="background:#1e3a8a; border-color:#3b82f6; font-size:1.05rem; padding:9px 18px;">🎯 전 과목 풀세트 (1~6과목 / 150제 / 70분)</button>
+            <button class="btn-action" id="btnPeriod1" onclick="setPeriodFilter('period1')" style="background:#064e3b; border-color:#10b981; font-size:1.05rem; padding:9px 18px;">🏛️ [1교시] 필수 4과목 (100제 / 35분 타임어택)</button>
+            <button class="btn-action" id="btnPeriod2" onclick="setPeriodFilter('period2')" style="background:#78350f; border-color:#f59e0b; font-size:1.05rem; padding:9px 18px;">🏡 [2교시] 선택 2과목 (50제 / 35분 타임어택)</button>
+            <button class="btn-mode" id="btnModeTestType" onclick="toggleTestMode()" style="border: 2px solid #ec4899; color:#fbcfe8; font-weight:900;">
+                💡 즉시채점 학습모드
+            </button>
+        </div>
     </div>
-
-    <!-- ======================= [모드 C: 1초 킬러 플래시카드 화면] ======================= -->
+<div id="step1-container">
+<!-- ======================= [모드 C: 1초 킬러 플래시카드 화면] ======================= -->
     <div id="flashcard-view">
         <div class="flashcard-scene" onclick="flipFlashcard()">
             <div class="flashcard" id="flashcardElement">
@@ -1345,7 +1838,10 @@
         </div>
     </div>
 
-    <!-- ======================= [모드 B: 실전 CBT 모의고사 화면] ======================= -->
+    </div><!-- /step1-container -->
+
+<div id="step2-container" style="display:none;">
+<!-- ======================= [모드 B: 실전 CBT 모의고사 화면] ======================= -->
     <div id="cbt-view">
         <div class="cbt-layout">
             <div class="cbt-main-card">
@@ -1404,6 +1900,466 @@
         </div>
     </div>
 </div>
+
+</div><!-- /step2-container -->
+
+
+    <!-- ========================================================= -->
+    <!-- 🛡️ STEP 3: 기출 3개년 족집게 & 시험지 인쇄 오류 18제 소독관 -->
+    <!-- ========================================================= -->
+    <div id="step3-container" class="step3-container">
+        <div class="step3-banner">
+            <div class="step3-banner-title">
+                <span>🚨</span>
+                <span>[초긴급 전수 점검] 2023년 제22회 기출 시험지 인쇄 오류 18문항 완벽 소독!</span>
+            </div>
+            <div class="step3-banner-desc">
+                실제 시험지 인쇄 오탈자 및 번호 오류로 수험생들의 혼란을 야기했던 <strong>18문항</strong>을 한국산업인력공단(Q-Net) 공식 확정 정답과 1:1 대조하여 완벽하게 소독하였습니다.<br>
+                아래 18문항은 출제진의 함정 원리와 정답 판별 패턴을 꿰뚫는 가장 핵심적인 족집게 교재입니다.
+            </div>
+            <div style="margin-top:16px;">
+                <button onclick="startStep3Quiz()" style="background:linear-gradient(135deg, #dc2626, #b91c1c); border:2px solid #fca5a5; color:#ffffff; padding:10px 22px; border-radius:30px; font-size:1.05rem; font-weight:900; cursor:pointer; box-shadow:0 0 15px rgba(239,68,68,0.5); display:inline-flex; align-items:center; gap:8px; touch-action:manipulation;">
+                    <span>🎯</span>
+                    <span>인쇄 오류 함정에 속지 않는지 [18제 자가진단 CBT 모의고사] 즉시 풀기 ➔</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="step3-controls">
+            <div class="step3-filters">
+                <button class="btn-s3-filter active" onclick="filterStep3Cards('all')">전체 (18문항 100% 소독)</button>
+                <button class="btn-s3-filter" onclick="filterStep3Cards('sub2')">📊 연구방법론 (3제)</button>
+                <button class="btn-s3-filter" onclick="filterStep3Cards('sub7')">🤝 집단상담 (8제)</button>
+                <button class="btn-s3-filter" onclick="filterStep3Cards('sub6')">🏡 가족상담 (7제)</button>
+                <button class="btn-s3-filter" onclick="startStep3Quiz()" style="background:#b91c1c; border-color:#f87171; color:#ffffff; font-weight:900;">🎯 18제 자가진단 CBT</button>
+            </div>
+            <div>
+                <input type="text" class="step3-search-input" id="step3SearchInput" placeholder="🔍 키워드 검색 (예: 명료화, 하위집단, 외재화)" oninput="searchStep3Cards()">
+            </div>
+        </div>
+
+        <!-- 18개 함정 소독 카드 그리드 -->
+        <div class="step3-cards-grid" id="step3CardsGrid">
+            
+        <div class="error-card" data-sub="sub2" data-search="연구방법론 2023년 제22회 1교시 24번 상담기술 (핵노잼, 무시당한 것 같다 확인) ② 명료화 (Clarification) 청소년 은어('핵노잼')의 모호한 의미를 묻고, '무시당한 것 같다'는 막연한 느낌의 구체적 상황을 질문하는 것은 모호함을 걷어내는 전형적인 '명료화' 기법입니다. (반영은 감정/정서를 비추는 기술)">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub2">연구방법론</span>
+                <span class="error-year-tag">2023년 제22회 1교시 24번</span>
+            </div>
+            <div class="error-card-title">상담기술 (핵노잼, 무시당한 것 같다 확인)</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">① 반영 (Reflection)</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">② 명료화 (Clarification)</div>
+            </div>
+            <div class="box-reason">청소년 은어('핵노잼')의 모호한 의미를 묻고, '무시당한 것 같다'는 막연한 느낌의 구체적 상황을 질문하는 것은 모호함을 걷어내는 전형적인 '명료화' 기법입니다. (반영은 감정/정서를 비추는 기술)</div>
+            <div class="box-tip">💡 [1초 판독] 내담자 말에 '모호함/추상적 표현'이 있을 때 뜻을 구체화하면 무조건 '명료화'!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub2" data-search="연구방법론 2023년 제22회 1교시 39번 가설검정 (유의수준과 유의확률의 관계) ④ ㄱ, ㄷ, ㄹ (ㄴ 제외) ㄴ 지문 '유의확률(p값)에 대한 해석은 유의수준과 무관하다'는 틀렸습니다. p값은 사전에 설정한 유의수준(α=0.05 등)과 직접 비교(p < α)하여 영가설 기각 여부를 결정하므로 절대 무관하지 않습니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub2">연구방법론</span>
+                <span class="error-year-tag">2023년 제22회 1교시 39번</span>
+            </div>
+            <div class="error-card-title">가설검정 (유의수준과 유의확률의 관계)</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">⑤ ㄱ, ㄴ, ㄷ, ㄹ (전부 맞음)</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">④ ㄱ, ㄷ, ㄹ (ㄴ 제외)</div>
+            </div>
+            <div class="box-reason">ㄴ 지문 '유의확률(p값)에 대한 해석은 유의수준과 무관하다'는 틀렸습니다. p값은 사전에 설정한 유의수준(α=0.05 등)과 직접 비교(p < α)하여 영가설 기각 여부를 결정하므로 절대 무관하지 않습니다.</div>
+            <div class="box-tip">💡 [1초 판독] p값(유의확률)과 α(유의수준)는 뗄 수 없는 바늘과 실! '무관하다'는 1초 컷 오답!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub2" data-search="연구방법론 2023년 제22회 1교시 42번 사전-사후 측정 통제집단 설계 ③ ㄱ, ㄴ, ㄹ (ㄷ 제외) ㄷ 지문 '사후 측정은 통제집단에만 실시한다'는 명백한 오답입니다. 실험 처치 효과를 비교 검증하려면 실험집단과 통제집단 '둘 다' 사전 및 사후 측정을 실시해야 합니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub2">연구방법론</span>
+                <span class="error-year-tag">2023년 제22회 1교시 42번</span>
+            </div>
+            <div class="error-card-title">사전-사후 측정 통제집단 설계</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">⑤ ㄱ, ㄴ, ㄷ, ㄹ (전부 맞음)</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">③ ㄱ, ㄴ, ㄹ (ㄷ 제외)</div>
+            </div>
+            <div class="box-reason">ㄷ 지문 '사후 측정은 통제집단에만 실시한다'는 명백한 오답입니다. 실험 처치 효과를 비교 검증하려면 실험집단과 통제집단 '둘 다' 사전 및 사후 측정을 실시해야 합니다.</div>
+            <div class="box-tip">💡 [1초 판독] 사전-사후 통제집단 설계에서 사전/사후 측정은 두 집단 '모두' 실시하는 것이 철칙!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub7" data-search="집단상담 2023년 제22회 2교시 31번 신뢰가 높은 집단의 특징 ④ 집단원 일부가 하위집단을 형성하여 친해진다 ②번 자기개방은 집단 내 신뢰가 높을 때 나타나는 바람직한 행동입니다. 반면 ④번 하위집단(Subgroup) 형성은 집단 전체 응집력을 파괴하고 소외감을 유발하는 대표적인 '저항 및 역기능'입니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub7">집단상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 31번</span>
+            </div>
+            <div class="error-card-title">신뢰가 높은 집단의 특징</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">② 자신의 개인적인 측면을 나눈다</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">④ 집단원 일부가 하위집단을 형성하여 친해진다</div>
+            </div>
+            <div class="box-reason">②번 자기개방은 집단 내 신뢰가 높을 때 나타나는 바람직한 행동입니다. 반면 ④번 하위집단(Subgroup) 형성은 집단 전체 응집력을 파괴하고 소외감을 유발하는 대표적인 '저항 및 역기능'입니다.</div>
+            <div class="box-tip">💡 [1초 판독] '하위집단 형성'은 집단상담의 위험신호(역기능)! 신뢰 높은 집단의 특징이 아님!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub7" data-search="집단상담 2023년 제22회 2교시 39번 게슈탈트 이론 적용 개입 ③ ㄱ, ㄴ, ㄹ (ㄷ 제외) ㄷ 지문 '속상한 감정을 5점 만점에 몇 점인지 매기기'는 해결중심 단기상담의 '척도질문'입니다. ㄱ의 '우월한 나 vs 열등한 나' 대화는 게슈탈트의 핵심 기법인 승자(Top-dog)/패자(Under-dog) 양극성 대화입니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub7">집단상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 39번</span>
+            </div>
+            <div class="error-card-title">게슈탈트 이론 적용 개입</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">④ ㄴ, ㄷ, ㄹ</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">③ ㄱ, ㄴ, ㄹ (ㄷ 제외)</div>
+            </div>
+            <div class="box-reason">ㄷ 지문 '속상한 감정을 5점 만점에 몇 점인지 매기기'는 해결중심 단기상담의 '척도질문'입니다. ㄱ의 '우월한 나 vs 열등한 나' 대화는 게슈탈트의 핵심 기법인 승자(Top-dog)/패자(Under-dog) 양극성 대화입니다.</div>
+            <div class="box-tip">💡 [1초 판독] '1~10점 척도 매기기' = 해결중심 척도질문! 게슈탈트 기법이 아님!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub7" data-search="집단상담 2023년 제22회 2교시 40번 코리(Corey)의 집단상담자 인간적 자질 ④ 적극적 경청 용기, 활력, 자기돌봄, 창의성은 상담자의 성격적·인격적 특성인 '인간적 자질'입니다. 반면 '적극적 경청'은 훈련과 학습을 통해 습득하는 상담자의 '전문적 기술(Skill)'에 해당합니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub7">집단상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 40번</span>
+            </div>
+            <div class="error-card-title">코리(Corey)의 집단상담자 인간적 자질</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">시험지 마킹 누락 ⚠️</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">④ 적극적 경청</div>
+            </div>
+            <div class="box-reason">용기, 활력, 자기돌봄, 창의성은 상담자의 성격적·인격적 특성인 '인간적 자질'입니다. 반면 '적극적 경청'은 훈련과 학습을 통해 습득하는 상담자의 '전문적 기술(Skill)'에 해당합니다.</div>
+            <div class="box-tip">💡 [1초 판독] '경청, 반영, 명료화'는 습득 가능한 [기술]! 인품이나 성품은 [인간적 자질]!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub7" data-search="집단상담 2023년 제22회 2교시 41번 소극적인 집단원(영희) 개입 ③ ㄱ, ㄴ, ㄷ (ㄹ 제외) ㄹ 지문 '가만히 있는 것은 좋지 않아요. 본인 이야기 해야 해요'는 침묵하는 소극적 집단원을 일방적으로 다그쳐 불안과 저항, 수치심을 극대화하는 절대 금기 반응입니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub7">집단상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 41번</span>
+            </div>
+            <div class="error-card-title">소극적인 집단원(영희) 개입</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">④ ㄴ, ㄷ, ㄹ</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">③ ㄱ, ㄴ, ㄷ (ㄹ 제외)</div>
+            </div>
+            <div class="box-reason">ㄹ 지문 '가만히 있는 것은 좋지 않아요. 본인 이야기 해야 해요'는 침묵하는 소극적 집단원을 일방적으로 다그쳐 불안과 저항, 수치심을 극대화하는 절대 금기 반응입니다.</div>
+            <div class="box-tip">💡 [1초 판독] 소극적/침묵 집단원에게 훈계하거나 직접적인 발언을 강요하면 무조건 오답!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub7" data-search="집단상담 2023년 제22회 2교시 42번 청소년 집단상담의 이점 ① 집단 환경 속에서 의존성을 높여나간다 집단상담의 목적은 자율성과 독립적 문제해결 능력을 배양하는 것입니다. '집단 환경 속에서 의존성을 높여나간다'는 상담의 근본 목표와 정반대되는 명백한 오답입니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub7">집단상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 42번</span>
+            </div>
+            <div class="error-card-title">청소년 집단상담의 이점</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">⑤ 또래 상호작용으로 부정적 감정 다루기</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">① 집단 환경 속에서 의존성을 높여나간다</div>
+            </div>
+            <div class="box-reason">집단상담의 목적은 자율성과 독립적 문제해결 능력을 배양하는 것입니다. '집단 환경 속에서 의존성을 높여나간다'는 상담의 근본 목표와 정반대되는 명백한 오답입니다.</div>
+            <div class="box-tip">💡 [1초 판독] 상담의 목표는 '자립/자율성 신장'! '의존성 증대'는 100% 함정 오답!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub7" data-search="집단상담 2023년 제22회 2교시 43번 상담 기술 (우리 집단 누구에게서 그런 느낌이 들었나?) ④ 초점 맞추기 (Focusing) 집단 밖의 이야기(친구와 싸움)로 분산되려는 집단원의 주의를 '지금-여기, 우리 집단 내부의 특정 구성원'으로 좁혀 모아주는 기술은 '초점 맞추기'입니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub7">집단상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 43번</span>
+            </div>
+            <div class="error-card-title">상담 기술 (우리 집단 누구에게서 그런 느낌이 들었나?)</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">① 명료화하기</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">④ 초점 맞추기 (Focusing)</div>
+            </div>
+            <div class="box-reason">집단 밖의 이야기(친구와 싸움)로 분산되려는 집단원의 주의를 '지금-여기, 우리 집단 내부의 특정 구성원'으로 좁혀 모아주는 기술은 '초점 맞추기'입니다.</div>
+            <div class="box-tip">💡 [1초 판독] 모호함을 걷어내면 '명료화', 흩어진 주제를 지금-여기로 모아 집중시키면 '초점맞추기'!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub7" data-search="집단상담 2023년 제22회 2교시 45번 공동상담자(Co-leader) 운영 ③ ㄱ, ㄴ, ㄷ (ㄹ 제외) ㄹ 지문 '공동리더 간 협의와 상호피드백은 필수적이지 않다'는 오답입니다. 회기 전 전략 수립과 회기 후 디브리핑/상호피드백은 공동상담의 성패를 가르는 '절대 필수 과정'입니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub7">집단상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 45번</span>
+            </div>
+            <div class="error-card-title">공동상담자(Co-leader) 운영</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">⑤ ㄱ, ㄴ, ㄷ, ㄹ (전부 맞음)</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">③ ㄱ, ㄴ, ㄷ (ㄹ 제외)</div>
+            </div>
+            <div class="box-reason">ㄹ 지문 '공동리더 간 협의와 상호피드백은 필수적이지 않다'는 오답입니다. 회기 전 전략 수립과 회기 후 디브리핑/상호피드백은 공동상담의 성패를 가르는 '절대 필수 과정'입니다.</div>
+            <div class="box-tip">💡 [1초 판독] 공동리더십에서 리더 간 협의와 상호 피드백은 '필수 중의 필수'!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub7" data-search="집단상담 2023년 제22회 2교시 50번 청소년 집단 vs 성인 집단 특성 ③ ㄷ, ㄹ ㄱ(X) 청소년은 미성년자이므로 부모 동의 및 비밀보장 한계가 성인과 다름 / ㄴ(X) 성인 집단도 법원 수강명령 등 비자발적 참여자가 다수 존재하므로 성인만 자발적이라는 설명은 틀림.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub7">집단상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 50번</span>
+            </div>
+            <div class="error-card-title">청소년 집단 vs 성인 집단 특성</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">⑤ ㄴ, ㄷ, ㄹ</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">③ ㄷ, ㄹ</div>
+            </div>
+            <div class="box-reason">ㄱ(X) 청소년은 미성년자이므로 부모 동의 및 비밀보장 한계가 성인과 다름 / ㄴ(X) 성인 집단도 법원 수강명령 등 비자발적 참여자가 다수 존재하므로 성인만 자발적이라는 설명은 틀림.</div>
+            <div class="box-tip">💡 [1초 판독] '성인 집단은 전원 자발적이다'는 거짓! 법원 판결 등 비자발 집단 많음!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub6" data-search="가족상담 2023년 제22회 2교시 55번 해결중심 단기 가족상담 내담자 유형 ⑤ 고객형 내담자는 ~ 변화 의향도 없다 문제를 인식하고 불평하지만 자신이 변화할 의향은 없는 유형은 '불평형(Complainant)'입니다. 고객형(Customer)은 문제 해결의 주체로서 높은 실천 의지를 가진 내담자입니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub6">가족상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 55번</span>
+            </div>
+            <div class="error-card-title">해결중심 단기 가족상담 내담자 유형</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">④ 피드백 3요소 (칭찬, 연결문, 과제)</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">⑤ 고객형 내담자는 ~ 변화 의향도 없다</div>
+            </div>
+            <div class="box-reason">문제를 인식하고 불평하지만 자신이 변화할 의향은 없는 유형은 '불평형(Complainant)'입니다. 고객형(Customer)은 문제 해결의 주체로서 높은 실천 의지를 가진 내담자입니다.</div>
+            <div class="box-tip">💡 [1초 판독] 방문형(문제인식X, 타의) / 불평형(문제인식O, 남탓/변화의지X) / 고객형(문제인식O, 변화의지O)!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub6" data-search="가족상담 2023년 제22회 2교시 56번 개인상담 대비 가족상담의 특징 ④ 개인을 둘러싸고 있는 관계 속에서 일어나는 문제에 더 많은 관심 가족상담은 직선적 인과론과 기계론적 세계관을 거부하고, 순환적 인과론과 체계론적·유기체론적 세계관에 기초합니다. 개인 내부보다 상호작용 체계에 주목합니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub6">가족상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 56번</span>
+            </div>
+            <div class="error-card-title">개인상담 대비 가족상담의 특징</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">③ 기계론적 세계관에 기초한다</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">④ 개인을 둘러싸고 있는 관계 속에서 일어나는 문제에 더 많은 관심</div>
+            </div>
+            <div class="box-reason">가족상담은 직선적 인과론과 기계론적 세계관을 거부하고, 순환적 인과론과 체계론적·유기체론적 세계관에 기초합니다. 개인 내부보다 상호작용 체계에 주목합니다.</div>
+            <div class="box-tip">💡 [1초 판독] 가족상담의 핵심 철학은 [순환적 인과론]과 [체계론]! 기계론은 정반대!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub6" data-search="가족상담 2023년 제22회 2교시 57번 가족상담 개념 (동귀결성 & 거짓친밀성) ① ㄱ, ㄷ ㄹ 지문 '다양한 출발점에서 동일한 결과에 도달하는 것'은 '동귀결성(Equifinality)'입니다. ㄴ 지문 '속으로는 분노하면서 겉으로 화목한 척'은 '거짓친밀성(Pseudomutuality)'입니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub6">가족상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 57번</span>
+            </div>
+            <div class="error-card-title">가족상담 개념 (동귀결성 & 거짓친밀성)</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">④ ㄱ, ㄷ, ㄹ</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">① ㄱ, ㄷ</div>
+            </div>
+            <div class="box-reason">ㄹ 지문 '다양한 출발점에서 동일한 결과에 도달하는 것'은 '동귀결성(Equifinality)'입니다. ㄴ 지문 '속으로는 분노하면서 겉으로 화목한 척'은 '거짓친밀성(Pseudomutuality)'입니다.</div>
+            <div class="box-tip">💡 [1초 판독] 다양한 출발 ➔ 같은 결과 = [동귀결성] / 같은 출발 ➔ 다른 결과 = [다귀결성]!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub6" data-search="가족상담 2023년 제22회 2교시 60번 해결중심 질문기법 (어떻게 지금까지 견뎠는가?) ③ 관계성질문 (오류 명명) '그 절망적인 상황 속에서 어떻게 지금까지 더 나빠지지 않고 버틸 수 있었습니까?'는 내담자의 숨겨진 잠재력과 대처능력을 발견해주는 '대처질문(Coping Question)'입니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub6">가족상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 60번</span>
+            </div>
+            <div class="error-card-title">해결중심 질문기법 (어떻게 지금까지 견뎠는가?)</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">④ 예외질문</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">③ 관계성질문 (오류 명명)</div>
+            </div>
+            <div class="box-reason">'그 절망적인 상황 속에서 어떻게 지금까지 더 나빠지지 않고 버틸 수 있었습니까?'는 내담자의 숨겨진 잠재력과 대처능력을 발견해주는 '대처질문(Coping Question)'입니다.</div>
+            <div class="box-tip">💡 [1초 판독] '어떻게 견뎠나요? 더 안 나빠진 비결은?' ➔ 무조건 [대처질문]!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub6" data-search="가족상담 2023년 제22회 2교시 63번 가족상담 모델과 개입 (이야기치료 외재화) ② 이야기치료 - 문제를 내면화할 수 있도록 한다 이야기치료(White & Epston)의 핵심 철학은 '사람이 문제가 아니라, 문제 자체가 문제이다'라며 사람과 문제를 분리하는 '문제의 외재화(외현화)'입니다. 문제를 '내면화'하도록 돕는다는 것은 정반대 오답입니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub6">가족상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 63번</span>
+            </div>
+            <div class="error-card-title">가족상담 모델과 개입 (이야기치료 외재화)</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">⑤ 전략적 가족상담 - 순환질문</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">② 이야기치료 - 문제를 내면화할 수 있도록 한다</div>
+            </div>
+            <div class="box-reason">이야기치료(White & Epston)의 핵심 철학은 '사람이 문제가 아니라, 문제 자체가 문제이다'라며 사람과 문제를 분리하는 '문제의 외재화(외현화)'입니다. 문제를 '내면화'하도록 돕는다는 것은 정반대 오답입니다.</div>
+            <div class="box-tip">💡 [1초 판독] 이야기치료 = [문제의 외재화(외현화)]! '내면화' 지문은 1초 만에 킬!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub6" data-search="가족상담 2023년 제22회 2교시 70번 가족생활주기 노년기 특성 ⑤ 노년기는 가장 안정된 가족경계를 이룬다 가족생활주기에서 노년기는 직장 은퇴, 만성 질환, 배우자 상실, 자녀 부양 의존 등으로 인해 상실과 스트레스가 집중되는 가장 취약한 재적응기입니다. '가장 안정된 가족경계'라는 설명은 틀렸습니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub6">가족상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 70번</span>
+            </div>
+            <div class="error-card-title">가족생활주기 노년기 특성</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">② 에릭슨 자녀 분리</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">⑤ 노년기는 가장 안정된 가족경계를 이룬다</div>
+            </div>
+            <div class="box-reason">가족생활주기에서 노년기는 직장 은퇴, 만성 질환, 배우자 상실, 자녀 부양 의존 등으로 인해 상실과 스트레스가 집중되는 가장 취약한 재적응기입니다. '가장 안정된 가족경계'라는 설명은 틀렸습니다.</div>
+            <div class="box-tip">💡 [1초 판독] 노년기는 은퇴와 사별로 인한 [상실과 위기 극대화] 단계!</div>
+        </div>
+    
+        <div class="error-card" data-sub="sub6" data-search="가족상담 2023년 제22회 2교시 74번 가계도 기호 판독 (IP와 부의 점선) ① IP는 부와 정서적으로 친밀하다 가계도에서 IP와 부 사이는 '점선( - - - )'으로 표기되어 있으므로 정서적으로 '소원하거나 먼 관계'를 뜻합니다. '정서적으로 친밀하다(두 줄 실선 ══)'는 설명은 오답입니다.">
+            <div class="error-card-header">
+                <span class="error-badge-sub sub-badge-sub6">가족상담</span>
+                <span class="error-year-tag">2023년 제22회 2교시 74번</span>
+            </div>
+            <div class="error-card-title">가계도 기호 판독 (IP와 부의 점선)</div>
+            <div class="box-wrong">
+                <div class="box-wrong-label">⚠️ 시험지 인쇄 오류 (함정 오답)</div>
+                <div class="box-wrong-text">③ IP의 부와 친조모는 밀착된 관계이다</div>
+            </div>
+            <div class="box-correct">
+                <div class="box-correct-label">✅ Q-Net 공식 확정 정답 (합격 판독)</div>
+                <div class="box-correct-text">① IP는 부와 정서적으로 친밀하다</div>
+            </div>
+            <div class="box-reason">가계도에서 IP와 부 사이는 '점선( - - - )'으로 표기되어 있으므로 정서적으로 '소원하거나 먼 관계'를 뜻합니다. '정서적으로 친밀하다(두 줄 실선 ══)'는 설명은 오답입니다.</div>
+            <div class="box-tip">💡 [1초 판독] 가계도 기호: 한 줄 실선(보통), 두 줄 실선(친밀), 점선(소원), 지그재그(갈등), 3줄(밀착)!</div>
+        </div>
+    
+        </div>
+
+        <!-- 3개년 출제 사이클 분석 & 2026 적중 비교표 -->
+        <div class="freq-cycle-section">
+            <h2 style="color:#38bdf8; font-size:1.35rem; font-weight:900; display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                <span>📊</span> 3개년(2023~2025) 빈출 사이클 분석 & 2026년 제25회 적중 족집게 비교표
+            </h2>
+            <p style="color:#94a3b8; font-size:0.95rem; margin-bottom:14px;">
+                최근 3개년간 매년 반복 출제된 핵심 코어 개념을 분석하여, 2026년 시험장에 반드시 출제될 과목별 1순위 타겟을 제시합니다.
+            </p>
+            <div class="freq-table-wrapper">
+                <table class="freq-table">
+                    <thead>
+                        <tr>
+                            <th style="width:220px;">과목</th>
+                            <th style="width:240px;">2023년 제22회</th>
+                            <th style="width:240px;">2024년 제23회</th>
+                            <th style="width:240px;">2025년 제24회</th>
+                            <th style="width:300px;">🏆 2026년 제25회 적중 족집게</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+        <tr>
+            <td style="font-weight:900; color:#38bdf8; white-space:nowrap;">
+                제1과목 청소년 상담 이론과 실제<br>
+                <span style="font-size:0.75rem; background:#1e293b; color:#94a3b8; padding:2px 6px; border-radius:4px;">필수 1교시</span>
+            </td>
+            <td>정신분석 방어기제(투사, 전치), 게슈탈트 접촉경계혼란, 아들러 열등감과 보상</td>
+            <td>현실치료 WDEP 체계, REBT 비합리적 신념 4대 범주, 실존주의 불안</td>
+            <td>해결중심 질문법, 수용전념치료(ACT), 동기강화상담(MI) 4단계</td>
+            <td class="hit-cell">🎯 방어기제 5형제(투사/전치/반동/승화/합리화) 매칭 + 현실치료 5대 기본욕구 + 아들러 4대 생활양식</td>
+        </tr>
+    
+        <tr>
+            <td style="font-weight:900; color:#38bdf8; white-space:nowrap;">
+                제2과목 상담연구방법론의 기초<br>
+                <span style="font-size:0.75rem; background:#1e293b; color:#94a3b8; padding:2px 6px; border-radius:4px;">필수 1교시</span>
+            </td>
+            <td>사전-사후 통제집단 설계 내적타당도 저해요인, 가설검정 p값과 α, 4대 척도</td>
+            <td>신뢰도 추정(Cronbach-α, 반분법), 4대 타당도(수렴/판별/공존/예언), 1종/2종 오류</td>
+            <td>확률표집(단순무선/유층/군집) vs 비확률표집, t-검정 vs ANOVA 분산분석</td>
+            <td class="hit-cell">🎯 1종 오류(α) vs 2종 오류(β) 판별표 + 내적타당도 저해요인(통계적 회귀/역사/성숙) + 표집방법 구별</td>
+        </tr>
+    
+        <tr>
+            <td style="font-weight:900; color:#38bdf8; white-space:nowrap;">
+                제3과목 심리측정 및 평가의 활용<br>
+                <span style="font-size:0.75rem; background:#1e293b; color:#94a3b8; padding:2px 6px; border-radius:4px;">필수 1교시</span>
+            </td>
+            <td>MMPI-2 타당도 척도(?/L/F/K/S), 표준점수(Z, T, H), 웩슬러 지능지표(VCI, PRI)</td>
+            <td>K-WISC-V 소검사 분류, 로샤 검사 결정요인, SCT 문장완성 및 HTP 역동</td>
+            <td>BDI-II, STAI 불안척도, MMPI-2 임상척도 2코드(1-2-3 전환V, 4-9 행동화)</td>
+            <td class="hit-cell">🎯 MMPI-2 타당도 삿갓형 vs V형 해석 + 웩슬러 소검사-지표 매칭 + T점수-백분위 환산(T=50 50%, T=60 84%, T=70 97.7%)</td>
+        </tr>
+    
+        <tr>
+            <td style="font-weight:900; color:#38bdf8; white-space:nowrap;">
+                제4과목 청소년 이상심리<br>
+                <span style="font-size:0.75rem; background:#1e293b; color:#94a3b8; padding:2px 6px; border-radius:4px;">필수 1교시</span>
+            </td>
+            <td>주요우울장애(2주) vs 지속성(1년), 조현병 진단기준 A, 품행장애 진단요건</td>
+            <td>ADHD(6개월/2곳 이상), 자폐스펙트럼, PTSD(1개월 초과) vs ASD(3일~1개월)</td>
+            <td>양극성 I형(조증 1주) vs II형(경조증 4일+주요우울), 섭식장애(거식증 vs 폭식증)</td>
+            <td class="hit-cell">🎯 양극성 I형/II형 기간 판별 + 청소년 '가면성 우울(분노/비행)' + PTSD vs 급성스트레스 진단기준 기간</td>
+        </tr>
+    
+        <tr>
+            <td style="font-weight:900; color:#38bdf8; white-space:nowrap;">
+                제5과목 가족상담 (선택)<br>
+                <span style="font-size:0.75rem; background:#1e293b; color:#94a3b8; padding:2px 6px; border-radius:4px;">선택 2교시</span>
+            </td>
+            <td>보웬 자기분화/삼각관계, 미누친 하위체계와 경계선, 해결중심 5대 질문</td>
+            <td>사티어 의사소통 5유형, 밀란 순환질문, 이야기치료 문제 외재화/독특한 결과</td>
+            <td>전략적 역설적 개입/시련기법, 가족생활주기(진수기/노년기), 가계도 기호 판독</td>
+            <td class="hit-cell">🎯 보웬 삼각관계 형성 기제 + 미누친 경계선 3단계(경직/명확/혼란) + 해결중심 5대 질문(기적/예외/척도/대처/관계성)</td>
+        </tr>
+    
+        <tr>
+            <td style="font-weight:900; color:#38bdf8; white-space:nowrap;">
+                제6과목 집단상담 (선택)<br>
+                <span style="font-size:0.75rem; background:#1e293b; color:#94a3b8; padding:2px 6px; border-radius:4px;">선택 2교시</span>
+            </td>
+            <td>코리 집단발달 4단계(초기-과도기-작업-종결), 얄롬 11대 치료적 요인</td>
+            <td>집단상담자 기술(연결/초점/차단), 집단원 문제행동(하위집단/침묵/독점/의존)</td>
+            <td>집단역동 및 응집력, 공동리더십(Co-leader) 피드백 원칙, 청소년 집단 비밀보장</td>
+            <td class="hit-cell">🎯 코리 과도기(저항/불안/갈등) 개입법 + 하위집단 발생 시 대처 + 얄롬 치료요인(보편성/카타르시스/이타주의)</td>
+        </tr>
+    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
 
 <!-- ======================= [실시간 합격 판정 성적표 모달] ======================= -->
 <div class="modal-overlay" id="scoreModal">
@@ -3348,6 +4304,148 @@ buildCbtQuestions();
 renderCbtQuestion();
 renderOmrGrid();
 initDDayCountdown();
+
+
+// =========================================================
+// 📱 [3단계 합격 커리큘럼 전환 & 태블릿 폰트 스케일링]
+// =========================================================
+
+let currentMainStep = 1;
+const step3CardsData = [{"id": "err1", "subject": "연구방법론", "subCode": "sub2", "year": "2023년 제22회 1교시 24번", "title": "상담기술 (핵노잼, 무시당한 것 같다 확인)", "wrong": "① 반영 (Reflection)", "correct": "② 명료화 (Clarification)", "reason": "청소년 은어('핵노잼')의 모호한 의미를 묻고, '무시당한 것 같다'는 막연한 느낌의 구체적 상황을 질문하는 것은 모호함을 걷어내는 전형적인 '명료화' 기법입니다. (반영은 감정/정서를 비추는 기술)", "tip": "💡 [1초 판독] 내담자 말에 '모호함/추상적 표현'이 있을 때 뜻을 구체화하면 무조건 '명료화'!"}, {"id": "err2", "subject": "연구방법론", "subCode": "sub2", "year": "2023년 제22회 1교시 39번", "title": "가설검정 (유의수준과 유의확률의 관계)", "wrong": "⑤ ㄱ, ㄴ, ㄷ, ㄹ (전부 맞음)", "correct": "④ ㄱ, ㄷ, ㄹ (ㄴ 제외)", "reason": "ㄴ 지문 '유의확률(p값)에 대한 해석은 유의수준과 무관하다'는 틀렸습니다. p값은 사전에 설정한 유의수준(α=0.05 등)과 직접 비교(p < α)하여 영가설 기각 여부를 결정하므로 절대 무관하지 않습니다.", "tip": "💡 [1초 판독] p값(유의확률)과 α(유의수준)는 뗄 수 없는 바늘과 실! '무관하다'는 1초 컷 오답!"}, {"id": "err3", "subject": "연구방법론", "subCode": "sub2", "year": "2023년 제22회 1교시 42번", "title": "사전-사후 측정 통제집단 설계", "wrong": "⑤ ㄱ, ㄴ, ㄷ, ㄹ (전부 맞음)", "correct": "③ ㄱ, ㄴ, ㄹ (ㄷ 제외)", "reason": "ㄷ 지문 '사후 측정은 통제집단에만 실시한다'는 명백한 오답입니다. 실험 처치 효과를 비교 검증하려면 실험집단과 통제집단 '둘 다' 사전 및 사후 측정을 실시해야 합니다.", "tip": "💡 [1초 판독] 사전-사후 통제집단 설계에서 사전/사후 측정은 두 집단 '모두' 실시하는 것이 철칙!"}, {"id": "err4", "subject": "집단상담", "subCode": "sub7", "year": "2023년 제22회 2교시 31번", "title": "신뢰가 높은 집단의 특징", "wrong": "② 자신의 개인적인 측면을 나눈다", "correct": "④ 집단원 일부가 하위집단을 형성하여 친해진다", "reason": "②번 자기개방은 집단 내 신뢰가 높을 때 나타나는 바람직한 행동입니다. 반면 ④번 하위집단(Subgroup) 형성은 집단 전체 응집력을 파괴하고 소외감을 유발하는 대표적인 '저항 및 역기능'입니다.", "tip": "💡 [1초 판독] '하위집단 형성'은 집단상담의 위험신호(역기능)! 신뢰 높은 집단의 특징이 아님!"}, {"id": "err5", "subject": "집단상담", "subCode": "sub7", "year": "2023년 제22회 2교시 39번", "title": "게슈탈트 이론 적용 개입", "wrong": "④ ㄴ, ㄷ, ㄹ", "correct": "③ ㄱ, ㄴ, ㄹ (ㄷ 제외)", "reason": "ㄷ 지문 '속상한 감정을 5점 만점에 몇 점인지 매기기'는 해결중심 단기상담의 '척도질문'입니다. ㄱ의 '우월한 나 vs 열등한 나' 대화는 게슈탈트의 핵심 기법인 승자(Top-dog)/패자(Under-dog) 양극성 대화입니다.", "tip": "💡 [1초 판독] '1~10점 척도 매기기' = 해결중심 척도질문! 게슈탈트 기법이 아님!"}, {"id": "err6", "subject": "집단상담", "subCode": "sub7", "year": "2023년 제22회 2교시 40번", "title": "코리(Corey)의 집단상담자 인간적 자질", "wrong": "시험지 마킹 누락 ⚠️", "correct": "④ 적극적 경청", "reason": "용기, 활력, 자기돌봄, 창의성은 상담자의 성격적·인격적 특성인 '인간적 자질'입니다. 반면 '적극적 경청'은 훈련과 학습을 통해 습득하는 상담자의 '전문적 기술(Skill)'에 해당합니다.", "tip": "💡 [1초 판독] '경청, 반영, 명료화'는 습득 가능한 [기술]! 인품이나 성품은 [인간적 자질]!"}, {"id": "err7", "subject": "집단상담", "subCode": "sub7", "year": "2023년 제22회 2교시 41번", "title": "소극적인 집단원(영희) 개입", "wrong": "④ ㄴ, ㄷ, ㄹ", "correct": "③ ㄱ, ㄴ, ㄷ (ㄹ 제외)", "reason": "ㄹ 지문 '가만히 있는 것은 좋지 않아요. 본인 이야기 해야 해요'는 침묵하는 소극적 집단원을 일방적으로 다그쳐 불안과 저항, 수치심을 극대화하는 절대 금기 반응입니다.", "tip": "💡 [1초 판독] 소극적/침묵 집단원에게 훈계하거나 직접적인 발언을 강요하면 무조건 오답!"}, {"id": "err8", "subject": "집단상담", "subCode": "sub7", "year": "2023년 제22회 2교시 42번", "title": "청소년 집단상담의 이점", "wrong": "⑤ 또래 상호작용으로 부정적 감정 다루기", "correct": "① 집단 환경 속에서 의존성을 높여나간다", "reason": "집단상담의 목적은 자율성과 독립적 문제해결 능력을 배양하는 것입니다. '집단 환경 속에서 의존성을 높여나간다'는 상담의 근본 목표와 정반대되는 명백한 오답입니다.", "tip": "💡 [1초 판독] 상담의 목표는 '자립/자율성 신장'! '의존성 증대'는 100% 함정 오답!"}, {"id": "err9", "subject": "집단상담", "subCode": "sub7", "year": "2023년 제22회 2교시 43번", "title": "상담 기술 (우리 집단 누구에게서 그런 느낌이 들었나?)", "wrong": "① 명료화하기", "correct": "④ 초점 맞추기 (Focusing)", "reason": "집단 밖의 이야기(친구와 싸움)로 분산되려는 집단원의 주의를 '지금-여기, 우리 집단 내부의 특정 구성원'으로 좁혀 모아주는 기술은 '초점 맞추기'입니다.", "tip": "💡 [1초 판독] 모호함을 걷어내면 '명료화', 흩어진 주제를 지금-여기로 모아 집중시키면 '초점맞추기'!"}, {"id": "err10", "subject": "집단상담", "subCode": "sub7", "year": "2023년 제22회 2교시 45번", "title": "공동상담자(Co-leader) 운영", "wrong": "⑤ ㄱ, ㄴ, ㄷ, ㄹ (전부 맞음)", "correct": "③ ㄱ, ㄴ, ㄷ (ㄹ 제외)", "reason": "ㄹ 지문 '공동리더 간 협의와 상호피드백은 필수적이지 않다'는 오답입니다. 회기 전 전략 수립과 회기 후 디브리핑/상호피드백은 공동상담의 성패를 가르는 '절대 필수 과정'입니다.", "tip": "💡 [1초 판독] 공동리더십에서 리더 간 협의와 상호 피드백은 '필수 중의 필수'!"}, {"id": "err11", "subject": "집단상담", "subCode": "sub7", "year": "2023년 제22회 2교시 50번", "title": "청소년 집단 vs 성인 집단 특성", "wrong": "⑤ ㄴ, ㄷ, ㄹ", "correct": "③ ㄷ, ㄹ", "reason": "ㄱ(X) 청소년은 미성년자이므로 부모 동의 및 비밀보장 한계가 성인과 다름 / ㄴ(X) 성인 집단도 법원 수강명령 등 비자발적 참여자가 다수 존재하므로 성인만 자발적이라는 설명은 틀림.", "tip": "💡 [1초 판독] '성인 집단은 전원 자발적이다'는 거짓! 법원 판결 등 비자발 집단 많음!"}, {"id": "err12", "subject": "가족상담", "subCode": "sub6", "year": "2023년 제22회 2교시 55번", "title": "해결중심 단기 가족상담 내담자 유형", "wrong": "④ 피드백 3요소 (칭찬, 연결문, 과제)", "correct": "⑤ 고객형 내담자는 ~ 변화 의향도 없다", "reason": "문제를 인식하고 불평하지만 자신이 변화할 의향은 없는 유형은 '불평형(Complainant)'입니다. 고객형(Customer)은 문제 해결의 주체로서 높은 실천 의지를 가진 내담자입니다.", "tip": "💡 [1초 판독] 방문형(문제인식X, 타의) / 불평형(문제인식O, 남탓/변화의지X) / 고객형(문제인식O, 변화의지O)!"}, {"id": "err13", "subject": "가족상담", "subCode": "sub6", "year": "2023년 제22회 2교시 56번", "title": "개인상담 대비 가족상담의 특징", "wrong": "③ 기계론적 세계관에 기초한다", "correct": "④ 개인을 둘러싸고 있는 관계 속에서 일어나는 문제에 더 많은 관심", "reason": "가족상담은 직선적 인과론과 기계론적 세계관을 거부하고, 순환적 인과론과 체계론적·유기체론적 세계관에 기초합니다. 개인 내부보다 상호작용 체계에 주목합니다.", "tip": "💡 [1초 판독] 가족상담의 핵심 철학은 [순환적 인과론]과 [체계론]! 기계론은 정반대!"}, {"id": "err14", "subject": "가족상담", "subCode": "sub6", "year": "2023년 제22회 2교시 57번", "title": "가족상담 개념 (동귀결성 & 거짓친밀성)", "wrong": "④ ㄱ, ㄷ, ㄹ", "correct": "① ㄱ, ㄷ", "reason": "ㄹ 지문 '다양한 출발점에서 동일한 결과에 도달하는 것'은 '동귀결성(Equifinality)'입니다. ㄴ 지문 '속으로는 분노하면서 겉으로 화목한 척'은 '거짓친밀성(Pseudomutuality)'입니다.", "tip": "💡 [1초 판독] 다양한 출발 ➔ 같은 결과 = [동귀결성] / 같은 출발 ➔ 다른 결과 = [다귀결성]!"}, {"id": "err15", "subject": "가족상담", "subCode": "sub6", "year": "2023년 제22회 2교시 60번", "title": "해결중심 질문기법 (어떻게 지금까지 견뎠는가?)", "wrong": "④ 예외질문", "correct": "③ 관계성질문 (오류 명명)", "reason": "'그 절망적인 상황 속에서 어떻게 지금까지 더 나빠지지 않고 버틸 수 있었습니까?'는 내담자의 숨겨진 잠재력과 대처능력을 발견해주는 '대처질문(Coping Question)'입니다.", "tip": "💡 [1초 판독] '어떻게 견뎠나요? 더 안 나빠진 비결은?' ➔ 무조건 [대처질문]!"}, {"id": "err16", "subject": "가족상담", "subCode": "sub6", "year": "2023년 제22회 2교시 63번", "title": "가족상담 모델과 개입 (이야기치료 외재화)", "wrong": "⑤ 전략적 가족상담 - 순환질문", "correct": "② 이야기치료 - 문제를 내면화할 수 있도록 한다", "reason": "이야기치료(White & Epston)의 핵심 철학은 '사람이 문제가 아니라, 문제 자체가 문제이다'라며 사람과 문제를 분리하는 '문제의 외재화(외현화)'입니다. 문제를 '내면화'하도록 돕는다는 것은 정반대 오답입니다.", "tip": "💡 [1초 판독] 이야기치료 = [문제의 외재화(외현화)]! '내면화' 지문은 1초 만에 킬!"}, {"id": "err17", "subject": "가족상담", "subCode": "sub6", "year": "2023년 제22회 2교시 70번", "title": "가족생활주기 노년기 특성", "wrong": "② 에릭슨 자녀 분리", "correct": "⑤ 노년기는 가장 안정된 가족경계를 이룬다", "reason": "가족생활주기에서 노년기는 직장 은퇴, 만성 질환, 배우자 상실, 자녀 부양 의존 등으로 인해 상실과 스트레스가 집중되는 가장 취약한 재적응기입니다. '가장 안정된 가족경계'라는 설명은 틀렸습니다.", "tip": "💡 [1초 판독] 노년기는 은퇴와 사별로 인한 [상실과 위기 극대화] 단계!"}, {"id": "err18", "subject": "가족상담", "subCode": "sub6", "year": "2023년 제22회 2교시 74번", "title": "가계도 기호 판독 (IP와 부의 점선)", "wrong": "③ IP의 부와 친조모는 밀착된 관계이다", "correct": "① IP는 부와 정서적으로 친밀하다", "reason": "가계도에서 IP와 부 사이는 '점선( - - - )'으로 표기되어 있으므로 정서적으로 '소원하거나 먼 관계'를 뜻합니다. '정서적으로 친밀하다(두 줄 실선 ══)'는 설명은 오답입니다.", "tip": "💡 [1초 판독] 가계도 기호: 한 줄 실선(보통), 두 줄 실선(친밀), 점선(소원), 지그재그(갈등), 3줄(밀착)!"}];
+
+function switchMainStep(stepNum) {
+    currentMainStep = stepNum;
+
+    // 네비게이션 버튼 활성화
+    const btn1 = document.getElementById('btnStepNav1');
+    const btn2 = document.getElementById('btnStepNav2');
+    const btn3 = document.getElementById('btnStepNav3');
+
+    if (btn1) btn1.className = (stepNum === 1) ? 'curriculum-btn step1-active active' : 'curriculum-btn';
+    if (btn2) btn2.className = (stepNum === 2) ? 'curriculum-btn step2-active active' : 'curriculum-btn';
+    if (btn3) btn3.className = (stepNum === 3) ? 'curriculum-btn step3-active active' : 'curriculum-btn';
+
+    // 컨테이너 제어
+    const s1Ctrl = document.getElementById('step1-controls');
+    const s2Ctrl = document.getElementById('step2-controls');
+    const s1Box = document.getElementById('step1-container');
+    const s2Box = document.getElementById('step2-container');
+    const s3Box = document.getElementById('step3-container');
+
+    if (autoScanInterval) toggleAutoScan(); // 스캔 정지
+
+    if (stepNum === 1) {
+        if (s1Ctrl) s1Ctrl.style.display = 'block';
+        if (s2Ctrl) s2Ctrl.style.display = 'none';
+        if (s1Box) s1Box.style.display = 'block';
+        if (s2Box) s2Box.style.display = 'none';
+        if (s3Box) s3Box.style.display = 'none';
+        setAppMode('table');
+    } else if (stepNum === 2) {
+        if (s1Ctrl) s1Ctrl.style.display = 'none';
+        if (s2Ctrl) s2Ctrl.style.display = 'block';
+        if (s1Box) s1Box.style.display = 'none';
+        if (s2Box) s2Box.style.display = 'block';
+        if (s3Box) s3Box.style.display = 'none';
+        setAppMode('cbt');
+    } else if (stepNum === 3) {
+        if (s1Ctrl) s1Ctrl.style.display = 'none';
+        if (s2Ctrl) s2Ctrl.style.display = 'none';
+        if (s1Box) s1Box.style.display = 'none';
+        if (s2Box) s2Box.style.display = 'none';
+        if (s3Box) s3Box.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+// 태블릿 폰트 줌 조절
+function setFontZoom(zoomSize) {
+    document.body.classList.remove('zoom-sm', 'zoom-md', 'zoom-lg', 'zoom-xl');
+    document.body.classList.add('zoom-' + zoomSize);
+
+    document.querySelectorAll('.btn-font-scale').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.getElementById('btnZoom' + zoomSize.toUpperCase());
+    if (activeBtn) activeBtn.classList.add('active');
+
+    try {
+        localStorage.setItem('qnet_tablet_zoom', zoomSize);
+    } catch(e) {}
+}
+
+// 저장된 폰트 복원
+try {
+    const savedZoom = localStorage.getItem('qnet_tablet_zoom') || 'md';
+    setFontZoom(savedZoom);
+} catch(e) {}
+
+// Step 3 과목 필터링
+function filterStep3Cards(subCode) {
+    document.querySelectorAll('.btn-s3-filter').forEach(btn => btn.classList.remove('active'));
+    if (event && event.target) event.target.classList.add('active');
+
+    const cards = document.querySelectorAll('.error-card');
+    cards.forEach(card => {
+        if (subCode === 'all' || card.getAttribute('data-sub') === subCode) {
+            card.style.display = 'flex';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Step 3 실시간 검색
+function searchStep3Cards() {
+    const val = document.getElementById('step3SearchInput').value.trim().toLowerCase();
+    const cards = document.querySelectorAll('.error-card');
+    cards.forEach(card => {
+        const searchData = (card.getAttribute('data-search') || '').toLowerCase();
+        if (!val || searchData.includes(val)) {
+            card.style.display = 'flex';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+// Step 3 18제 함정 탈출 자가진단 CBT 퀴즈 모드 연동
+function startStep3Quiz() {
+    allQuestions = step3CardsData.map((c, idx) => {
+        let options = [
+            c.correct,
+            c.wrong,
+            "③ [변형지문] " + (c.correct.includes("명료화") ? "직면 (Confrontation)" : c.correct.includes("하위집단") ? "집단 응집력 강화" : "순환적 인과관계"),
+            "④ [변형지문] " + (c.correct.includes("p값") ? "유의수준과 완전히 독립적이다" : "내면화 촉진"),
+            "⑤ [변형지문] " + (c.correct.includes("의존성") ? "집단원의 저항을 완전히 제거한다" : "가족 항상성 유지")
+        ].sort(() => Math.random() - 0.5);
+
+        return {
+            id: 's3_' + c.id,
+            period: 'step3',
+            subject: c.subject,
+            num: idx + 1,
+            qText: `[기출 함정소독 ${idx+1}/18번] (${c.year}) - ${c.title}`,
+            options: options,
+            correct: c.correct,
+            feedback: `<b>✅ 공식 정답:</b> ${c.correct}<br><b>❌ 시험지 오류 함정:</b> ${c.wrong}<br><b>💡 소독 해설:</b> ${c.reason}<br><b>📌 합격 팁:</b> ${c.tip}`
+        };
+    });
+
+    userAnswers = {};
+    currentQIdx = 0;
+    isExamSubmitted = false;
+    currentPeriod = 'step3';
+    secondsRemaining = 1200; // 20분
+    switchMainStep(2);
+    renderCbtQuestion();
+    renderOmrGrid();
+    startTimer();
+}
+
+// 최초 로딩 시 1단계(150제 요약표) 자동 활성화
+setTimeout(() => {
+    switchMainStep(1);
+}, 50);
+
 </script>
 </body>
 </html>
